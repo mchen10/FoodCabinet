@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:fitsSystemWindows="true"
+    tools:context="foodcabinet.foodcabinet.Home">
+    <android.support.design.widget.AppBarLayout android:id="@+id/app_bar"
+        android:fitsSystemWindows="true" android:layout_height="0.5in"
+        android:layout_width="match_parent" android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.design.widget.CollapsingToolbarLayout android:id="@+id/toolbar_layout"
+            android:fitsSystemWindows="true" android:layout_width="match_parent"
+            android:layout_height="match_parent" app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:contentScrim="?attr/colorPrimary">
+
+            <android.support.v7.widget.Toolbar android:id="@+id/toolbar"
+                android:layout_height="?attr/actionBarSize" android:layout_width="match_parent"
+                app:layout_collapseMode="pin" app:popupTheme="@style/AppTheme.PopupOverlay"></android.support.v7.widget.Toolbar>
+            <Button
+                android:text="Add Items"
+                android:layout_height="0.5in"
+                android:onClick="takePicture"
+                android:layout_width="0.5in"
+                />
+
+            />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <Button
+            android:background="@drawable/bread"
+            android:layout_width="@dimen/app_bar_height"
+            android:layout_height="@dimen/app_bar_height"
+            android:text="New Button"
+            android:id="@+id/button"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="204dp"
+            android:layout_alignRight="@+id/button3"
+            android:layout_alignEnd="@+id/button3" />
+
+        <Button
+            android:layout_width="@dimen/app_bar_height"
+            android:layout_height="@dimen/app_bar_height"
+            android:text="New Button"
+            android:id="@+id/button2"
+            android:layout_alignBottom="@+id/button"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:layout_width="@dimen/app_bar_height"
+            android:layout_height="@dimen/app_bar_height"
+            android:text="New Button3"
+            android:id="@+id/button3"
+            android:layout_below="@+id/button"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            />
+
+        <Button
+            android:layout_width="@dimen/app_bar_height"
+            android:layout_height="@dimen/app_bar_height"
+            android:text="New Button4"
+            android:id="@+id/button4"
+            android:layout_alignBottom="@+id/button3"
+            android:layout_alignLeft="@+id/button2"
+            android:layout_alignStart="@+id/button2" />
+
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/horizontalScrollView"
+            android:layout_above="@+id/button2"
+            android:layout_marginBottom="41dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dairy Products"
+            android:id="@+id/button5"
+            android:layout_alignTop="@+id/button7"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Meats/Bread"
+            android:id="@+id/button7"
+            android:layout_above="@+id/horizontalScrollView"
+            android:layout_toRightOf="@+id/button5"
+            android:layout_toEndOf="@+id/button5" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Canned Foods"
+            android:id="@+id/button6"
+            android:layout_alignTop="@+id/button7"
+            android:layout_alignRight="@+id/button2"
+            android:layout_alignEnd="@+id/button2" />
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>
