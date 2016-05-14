@@ -5,13 +5,18 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import java.util.ArrayList;
+
+import java.lang.reflect.Array;
 
 /**
  * Created by Sahaj on 5/12/16.
  */
 public class Home extends AppCompatActivity{
-
-    @Override
+    private ArrayList<Product> products;
+    public void addProduct(Product p) {
+        products.add(p);
+    }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
@@ -23,6 +28,10 @@ public class Home extends AppCompatActivity{
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapse_toolbar);
         collapsingToolbar.setTitle("Food Cabinet");
+
+        for (Product p: products) {
+
+        }
         //Toolbar toolbar = (Toolbar) findViewById(R.id.HomeCollapsing);
         //setSupportActionBar(toolbar);
 
