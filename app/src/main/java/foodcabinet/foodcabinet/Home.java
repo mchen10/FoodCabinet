@@ -1,11 +1,11 @@
 package foodcabinet.foodcabinet;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+
 /**
  * Created by Sahaj on 5/12/16.
  */
@@ -15,6 +15,14 @@ public class Home extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.MyToolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        CollapsingToolbarLayout collapsingToolbar =
+                (CollapsingToolbarLayout) findViewById(R.id.collapse_toolbar);
+        collapsingToolbar.setTitle("Food Cabinet");
         //Toolbar toolbar = (Toolbar) findViewById(R.id.HomeCollapsing);
         //setSupportActionBar(toolbar);
 
