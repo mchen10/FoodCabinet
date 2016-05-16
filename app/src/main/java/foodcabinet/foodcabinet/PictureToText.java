@@ -19,7 +19,7 @@ public class PictureToText {
         private String transated;
         private Image picture;
         private Product prod;
-        public static Vision connectToOCR() throws IOException,GeneralSecurityException
+        /*public static Vision connectToOCR() throws IOException,GeneralSecurityException
         {
                 GoogleCredential credential =
                         GoogleCredential.getApplicationDefault().createScoped(VisionScopes.all());
@@ -28,7 +28,7 @@ public class PictureToText {
                         .setApplicationName(APPLICATION_NAME)
                         .build();
 
-        }
+        }*/
 
 
         public PictureToText(Image a)
@@ -48,4 +48,4 @@ public class PictureToText {
 
 
     }
-}
+
