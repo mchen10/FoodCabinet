@@ -16,16 +16,26 @@ import java.security.GeneralSecurityException;
  */
 public class PictureToText {
 
-        private String transated;
+        private String translated;
         private Image picture;
         private Product prod;
+<<<<<<< Updated upstream
         /*public static Vision connectToOCR() throws IOException,GeneralSecurityException
+=======
+
+    /**
+     * Method to send an invoice 
+     * @return A Vis
+     * @throws IOException
+     * @throws GeneralSecurityException
+     */
+        public static Vision connectToOCR() throws IOException,GeneralSecurityException
+>>>>>>> Stashed changes
         {
-                GoogleCredential credential =
-                        GoogleCredential.getApplicationDefault().createScoped(VisionScopes.all());
+                GoogleCredential credential = GoogleCredential.getApplicationDefault().createScoped(VisionScopes.all());
                 JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
                 return new Vision.Builder(GoogleNetHttpTransport.newTrustedTransport(), jsonFactory, credential)
-                        .setApplicationName(APPLICATION_NAME)
+                        .setApplicationName("foodcabinet")
                         .build();
 
         }*/
@@ -41,11 +51,27 @@ public class PictureToText {
         {
 
 
+        }
 
+        public static void main(String args[])
+        {
+            try{
+            connectToOCR();
+
+            }catch (IOException e)
+            {
+
+            }catch(GeneralSecurityException e)
+            {
+
+            }
         }
 
 
 
-
+<<<<<<< Updated upstream
     }
 
+=======
+}
+>>>>>>> Stashed changes
