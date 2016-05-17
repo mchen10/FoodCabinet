@@ -14,6 +14,10 @@ import org.w3c.dom.Text;
  * Created by Mems on 5/16/2016.
  */
 public class ZoomedInProduct extends AppCompatActivity{
+    /**
+     * Called method when a new Instance of a Zoom In Product is to be created and displayed in the application
+     * @param savedInstanceState The Bundle of which should be created in the application
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.zoomed_in_product);
@@ -31,6 +35,11 @@ public class ZoomedInProduct extends AppCompatActivity{
 
     }
 
+    /**
+     * Sends and Intent back to the Home Page and displays it on the application
+     *
+     * @param v View object that should be displayed in the application
+     */
     public void returnHome(View v) {
         Intent intent = new Intent(this, Home.class);
         startActivity(intent);
