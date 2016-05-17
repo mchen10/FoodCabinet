@@ -1,11 +1,13 @@
 package foodcabinet.foodcabinet;
 
 import android.media.Image;
+
+import java.io.Serializable;
 import java.util.Date;
 /**
  * Created by Sahaj on 5/14/16.
  */
-public class Product {
+public class Product implements Serializable{
     private Date  startDate,eDate, uDate;
     private String name;
 

@@ -1,5 +1,6 @@
 package foodcabinet.foodcabinet;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import java.lang.reflect.Array;
+import java.util.Date;
 
 /**
  * Created by Sahaj on 5/12/16.
@@ -46,10 +48,10 @@ public class Home extends AppCompatActivity{
 
         LinearLayout homeMain = (LinearLayout) findViewById(R.id.HomeMain);
         products = new ArrayList<Product>();
-        products.add(new Product("Bread", "August 25, 2015", "August 20, 2015"));
-        products.add(new Product("Bread", "August 25, 2015", "August 20, 2015"));
-        products.add(new Product("Bread", "August 25, 2015", "August 20, 2015"));
-        products.add(new Product("Bread", "August 25, 2015", "August 20, 2015"));
+        products.add(new Product("Bread", new Date(2015, 8, 20), new Date(2015, 8, 20), new Date(2015, 8, 20)));
+        products.add(new Product("Bread", new Date(2015, 8, 20), new Date(2015, 8, 20), new Date(2015, 8, 20)));
+        products.add(new Product("Bread", new Date(2015, 8, 20), new Date(2015, 8, 20), new Date(2015, 8, 20)));
+        products.add(new Product("Bread", new Date(2015, 8, 20), new Date(2015, 8, 20), new Date(2015, 8, 20)));
         LinearLayout.LayoutParams picLp = new LinearLayout.LayoutParams((screenWidth - 30) / 3, screenWidth / 3);
         LinearLayout.LayoutParams textLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         textLp.setMargins(0, 0, 0, 10);
@@ -64,10 +66,13 @@ public class Home extends AppCompatActivity{
             if (i + 1 == products.size()) {
                 LinearLayout b1 = new LinearLayout(this);
                 b1.setClickable(true);
+                b1.setId(i);
                 b1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
+                        intent.putExtra("Product", products.get(v.getId()));
+                        startActivity(intent);
                     }
                 });
                 b1.setOrientation(LinearLayout.VERTICAL);
@@ -84,12 +89,12 @@ public class Home extends AppCompatActivity{
                 b1.addView(text1);
 
                 TextView text2 = new TextView(this);
-                text2.setText(products.get(i).getUDate());
+                text2.setText(products.get(i).getUDate().toString());
                 text2.setLayoutParams(textLp);
                 b1.addView(text2);
 
                 TextView text3 = new TextView(this);
-                text3.setText(products.get(i).getEDate());
+                text3.setText(products.get(i).getEDate().toString());
                 text3.setLayoutParams(textLp);
                 b1.addView(text3);
 
@@ -99,6 +104,15 @@ public class Home extends AppCompatActivity{
             } else if (i + 2 == products.size()) {
                 LinearLayout b1 = new LinearLayout(this);
                 b1.setOrientation(LinearLayout.VERTICAL);
+                b1.setId(i);
+                b1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
+                        intent.putExtra("Product", products.get(v.getId()));
+                        startActivity(intent);
+                    }
+                });
 
                 ImageView pic1 = new ImageView(this);
                 pic1.setImageResource(getResources().getIdentifier("bread", "drawable", getPackageName()));
@@ -112,12 +126,12 @@ public class Home extends AppCompatActivity{
                 b1.addView(text1);
 
                 TextView text2 = new TextView(this);
-                text2.setText(products.get(i).getUDate());
+                text2.setText(products.get(i).getUDate().toString());
                 text2.setLayoutParams(textLp);
                 b1.addView(text2);
 
                 TextView text3 = new TextView(this);
-                text3.setText(products.get(i).getEDate());
+                text3.setText(products.get(i).getEDate().toString());
                 text3.setLayoutParams(textLp);
                 b1.addView(text3);
 
@@ -128,6 +142,15 @@ public class Home extends AppCompatActivity{
 
                 LinearLayout b2 = new LinearLayout(this);
                 b2.setOrientation(LinearLayout.VERTICAL);
+                b2.setId(i + 1);
+                b2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
+                        intent.putExtra("Product", products.get(v.getId()));
+                        startActivity(intent);
+                    }
+                });
 
                 ImageView pic21 = new ImageView(this);
                 pic21.setImageResource(getResources().getIdentifier("bread", "drawable", getPackageName()));
@@ -141,12 +164,12 @@ public class Home extends AppCompatActivity{
                 b2.addView(text21);
 
                 TextView text22 = new TextView(this);
-                text22.setText(products.get(i + 1).getUDate());
+                text22.setText(products.get(i + 1).getUDate().toString());
                 text22.setLayoutParams(textLp);
                 b2.addView(text22);
 
                 TextView text23 = new TextView(this);
-                text23.setText(products.get(i + 1).getEDate());
+                text23.setText(products.get(i + 1).getEDate().toString());
                 text23.setLayoutParams(textLp);
                 b2.addView(text23);
 
@@ -156,6 +179,15 @@ public class Home extends AppCompatActivity{
             } else {
                 LinearLayout b1 = new LinearLayout(this);
                 b1.setOrientation(LinearLayout.VERTICAL);
+                b1.setId(i);
+                b1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
+                        intent.putExtra("Product", products.get(v.getId()));
+                        startActivity(intent);
+                    }
+                });
 
                 ImageView pic1 = new ImageView(this);
                 pic1.setImageResource(getResources().getIdentifier("bread", "drawable", getPackageName()));
@@ -169,12 +201,12 @@ public class Home extends AppCompatActivity{
                 b1.addView(text1);
 
                 TextView text2 = new TextView(this);
-                text2.setText(products.get(i).getUDate());
+                text2.setText(products.get(i).getUDate().toString());
                 text2.setLayoutParams(textLp);
                 b1.addView(text2);
 
                 TextView text3 = new TextView(this);
-                text3.setText(products.get(i).getEDate());
+                text3.setText(products.get(i).getEDate().toString());
                 text3.setLayoutParams(textLp);
                 b1.addView(text3);
 
@@ -185,6 +217,15 @@ public class Home extends AppCompatActivity{
 
                 LinearLayout b2 = new LinearLayout(this);
                 b2.setOrientation(LinearLayout.VERTICAL);
+                b2.setId(i + 1);
+                b2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
+                        intent.putExtra("Product", products.get(v.getId()));
+                        startActivity(intent);
+                    }
+                });
 
                 ImageView pic21 = new ImageView(this);
                 pic21.setImageResource(getResources().getIdentifier("bread", "drawable", getPackageName()));
@@ -198,12 +239,12 @@ public class Home extends AppCompatActivity{
                 b2.addView(text21);
 
                 TextView text22 = new TextView(this);
-                text22.setText(products.get(i + 1).getUDate());
+                text22.setText(products.get(i + 1).getUDate().toString());
                 text22.setLayoutParams(textLp);
                 b2.addView(text22);
 
                 TextView text23 = new TextView(this);
-                text23.setText(products.get(i + 1).getEDate());
+                text23.setText(products.get(i + 1).getEDate().toString());
                 text23.setLayoutParams(textLp);
                 b2.addView(text23);
 
@@ -214,6 +255,15 @@ public class Home extends AppCompatActivity{
 
                 LinearLayout b3 = new LinearLayout(this);
                 b3.setOrientation(LinearLayout.VERTICAL);
+                b3.setId(i + 2);
+                b3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
+                        intent.putExtra("Product", products.get(v.getId()));
+                        startActivity(intent);
+                    }
+                });
 
                 ImageView pic31 = new ImageView(this);
                 pic31.setImageResource(getResources().getIdentifier("bread", "drawable", getPackageName()));
@@ -227,12 +277,12 @@ public class Home extends AppCompatActivity{
                 b3.addView(text31);
 
                 TextView text32 = new TextView(this);
-                text32.setText(products.get(i + 1).getUDate());
+                text32.setText(products.get(i + 1).getUDate().toString());
                 text32.setLayoutParams(textLp);
                 b3.addView(text32);
 
                 TextView text33 = new TextView(this);
-                text33.setText(products.get(i + 1).getEDate());
+                text33.setText(products.get(i + 1).getEDate().toString());
                 text33.setLayoutParams(textLp);
                 b3.addView(text33);
 
@@ -251,5 +301,4 @@ public class Home extends AppCompatActivity{
     {
 
     }
-
 }
