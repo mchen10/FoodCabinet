@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.lang.reflect.Array;
 
 /**
- * Created by Sahaj on 5/12/16.
+ * Created by Michael on 5/12/16.
  */
 public class Home extends AppCompatActivity{
     private ArrayList<Product> products;
@@ -36,7 +36,6 @@ public class Home extends AppCompatActivity{
         Point size = new Point();
         display.getSize(size);
         int screenWidth = size.x;
-        int screenHeight = size.y;
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.MyToolbar);
         setSupportActionBar(toolbar);
@@ -52,9 +51,13 @@ public class Home extends AppCompatActivity{
         products.add(new Product("Bread", 5, 5));
         products.add(new Product("Bread", 5, 5));
         products.add(new Product("Bread", 5, 5));
-        LinearLayout.LayoutParams picLp = new LinearLayout.LayoutParams((screenWidth - 30) / 3, screenWidth / 3);
+        LinearLayout.LayoutParams picLp = new LinearLayout.LayoutParams((screenWidth - 224) / 3, (screenWidth - 120) / 3);
+        picLp.setMargins(30, -30, 30, 0);
         LinearLayout.LayoutParams layoutLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         LinearLayout.LayoutParams textLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+        textLp.setMargins(0, 0, 0, 10);
+        LinearLayout.LayoutParams prodLp = new LinearLayout.LayoutParams((screenWidth - 50) / 3, (screenWidth - 50) / 3);
+        prodLp.setMargins(0, 15, 20, 15);
         for (int i = 0; i < products.size(); i+=3) {
             LinearLayout layout = new LinearLayout(this);
             layout.setOrientation(LinearLayout.HORIZONTAL);
@@ -75,25 +78,25 @@ public class Home extends AppCompatActivity{
 
                 ImageView pic1 = new ImageView(this);
                 pic1.setImageResource(getResources().getIdentifier("bread", "drawable", getPackageName()));
-                picLp.setMargins(0, 0, 0, 10);
                 pic1.setLayoutParams(picLp);
                 b1.addView(pic1);
 
                 TextView text1 = new TextView(this);
                 text1.setText(products.get(i).getName());
-                text1.setLayoutParams(picLp);
+                text1.setLayoutParams(textLp);
                 b1.addView(text1);
 
                 TextView text2 = new TextView(this);
                 text2.setText(products.get(i).getUDays()+"");
-                text2.setLayoutParams(picLp);
+                text2.setLayoutParams(textLp);
                 b1.addView(text2);
 
                 TextView text3 = new TextView(this);
                 text3.setText(products.get(i).getEDays()+"");
-                text3.setLayoutParams(picLp);
+                text3.setLayoutParams(textLp);
                 b1.addView(text3);
 
+                b1.setLayoutParams(prodLp);
                 b1.setBackgroundColor(Color.BLUE);
                 layout.addView(b1);
             } else if (i + 2 == products.size()) {
@@ -111,28 +114,27 @@ public class Home extends AppCompatActivity{
 
                 ImageView pic1 = new ImageView(this);
                 pic1.setImageResource(getResources().getIdentifier("bread", "drawable", getPackageName()));
-                picLp.setMargins(0, 0, 0, 10);
                 pic1.setLayoutParams(picLp);
                 b1.addView(pic1);
 
                 TextView text1 = new TextView(this);
                 text1.setText(products.get(i).getName());
-                text1.setLayoutParams(picLp);
+                text1.setLayoutParams(textLp);
                 b1.addView(text1);
 
                 TextView text2 = new TextView(this);
                 text2.setText(products.get(i).getUDays()+"");
-                text2.setLayoutParams(picLp);
+                text2.setLayoutParams(textLp);
                 b1.addView(text2);
 
                 TextView text3 = new TextView(this);
                 text3.setText(products.get(i).getEDays()+"");
-                text3.setLayoutParams(picLp);
+                text3.setLayoutParams(textLp);
                 b1.addView(text3);
 
                 b1.setBackgroundColor(Color.BLUE);
                 layoutLp.setMargins(0, 0, 15, 0);
-                b1.setLayoutParams(layoutLp);
+                b1.setLayoutParams(prodLp);
                 layout.addView(b1);
 
                 LinearLayout b2 = new LinearLayout(this);
@@ -149,25 +151,25 @@ public class Home extends AppCompatActivity{
 
                 ImageView pic21 = new ImageView(this);
                 pic21.setImageResource(getResources().getIdentifier("bread", "drawable", getPackageName()));
-                picLp.setMargins(0, 0, 0, 10);
                 pic21.setLayoutParams(picLp);
                 b2.addView(pic21);
 
                 TextView text21 = new TextView(this);
                 text21.setText(products.get(i + 1).getName());
-                text21.setLayoutParams(picLp);
+                text21.setLayoutParams(textLp);
                 b2.addView(text21);
 
                 TextView text22 = new TextView(this);
                 text22.setText(products.get(i + 1).getUDays()+"");
-                text22.setLayoutParams(picLp);
+                text22.setLayoutParams(textLp);
                 b2.addView(text22);
 
                 TextView text23 = new TextView(this);
                 text23.setText(products.get(i + 1).getEDays()+"");
-                text23.setLayoutParams(picLp);
+                text23.setLayoutParams(textLp);
                 b2.addView(text23);
 
+                b2.setLayoutParams(prodLp);
                 b2.setBackgroundColor(Color.BLUE);
                 layout.addView(b2);
             } else {
@@ -185,28 +187,27 @@ public class Home extends AppCompatActivity{
 
                 ImageView pic1 = new ImageView(this);
                 pic1.setImageResource(getResources().getIdentifier("bread", "drawable", getPackageName()));
-                picLp.setMargins(0, 0, 0, 10);
                 pic1.setLayoutParams(picLp);
                 b1.addView(pic1);
 
                 TextView text1 = new TextView(this);
                 text1.setText(products.get(i).getName());
-                text1.setLayoutParams(picLp);
+                text1.setLayoutParams(textLp);
                 b1.addView(text1);
 
                 TextView text2 = new TextView(this);
                 text2.setText(products.get(i).getUDays()+"");
-                text2.setLayoutParams(picLp);
+                text2.setLayoutParams(textLp);
                 b1.addView(text2);
 
                 TextView text3 = new TextView(this);
                 text3.setText(products.get(i).getEDays()+"");
-                text3.setLayoutParams(picLp);
+                text3.setLayoutParams(textLp);
                 b1.addView(text3);
 
                 b1.setBackgroundColor(Color.BLUE);
                 layoutLp.setMargins(0, 0, 15, 0);
-                b1.setLayoutParams(layoutLp);
+                b1.setLayoutParams(prodLp);
                 layout.addView(b1);
 
                 LinearLayout b2 = new LinearLayout(this);
@@ -223,28 +224,27 @@ public class Home extends AppCompatActivity{
 
                 ImageView pic21 = new ImageView(this);
                 pic21.setImageResource(getResources().getIdentifier("bread", "drawable", getPackageName()));
-                picLp.setMargins(0, 0, 0, 10);
                 pic21.setLayoutParams(picLp);
                 b2.addView(pic21);
 
                 TextView text21 = new TextView(this);
                 text21.setText(products.get(i + 1).getName());
-                text21.setLayoutParams(picLp);
+                text21.setLayoutParams(textLp);
                 b2.addView(text21);
 
                 TextView text22 = new TextView(this);
                 text22.setText(products.get(i + 1).getUDays() + "");
-                text22.setLayoutParams(picLp);
+                text22.setLayoutParams(textLp);
                 b2.addView(text22);
 
                 TextView text23 = new TextView(this);
                 text23.setText(products.get(i + 1).getEDays()+"");
-                text23.setLayoutParams(picLp);
+                text23.setLayoutParams(textLp);
                 b2.addView(text23);
 
                 b2.setBackgroundColor(Color.BLUE);
                 layoutLp.setMargins(0, 0, 15, 0);
-                b2.setLayoutParams(layoutLp);
+                b2.setLayoutParams(prodLp);
                 layout.addView(b2);
 
                 LinearLayout b3 = new LinearLayout(this);
@@ -261,25 +261,25 @@ public class Home extends AppCompatActivity{
 
                 ImageView pic31 = new ImageView(this);
                 pic31.setImageResource(getResources().getIdentifier("bread", "drawable", getPackageName()));
-                picLp.setMargins(0, 0, 0, 10);
                 pic31.setLayoutParams(picLp);
                 b3.addView(pic31);
 
                 TextView text31 = new TextView(this);
                 text31.setText(products.get(i + 2).getName());
-                text31.setLayoutParams(picLp);
+                text31.setLayoutParams(textLp);
                 b3.addView(text31);
 
                 TextView text32 = new TextView(this);
                 text32.setText(products.get(i + 2).getUDays()+"");
-                text32.setLayoutParams(picLp);
+                text32.setLayoutParams(textLp);
                 b3.addView(text32);
 
                 TextView text33 = new TextView(this);
                 text33.setText(products.get(i + 2).getEDays()+"");
-                text33.setLayoutParams(picLp);
+                text33.setLayoutParams(textLp);
                 b3.addView(text33);
 
+                b3.setLayoutParams(prodLp);
                 b3.setBackgroundColor(Color.BLUE);
                 layout.addView(b3);
             }

@@ -11,7 +11,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 /**
- * Created by Mems on 5/16/2016.
+ * Created by Michael on 5/16/2016.
  */
 public class ZoomedInProduct extends AppCompatActivity{
     /**
