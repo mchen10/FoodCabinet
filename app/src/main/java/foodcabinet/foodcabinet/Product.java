@@ -1,28 +1,56 @@
 package foodcabinet.foodcabinet;
 
 import android.media.Image;
-
+import java.util.Date;
 /**
  * Created by Sahaj on 5/14/16.
  */
 public class Product {
-    private String name, eDate, uDate;
-    private Image pic;
-    public Product(String name, String expirationDate, String usedDate) {
+    private Date  startDate,eDate, uDate;
+    private String name;
+
+    /**
+     * Creates a new Instance of a product
+     * @param name String of the type of product
+     * @param purchaseDate Date that the product was bought
+     * @param expirationDate Date that the product is estimated to expire
+     * @param usedDate Date that the product is estimated to be finished
+     */
+    public Product(String name, Date purchaseDate,Date expirationDate, Date usedDate) {
         this.name = name;
+        startDate=purchaseDate;
         eDate = expirationDate;
         uDate = usedDate;
     }
     public String getName() {
         return name;
     }
-    public String getEDate() {
+
+    /**
+     * Returns the predicted date of expiration
+     * @return Date of expiration
+     */
+    public Date getEDate() {
         return eDate;
     }
-    public String getUDate() {
+
+    /**
+     * Returns the Predicted date of finishing
+     * @return Date of expiration
+     */
+    public Date getUDate() {
         return uDate;
     }
-    public Image getPic() {
-        return pic;
+
+
+    /**
+     * Changes the Expiration Date to a different Date
+     * @param newDate Date to change the expiration date to
+     */
+    public void modifyDate(Date newDate)
+    {
+        eDate=newDate;
+
     }
+
 }
