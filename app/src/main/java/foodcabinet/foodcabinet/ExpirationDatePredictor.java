@@ -35,14 +35,14 @@ public class ExpirationDatePredictor {
      */
     public Calendar predict(Product product, ArrayList<Product> products){
     	double expDate = 0;
-    	products.sort(new Comparator<Product>() {
+    	/*products.sort(new Comparator<Product>() {
 			@Override
 			public int compare(Product arg0, Product arg1) {
 				// TODO Auto-generated method stub
 				return Integer.compare(arg0.getEDays(), arg1.getEDays());
 			}
 
-    	});
+    	});*/
     	int size = products.size();
     	double weight = 0;
     	for (int i = 0; i < products.size(); i++){

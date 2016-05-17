@@ -24,6 +24,9 @@ public class ZoomedInProduct extends AppCompatActivity{
         TextView usedDate = (TextView) findViewById(R.id.UsedDateZoomed);
         TextView expirDate = (TextView) findViewById(R.id.ExpirationDateZoomed);
 
+        name.setText(p.getName());
+
+
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
     }

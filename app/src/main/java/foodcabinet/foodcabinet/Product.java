@@ -1,5 +1,6 @@
 package foodcabinet.foodcabinet;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import android.media.Image;
@@ -7,7 +8,7 @@ import android.media.Image;
 /**
  * Created by Sahaj on 5/14/16.
  */
-public class Product {
+public class Product implements Serializable{
     private String name;
     private int eDays, uDays;
     private Date bDate;
