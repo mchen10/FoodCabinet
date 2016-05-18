@@ -2,6 +2,7 @@ package foodcabinet.foodcabinet;
 
 
 
+import android.graphics.Bitmap;
 import android.media.Image;
 import android.util.Log;
 
@@ -28,7 +29,7 @@ import java.util.List;
 public class PictureToText {
 
         private String translated;
-        private Image picture;
+        private Bitmap picture;
         private ArrayList<Product> prod;
 
         /**
@@ -43,7 +44,7 @@ public class PictureToText {
          * Creates a new Instance of Picture to Text object, defined by the passed in Image parameter
          * @param a Image to be translated into a product
          */
-        public PictureToText(Image a)
+        public PictureToText(Bitmap a)
         {
             picture=a;
             prod= new ArrayList<Product>();

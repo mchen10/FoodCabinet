@@ -70,7 +70,7 @@ public class Home extends AppCompatActivity{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1 && resultCode == RESULT_OK) {
             Bundle bundle = data.getExtras();
-            Image image = (Image) bundle.get("data");
+            Bitmap image = (Bitmap) bundle.get("data");
             PictureToText convert = new PictureToText(image);
             Product prod = convert.textToProduct();
 
