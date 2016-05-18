@@ -1,6 +1,7 @@
 package foodcabinet.foodcabinet;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 import android.media.Image;
@@ -11,6 +12,7 @@ import android.media.Image;
 public class Product implements Serializable{
     private String name;
     private int eDays, uDays;
+    private ArrayList<Integer> pastEDays, pastUDays;
     private Date bDate;
     private Image pic;
     
@@ -25,7 +27,8 @@ public class Product implements Serializable{
         eDays = expirationDays;
         uDays = usedDays;
         bDate = new Date();
-        
+        pastEDays = new ArrayList<Integer>();
+        pastUDays = new ArrayList<Integer>();
     }
     
     /** Constructs a product with a given type
@@ -35,6 +38,24 @@ public class Product implements Serializable{
     public Product(String name){
     	this.name = name;
     	bDate = new Date();
+        pastEDays = new ArrayList<Integer>();
+        pastUDays = new ArrayList<Integer>();
+    }
+
+    public void addUsedEDay(Integer date) {
+        pastEDays.add(date);
+    }
+
+    public void addUsedUDay(Integer date) {
+        pastUDays.add(date);
+    }
+
+    public ArrayList<Integer> getUsedEDays() {
+        return pastEDays;
+    }
+
+    public ArrayList<Integer> getusedUDays() {
+        return pastUDays;
     }
 
     /**

@@ -30,10 +30,11 @@ public class UsedDatePredictor {
     /** Predicts the date of when the product is used
      *
      * @param product product who's use date is to be predicted
-     * @param products Array of products of the same type that are no longer in use
      * @return Calendar date of when the product is to be finished
      */
-    public Calendar predict(Product product, ArrayList<Product> products){
+    public Calendar predict(Product product){
+		ArrayList<Integer> products = product.getusedUDays();
+
     	double useDate = 0;
     	/*products.sort(new Comparator<Product>() {
 			@Override

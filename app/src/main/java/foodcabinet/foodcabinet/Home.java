@@ -73,7 +73,16 @@ public class Home extends AppCompatActivity{
             Bitmap image = (Bitmap) bundle.get("data");
             PictureToText convert = new PictureToText(image);
             Product prod = convert.textToProduct();
-
+            boolean found = false;
+            for (int i = 0; i < cabinet.getCurrentProducts().size(); i++) {
+                if (cabinet.getCurrentProducts().get(i).getName().equals(prod.getName())) {
+                    UsedDatePredictor predictU = new UsedDatePredictor();
+                    ExpirationDatePredictor predictE = new ExpirationDatePredictor();
+                    predictU.predict(cabinet.getCurrentProducts().get(i));
+                    found = true;
+                    break;
+                }
+            }
         }
     }
 
