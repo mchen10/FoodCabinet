@@ -2,10 +2,13 @@ package foodcabinet.foodcabinet;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Picture;
 import android.graphics.Point;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -32,18 +35,16 @@ import java.lang.reflect.Array;
  * Created by Michael on 5/12/16.
  */
 public class Home extends AppCompatActivity{
-    private ArrayList<Product> products;
-    public void addProduct(Product p) {
-        products.add(p);
-    }
+    private Cabinet cabinet;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int screenWidth = size.x;
+        cabinet = new Cabinet();
+        cabinet.addProduct(new Product("Bread", 5, 5));
+        cabinet.addProduct(new Product("Bread", 5, 5));
+        cabinet.addProduct(new Product("Bread", 5, 5));
+        cabinet.addProduct(new Product("Bread", 5, 5));
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.MyToolbar);
         setSupportActionBar(toolbar);
@@ -53,12 +54,38 @@ public class Home extends AppCompatActivity{
                 (CollapsingToolbarLayout) findViewById(R.id.collapse_toolbar);
         collapsingToolbar.setTitle("Food Cabinet");
 
+        updateScreen();
+    }
+
+    /**
+     * Method called when the user selects the button to take a picture of an item
+     */
+    public void takePicture(View view) {
+        Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePicture.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePicture, 1);
+        }
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            Bundle bundle = data.getExtras();
+            Image image = (Image) bundle.get("data");
+            PictureToText convert = new PictureToText(image);
+            Product prod = convert.textToProduct();
+
+        }
+    }
+
+    public void updateScreen() {
+        ArrayList<Product> products = cabinet.getCurrentProducts();
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int screenWidth = size.x;
+
         LinearLayout homeMain = (LinearLayout) findViewById(R.id.HomeMain);
-        products = new ArrayList<Product>();
-        products.add(new Product("Bread", 5, 5));
-        products.add(new Product("Bread", 5, 5));
-        products.add(new Product("Bread", 5, 5));
-        products.add(new Product("Bread", 5, 5));
         LinearLayout.LayoutParams picLp = new LinearLayout.LayoutParams((screenWidth - 224) / 3, (screenWidth - 120) / 3);
         picLp.setMargins(30, -30, 30, 0);
         LinearLayout.LayoutParams layoutLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -78,7 +105,7 @@ public class Home extends AppCompatActivity{
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
-                        intent.putExtra("Product", products.get(v.getId()));
+                        intent.putExtra("Product", cabinet.getCurrentProducts().get(v.getId()));
                         startActivity(intent);
                     }
                 });
@@ -115,7 +142,7 @@ public class Home extends AppCompatActivity{
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
-                        intent.putExtra("Product", products.get(v.getId()));
+                        intent.putExtra("Product", cabinet.getCurrentProducts().get(v.getId()));
                         startActivity(intent);
                     }
                 });
@@ -152,7 +179,7 @@ public class Home extends AppCompatActivity{
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
-                        intent.putExtra("Product", products.get(v.getId()));
+                        intent.putExtra("Product", cabinet.getCurrentProducts().get(v.getId()));
                         startActivity(intent);
                     }
                 });
@@ -188,7 +215,7 @@ public class Home extends AppCompatActivity{
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
-                        intent.putExtra("Product", products.get(v.getId()));
+                        intent.putExtra("Product", cabinet.getCurrentProducts().get(v.getId()));
                         startActivity(intent);
                     }
                 });
@@ -225,7 +252,7 @@ public class Home extends AppCompatActivity{
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
-                        intent.putExtra("Product", products.get(v.getId()));
+                        intent.putExtra("Product", cabinet.getCurrentProducts().get(v.getId()));
                         startActivity(intent);
                     }
                 });
@@ -262,7 +289,7 @@ public class Home extends AppCompatActivity{
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
-                        intent.putExtra("Product", products.get(v.getId()));
+                        intent.putExtra("Product", cabinet.getCurrentProducts().get(v.getId()));
                         startActivity(intent);
                     }
                 });
@@ -293,14 +320,6 @@ public class Home extends AppCompatActivity{
             }
             homeMain.addView(layout);
         }
-    }
-
-    /**
-     * Method called when the user selects the button to take a picture of an item
-     */
-    public void takePicture(View view) {
-        Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(takePicture, 0);
     }
 }
 

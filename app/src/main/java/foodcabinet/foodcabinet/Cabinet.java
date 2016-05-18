@@ -61,6 +61,6 @@ public class Cabinet {
         return doneProducts;
     }
 
-
+    public ArrayList<Product> getCurrentProducts() { return products; }
 
 }

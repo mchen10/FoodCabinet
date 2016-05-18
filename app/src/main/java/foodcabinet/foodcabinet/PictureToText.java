@@ -2,6 +2,7 @@ package foodcabinet.foodcabinet;
 
 
 
+import android.media.Image;
 import android.util.Log;
 
 import com.google.api.client.http.javanet.NetHttpTransport;
@@ -14,7 +15,7 @@ import com.google.api.services.vision.v1.Vision;
 import com.google.api.services.vision.v1.VisionRequestInitializer;
 import com.google.api.services.vision.v1.model.AnnotateImageRequest;
 import com.google.api.services.vision.v1.model.BatchAnnotateImagesRequest;
-import com.google.api.services.vision.v1.model.Image;
+//import com.google.api.services.vision.v1.model.Image;
 import com.google.api.client.json.JsonFactory;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -103,10 +104,10 @@ public class PictureToText {
         /**
          * Method used to translate the input text into a product object
          */
-        public void textToProduct()
+        public Product textToProduct()
         {
 
-
+            return null;
         }
     }
 
