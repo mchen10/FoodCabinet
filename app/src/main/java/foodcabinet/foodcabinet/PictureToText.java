@@ -162,38 +162,45 @@ public class PictureToText {
              * @return number of changes needed to make the two strings equal
              */
             public int findMin(String a, String b) {
-                int first[] = new int[a.length() + 1];
-                int second[] = new int[a.length() + 1];
-                int one;
-                int two;
-                char each;
-                int len;
-                for (one = 0; one <= a.length(); one++) {
-                    first[one] = one;
+                int l1 = a.length();
+                int l2 = b.length();
+
+                // len1+1, len2+1, because finally return dp[len1][len2]
+                int[][] dp = new int[l1 + 1][l2 + 1];
+
+                for (int i = 0; i <= l1; i++) {
+                    dp[i][0] = i;
                 }
 
-                for (two = 1; two <= b.length(); two++) {
-                    each = b.charAt(two - 1);
-                    second[0] = two;
+                for (int j = 0; j <= l2; j++) {
+                    dp[0][j] = j;
+                }
 
-                    for (one = 1; one <= a.length(); one++) {
-                        if (each == a.charAt(one - 1)) {
-                            len = 0;
+                //iterate though, and check last char
+                for (int i = 0; i < l1; i++) {
+                    char c1 = a.charAt(i);
+                    for (int j = 0; j < l2; j++) {
+                        char c2 = b.charAt(j);
+
+                        //if last two chars equal
+                        if (c1 == c2) {
+                            //update dp value for +1 length
+                            dp[i + 1][j + 1] = dp[i][j];
                         } else {
-                            len = 1;
-                        }
-                        second[one] = Math.min(Math.min(second[one - 1] + 1, first[one] + 1), first[one - 1] + len);
-                    }
+                            int replace = dp[i][j] + 1;
+                            int insert = dp[i][j + 1] + 1;
+                            int delete = dp[i + 1][j] + 1;
 
-                    int placed[] = first;
-                    first = second;
-                    second = placed;
+                            int min = replace > insert ? insert : replace;
+                            min = delete > min ? min : delete;
+                            dp[i + 1][j + 1] = min;
+                        }
+                    }
                 }
 
-
-                return first[a.length()];
+                return dp[l1][l2];
+                }
             }
-        }
 
 
 

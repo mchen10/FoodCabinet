@@ -19,6 +19,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -110,7 +111,7 @@ public class Home extends AppCompatActivity{
     	ArrayList<Product> products = cabinet.getCurrentProducts();
     	
     	for (int i = 0; i < products.size(); i++) {
-    		LinearLayout layout = (LinearLayout) findViewByID(R.id.i);
+    		LinearLayout layout = (LinearLayout) findViewById(i);
     		((ViewGroup) layout.getParent()).removeView(layout);
     	}
     }
@@ -124,7 +125,6 @@ public class Home extends AppCompatActivity{
         int screenWidth = size.x;
 
         LinearLayout homeMain = (LinearLayout) findViewById(R.id.HomeMain);
-        homeMain.setBackgroundColor(Color.WHITE);
         LinearLayout.LayoutParams picLp = new LinearLayout.LayoutParams((screenWidth - 224) / 3, (screenWidth - 120) / 3);
         picLp.setMargins(30, -30, 30, 0);
         LinearLayout.LayoutParams layoutLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
