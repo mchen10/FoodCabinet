@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -43,7 +44,6 @@ public class Home extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         cabinet = new Cabinet();
         cabinet.addProduct(new Product("Bread", 5, 5));
         cabinet.addProduct(new Product("Bread", 5, 5));

@@ -45,7 +45,6 @@ public class PictureToText{
 
     /**
      * Creates a new Instance of Picture to Text object, defined by the passed in Image parameter
-     *
      * @param a Image to be translated into a product
      */
     public PictureToText(Bitmap a) {
