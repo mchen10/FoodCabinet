@@ -89,7 +89,7 @@ public class Home extends AppCompatActivity{
                 if(!found)
                 {
                     Product p = new Product(prod);
-
+                    cabinet.addProduct(p);
                 }
             }
         }
