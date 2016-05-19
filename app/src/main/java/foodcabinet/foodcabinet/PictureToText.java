@@ -114,6 +114,7 @@ public class PictureToText {
             public void inputToString(BatchAnnotateImagesResponse e) {
                 List<EntityAnnotation> text = e.getResponses().get(0).getTextAnnotations();
                 for (EntityAnnotation ann : text) {
+
                     translated.add(ann.getDescription());
                 }
             }
