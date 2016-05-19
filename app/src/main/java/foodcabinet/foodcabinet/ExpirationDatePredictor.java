@@ -41,7 +41,8 @@ public class ExpirationDatePredictor {
 		for (int i = 0; i < temp.length; i++){
 			previousExpDays.add(temp[i]);
 		}
-    	double expDate = 0;
+    	double expDate = 0.0;
+    	double weight = 0.0;
     	/*products.sort(new Comparator<Product>() {
 			@Override
 			public int compare(Product arg0, Product arg1) {
@@ -51,29 +52,23 @@ public class ExpirationDatePredictor {
 
     	});*/
     	double size = previousExpDays.size();
-    	double weight = 0;
     	for (int i = 0; i < previousExpDays.size(); i++){
     		if (previousExpDays.size() <= 5){
     			expDate += previousExpDays.get(i);
     		} else {
-    			if (size/(Math.abs(i-size/2)) != 0){
-    				expDate += previousExpDays.get(i) * size/(Math.abs(i-size/2));
-    				weight += size/(Math.abs(i-size/2));
-    			} else {
-    				expDate += previousExpDays.get(i) * size;
-    				weight += size;
-    			}
+    			expDate += previousExpDays.get(i) * (Math.floor(size/2) - Math.abs(i - Math.floor(size/2)) + 1)/size;
+    			weight += (Math.floor(size/2) - Math.abs(i - Math.floor(size/2)) + 1)/size;
     		}
     	}
     	if (previousExpDays.size() <= 5){
     		expDate = expDate/previousExpDays.size();
 		} else {
-			expDate = expDate/weight;
+			expDate = expDate * 1/weight;
 		}
     	
         Date buyDate = product.getBDate();
         Calendar cal = new GregorianCalendar();
-       // cal.setTime(buyDate);
+        cal.setTime(buyDate);
         cal.add(Calendar.DAY_OF_YEAR, (int)(expDate + 0.5));
         return cal;
     }

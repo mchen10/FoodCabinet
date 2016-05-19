@@ -41,7 +41,8 @@ public class UsedDatePredictor {
 		for (int i = 0; i < temp.length; i++){
 			previousUseDays.add(temp[i]);
 		}
-    	double useDate = 0;
+    	double useDate = 0.0;
+    	double weight = 0.0;
     	/*products.sort(new Comparator<Product>() {
 			@Override
 			public int compare(Product arg0, Product arg1) {
@@ -51,30 +52,24 @@ public class UsedDatePredictor {
 
     	});*/
     	double size = previousUseDays.size();
-    	double weight = 0;
 
     	for (int i = 0; i < previousUseDays.size(); i++){
     		if (previousUseDays.size() <= 5){
     			useDate += previousUseDays.get(i);
     		} else {
-    			if (size/(Math.abs(i-size/2)) != 0){
-    				useDate += previousUseDays.get(i) * size/(Math.abs(i-size/2));
-    				weight += size/(Math.abs(i-size/2));
-    			} else {
-    				useDate += previousUseDays.get(i) * size;
-    				weight += size;
-    			}
+    			useDate += previousUseDays.get(i) * (Math.floor(size/2) - Math.abs(i - Math.floor(size/2)) + 1)/size;
+    			weight += (Math.floor(size/2) - Math.abs(i - Math.floor(size/2)) + 1)/size;
     		}
     	}
     	if (previousUseDays.size() <= 5){
     		useDate = useDate/previousUseDays.size();
 		} else {
-			useDate = useDate/weight;
+			useDate = useDate * 1/weight;
 		}
     	
         Date buyDate = product.getBDate();
         Calendar cal = new GregorianCalendar();
-        //cal.setTime(buyDate);
+        cal.setTime(buyDate);
         cal.add(Calendar.DAY_OF_YEAR, (int)(useDate + 0.5));
         return cal;
     }
