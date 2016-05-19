@@ -72,6 +72,7 @@ public class Home extends AppCompatActivity{
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1 && resultCode == RESULT_OK) {
+        	clearScreen();
             Bundle bundle = data.getExtras();
             Bitmap image = (Bitmap) bundle.get("data");
             UsedDatePredictor predictU = new UsedDatePredictor();
@@ -105,6 +106,15 @@ public class Home extends AppCompatActivity{
         }
     }
 
+    public void clearScreen() {
+    	ArrayList<Product> products = cabinet.getCurrentProducts();
+    	
+    	for (int i = 0; i < products.size(); i++) {
+    		LinearLayout layout = (LinearLayout) findViewByID(R.id.i);
+    		((ViewGroup) layout.getParent()).removeView(layout);
+    	}
+    }
+    
     public void updateScreen() {
         ArrayList<Product> products = cabinet.getCurrentProducts();
 
