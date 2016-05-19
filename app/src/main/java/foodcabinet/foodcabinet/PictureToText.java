@@ -3,9 +3,6 @@ package foodcabinet.foodcabinet;
 
 
 import android.graphics.Bitmap;
-import android.media.Image;
-import android.util.Log;
-
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.services.vision.v1.model.BatchAnnotateImagesResponse;
 import com.google.api.services.vision.v1.model.EntityAnnotation;
@@ -16,8 +13,11 @@ import com.google.api.services.vision.v1.Vision;
 import com.google.api.services.vision.v1.VisionRequestInitializer;
 import com.google.api.services.vision.v1.model.AnnotateImageRequest;
 import com.google.api.services.vision.v1.model.BatchAnnotateImagesRequest;
-//import com.google.api.services.vision.v1.model.Image;
+import com.google.api.services.vision.v1.model.Image;
 import com.google.api.client.json.JsonFactory;
+
+
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
@@ -28,9 +28,10 @@ import java.util.List;
  */
 public class PictureToText {
 
-        private String translated;
+        private ArrayList<String> translated;
         private Bitmap picture;
-        private ArrayList<Product> prod;
+        private ArrayList<String> prod;
+        private ArrayList<String> database;
 
         /**
          * Connects to Google's External Image Recognition Library, Cloud Vision
@@ -46,12 +47,12 @@ public class PictureToText {
          */
         public PictureToText(Bitmap a)
         {
+            database= new ArrayList<String>();
             picture=a;
-            prod= new ArrayList<Product>();
-            translated="";
+            prod= new ArrayList<String>();
+            translated=new ArrayList<String>();
             try {
                 callCloudVision();
-                textToProduct();
             }catch(IOException e)
             {
 
@@ -62,23 +63,25 @@ public class PictureToText {
 
         HttpTransport httpTransport = new NetHttpTransport();
 
-        JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
+               JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
 
         Vision.Builder builder = new Vision.Builder(httpTransport, jsonFactory, null);
         builder.setVisionRequestInitializer(new
                 VisionRequestInitializer("AIzaSyCcuM1ltlLLmp1woOqsyXZpjsL0qHq_9eU"));
         Vision vision = builder.build();
 
+
         BatchAnnotateImagesRequest batchAnnotateImagesRequest =
                 new BatchAnnotateImagesRequest();
         batchAnnotateImagesRequest.setRequests(new ArrayList<AnnotateImageRequest>() {{
             AnnotateImageRequest annotateImageRequest = new AnnotateImageRequest();
 
-
+            Image encoded = new Image();
+            picture.compress(Bitmap.CompressFormat.JPEG, 90, new ByteArrayOutputStream());
+            annotateImageRequest.setImage(encoded);
             annotateImageRequest.setFeatures(new ArrayList<Feature>() {{
                 Feature detect = new Feature();
                 detect.setType("TEXT_DETECTION");
-                detect.setMaxResults(10);
                 add(detect);
             }});
 
@@ -98,17 +101,91 @@ public class PictureToText {
     {
         List<EntityAnnotation> text=e.getResponses().get(0).getTextAnnotations();
         for(EntityAnnotation ann:text) {
-            translated += ann.getDescription();
-        }
-        Log.d("", "inputToString() returned: " + "Testing");
+            translated.add(ann.getDescription());
+         }
     }
         /**
-         * Method used to translate the input text into a product object
+         * Method used to translate the input text into a products
          */
-        public Product textToProduct()
+        public void textToProduct()
         {
+            for(String s:translated)
+            {
 
-            return null;
+            }
         }
+
+    /**Get the Products that are translated by the Image
+     *
+     * @return Products translated from the Image
+     */
+        public ArrayList<String> getProducts()
+        {
+            for(String a:translated)
+            {
+                String word="";
+                int least=0;
+                for(String s:database)
+                {
+                    int diff=findMin(a,s);
+                    if(diff<a.length()/2) {
+
+                        if (diff < least) {
+                            least = diff;
+                            word = s;
+                        }
+                    }
+                }
+                prod.add(word);
+
+            }
+
+            return prod;
+        }
+
+    /**
+     * Finds the amount of changes needed to turn one string into another so that the food type can be determined
+     * @param a String to check for differences
+     * @param b String to check against
+     * @return number of changes needed to make the two strings equal
+     */
+    public static int findMin(String a ,String b)
+    {
+        int first[] = new int[a.length()+1];
+        int second[] = new int[a.length()+1];
+        int one;
+        int two;
+        char each;
+        int len;
+        for (one = 0; one<=a.length(); one++) {
+            first[one] = one;
+        }
+
+        for (two = 1; two<=b.length(); two++) {
+            each = b.charAt(two-1);
+            second[0] = two;
+
+            for (one=1; one<=a.length(); one++) {
+                if(each==a.charAt(one-1))
+                {
+                    len=0;
+                }
+                else{
+                    len=1;
+                }
+                second[one] = Math.min(Math.min(second[one-1]+1, first[one]+1),  first[one-1]+len);
+            }
+
+            int placed[] = first;
+            first = second;
+            second = placed;
+        }
+
+
+        return first[a.length()];
     }
+}
+
+
+
 

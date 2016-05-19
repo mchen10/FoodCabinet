@@ -1,6 +1,7 @@
 package foodcabinet.foodcabinet;
 
 import android.app.ActionBar;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -71,16 +72,24 @@ public class Home extends AppCompatActivity{
         if (requestCode == 1 && resultCode == RESULT_OK) {
             Bundle bundle = data.getExtras();
             Bitmap image = (Bitmap) bundle.get("data");
+            UsedDatePredictor predictU = new UsedDatePredictor();
+            ExpirationDatePredictor predictE = new ExpirationDatePredictor();
             PictureToText convert = new PictureToText(image);
-            Product prod = convert.textToProduct();
-            boolean found = false;
-            for (int i = 0; i < cabinet.getCurrentProducts().size(); i++) {
-                if (cabinet.getCurrentProducts().get(i).getName().equals(prod.getName())) {
-                    UsedDatePredictor predictU = new UsedDatePredictor();
-                    ExpirationDatePredictor predictE = new ExpirationDatePredictor();
-                    predictU.predict(cabinet.getCurrentProducts().get(i));
-                    found = true;
-                    break;
+            convert.textToProduct();
+            ArrayList<String> products= convert.getProducts();
+            for(String prod:products) {
+                boolean found = false;
+                for (int i = 0; i < cabinet.getCurrentProducts().size(); i++) {
+                    if (cabinet.getCurrentProducts().get(i).getName().equals(prod)) {
+                        predictU.predict(cabinet.getCurrentProducts().get(i));
+                        found = true;
+                        break;
+                    }
+                }
+                if(!found)
+                {
+                    Product p = new Product(prod);
+
                 }
             }
         }
