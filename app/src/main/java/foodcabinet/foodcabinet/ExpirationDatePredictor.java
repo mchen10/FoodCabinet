@@ -1,6 +1,7 @@
 package foodcabinet.foodcabinet;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
@@ -30,10 +31,16 @@ public class ExpirationDatePredictor {
     /** Predicts the date of when the product is expired
      *
      * @param product product who's expire date is to be predicted
-     * @param products Array of products of the same type that are no longer in use
      * @return Calendar date of when the product is to be expired
      */
-    public Calendar predict(Product product, ArrayList<Product> products){
+    public static Calendar predict(Product product){
+		ArrayList<Integer> previousExpDays = product.getUsedEDays();
+		int[] temp = new int[previousExpDays.size()];
+		Arrays.sort(temp);
+		previousExpDays = new ArrayList<Integer>();
+		for (int i = 0; i < temp.length; i++){
+			previousExpDays.add(temp[i]);
+		}
     	double expDate = 0;
     	/*products.sort(new Comparator<Product>() {
 			@Override
@@ -43,23 +50,23 @@ public class ExpirationDatePredictor {
 			}
 
     	});*/
-    	int size = products.size();
+    	double size = previousExpDays.size();
     	double weight = 0;
-    	for (int i = 0; i < products.size(); i++){
-    		if (products.size() <= 5){
-    			expDate += products.get(i).getEDays();
+    	for (int i = 0; i < previousExpDays.size(); i++){
+    		if (previousExpDays.size() <= 5){
+    			expDate += previousExpDays.get(i);
     		} else {
     			if (size/(Math.abs(i-size/2)) != 0){
-    				expDate += products.get(i).getEDays() * size/(Math.abs(i-size/2));
+    				expDate += previousExpDays.get(i) * size/(Math.abs(i-size/2));
     				weight += size/(Math.abs(i-size/2));
     			} else {
-    				expDate += products.get(i).getEDays() * size;
+    				expDate += previousExpDays.get(i) * size;
     				weight += size;
     			}
     		}
     	}
-    	if (products.size() <= 5){
-    		expDate = expDate/products.size();
+    	if (previousExpDays.size() <= 5){
+    		expDate = expDate/previousExpDays.size();
 		} else {
 			expDate = expDate/weight;
 		}

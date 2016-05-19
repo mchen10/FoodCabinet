@@ -1,6 +1,7 @@
 package foodcabinet.foodcabinet;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
@@ -32,9 +33,14 @@ public class UsedDatePredictor {
      * @param product product who's use date is to be predicted
      * @return Calendar date of when the product is to be finished
      */
-    public Calendar predict(Product product){
-		ArrayList<Integer> products = product.getusedUDays();
-
+    public static Calendar predict(Product product){
+		ArrayList<Integer> previousUseDays = product.getUsedUDays();
+		int[] temp = new int[previousUseDays.size()];
+		Arrays.sort(temp);
+		previousUseDays = new ArrayList<Integer>();
+		for (int i = 0; i < temp.length; i++){
+			previousUseDays.add(temp[i]);
+		}
     	double useDate = 0;
     	/*products.sort(new Comparator<Product>() {
 			@Override
@@ -44,23 +50,24 @@ public class UsedDatePredictor {
 			}
 
     	});*/
-    	int size = products.size();
+    	double size = previousUseDays.size();
     	double weight = 0;
-    	for (int i = 0; i < products.size(); i++){
-    		if (products.size() <= 5){
-    			useDate += products.get(i).getUDays();
+
+    	for (int i = 0; i < previousUseDays.size(); i++){
+    		if (previousUseDays.size() <= 5){
+    			useDate += previousUseDays.get(i);
     		} else {
     			if (size/(Math.abs(i-size/2)) != 0){
-    				useDate += products.get(i).getUDays() * size/(Math.abs(i-size/2));
+    				useDate += previousUseDays.get(i) * size/(Math.abs(i-size/2));
     				weight += size/(Math.abs(i-size/2));
     			} else {
-    				useDate += products.get(i).getEDays() * size;
+    				useDate += previousUseDays.get(i) * size;
     				weight += size;
     			}
     		}
     	}
-    	if (products.size() <= 5){
-    		useDate = useDate/products.size();
+    	if (previousUseDays.size() <= 5){
+    		useDate = useDate/previousUseDays.size();
 		} else {
 			useDate = useDate/weight;
 		}

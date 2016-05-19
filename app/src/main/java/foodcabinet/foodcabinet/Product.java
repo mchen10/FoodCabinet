@@ -54,7 +54,7 @@ public class Product implements Serializable{
         return pastEDays;
     }
 
-    public ArrayList<Integer> getusedUDays() {
+    public ArrayList<Integer> getUsedUDays() {
         return pastUDays;
     }
 
