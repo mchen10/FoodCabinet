@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * Created by Sahaj on 5/15/16.
  */
-public class PictureToText {
+public class PictureToText{
 
     private ArrayList<String> translated;
     private Bitmap picture;
@@ -67,6 +67,10 @@ public class PictureToText {
         }
     }
 
+    /*
+     * Calls Googles External Library, Cloud Vision OCR to extract data from the input picture
+     * @throws IOException Exception thrown when the call to Cloud Vision fails or the picture is not inputted correctly
+     */
     private void callCloudVision() throws IOException {
         new AsyncTask<Object, Void, String>() {
             @Override
@@ -111,6 +115,11 @@ public class PictureToText {
             }
         };
     }
+
+    /**
+     * Method to translate the respone of the Google Cloud Vision OCR into the translated Arraylist in the class
+     * @param e The BatchAnnotateImagesResponse sent by Cloud Vision
+     */
             public void inputToString(BatchAnnotateImagesResponse e) {
                 List<EntityAnnotation> text = e.getResponses().get(0).getTextAnnotations();
                 for (EntityAnnotation ann : text) {
@@ -123,17 +132,7 @@ public class PictureToText {
              * Method used to translate the input text into a products
              */
             public void textToProduct() {
-                for (String s : translated) {
 
-                }
-            }
-
-            /**
-             * Get the Products that are translated by the Image
-             *
-             * @return Products translated from the Image
-             */
-            public ArrayList<String> getProducts() {
                 for (String a : translated) {
                     String word = "";
                     int least = 0;
@@ -151,7 +150,15 @@ public class PictureToText {
 
                 }
 
-                return prod;
+            }
+
+            /**
+             * Get the Products that are translated by the Image
+             *
+             * @return Products translated from the Image
+             */
+            public ArrayList<String> getProducts() {
+             return prod;
             }
 
             /**
@@ -165,7 +172,6 @@ public class PictureToText {
                 int l1 = a.length();
                 int l2 = b.length();
 
-                // len1+1, len2+1, because finally return dp[len1][len2]
                 int[][] dp = new int[l1 + 1][l2 + 1];
 
                 for (int i = 0; i <= l1; i++) {
@@ -176,23 +182,29 @@ public class PictureToText {
                     dp[0][j] = j;
                 }
 
-                //iterate though, and check last char
                 for (int i = 0; i < l1; i++) {
                     char c1 = a.charAt(i);
                     for (int j = 0; j < l2; j++) {
                         char c2 = b.charAt(j);
 
-                        //if last two chars equal
                         if (c1 == c2) {
-                            //update dp value for +1 length
                             dp[i + 1][j + 1] = dp[i][j];
                         } else {
                             int replace = dp[i][j] + 1;
                             int insert = dp[i][j + 1] + 1;
                             int delete = dp[i + 1][j] + 1;
-
-                            int min = replace > insert ? insert : replace;
-                            min = delete > min ? min : delete;
+                            int min=0;
+                            if(replace>insert)
+                            {
+                                min=replace;
+                            }
+                            else{
+                                min=replace;
+                            }
+                            if(delete<=min)
+                            {
+                                min=delete;
+                            }
                             dp[i + 1][j + 1] = min;
                         }
                     }
