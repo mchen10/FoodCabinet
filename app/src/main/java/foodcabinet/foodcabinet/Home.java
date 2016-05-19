@@ -23,6 +23,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.Calendar;
 import java.util.Date;
 
 import java.io.File;
@@ -80,18 +82,26 @@ public class Home extends AppCompatActivity{
             for(String prod:products) {
                 boolean found = false;
                 for (int i = 0; i < cabinet.getCurrentProducts().size(); i++) {
-                    if (cabinet.getCurrentProducts().get(i).getName().equals(prod)) {
-                        predictU.predict(cabinet.getCurrentProducts().get(i));
+                    Product p = cabinet.getCurrentProducts().get(i);
+                    if (p.getName().equals(prod)) {
+                        Calendar used = predictU.predict(p);
+                        Calendar expir = predictE.predict(p);
+                        p.updateBDate();
+                        p.addUsedEDay(p.getEDays());
+                        p.setEDays(used.get(Calendar.DAY_OF_YEAR));
+
+                        p.addUsedUDay(p.getUDays());
+                        p.setUDays(expir.get(Calendar.DAY_OF_YEAR));
                         found = true;
                         break;
                     }
                 }
-                if(!found)
-                {
+                if(!found) {
                     Product p = new Product(prod);
                     cabinet.addProduct(p);
                 }
             }
+            updateScreen();
         }
     }
 
@@ -104,6 +114,7 @@ public class Home extends AppCompatActivity{
         int screenWidth = size.x;
 
         LinearLayout homeMain = (LinearLayout) findViewById(R.id.HomeMain);
+        homeMain.setBackgroundColor(Color.WHITE);
         LinearLayout.LayoutParams picLp = new LinearLayout.LayoutParams((screenWidth - 224) / 3, (screenWidth - 120) / 3);
         picLp.setMargins(30, -30, 30, 0);
         LinearLayout.LayoutParams layoutLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);

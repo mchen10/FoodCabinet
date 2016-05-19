@@ -74,7 +74,7 @@ public class UsedDatePredictor {
     	
         Date buyDate = product.getBDate();
         Calendar cal = new GregorianCalendar();
-        cal.setTime(buyDate);
+        //cal.setTime(buyDate);
         cal.add(Calendar.DAY_OF_YEAR, (int)(useDate + 0.5));
         return cal;
     }

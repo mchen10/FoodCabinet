@@ -73,7 +73,7 @@ public class ExpirationDatePredictor {
     	
         Date buyDate = product.getBDate();
         Calendar cal = new GregorianCalendar();
-        cal.setTime(buyDate);
+       // cal.setTime(buyDate);
         cal.add(Calendar.DAY_OF_YEAR, (int)(expDate + 0.5));
         return cal;
     }

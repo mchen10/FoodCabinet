@@ -113,4 +113,8 @@ public class Product implements Serializable{
     public Image getPic() {
         return pic;
     }
+
+    public void updateBDate() {
+        bDate = new Date();
+    }
 }
