@@ -3,6 +3,7 @@ package foodcabinet.foodcabinet;
 import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Picture;
@@ -13,6 +14,7 @@ import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -39,10 +41,18 @@ import java.lang.reflect.Array;
 /**
  * Created by Michael on 5/12/16.
  */
+
+//Database key-pZ657QOXz5HciP7gfwvoyLaYccsLbkw51XIDrbGU
 public class Home extends AppCompatActivity{
     private Cabinet cabinet;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (prefs.getBoolean("firstTime", false) == false) {
+
+        }
+
         setContentView(R.layout.activity_home);
         cabinet = new Cabinet();
         cabinet.addProduct(new Product("Bread", 5, 5));

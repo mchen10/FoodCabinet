@@ -84,7 +84,6 @@ public class PictureToText{
                             VisionRequestInitializer("AIzaSyCcuM1ltlLLmp1woOqsyXZpjsL0qHq_9eU"));
                     Vision vision = builder.build();
 
-
                     BatchAnnotateImagesRequest batchAnnotateImagesRequest =
                             new BatchAnnotateImagesRequest();
                     batchAnnotateImagesRequest.setRequests(new ArrayList<AnnotateImageRequest>() {{
@@ -119,99 +118,94 @@ public class PictureToText{
      * Method to translate the respone of the Google Cloud Vision OCR into the translated Arraylist in the class
      * @param e The BatchAnnotateImagesResponse sent by Cloud Vision
      */
-            public void inputToString(BatchAnnotateImagesResponse e) {
-                List<EntityAnnotation> text = e.getResponses().get(0).getTextAnnotations();
-                for (EntityAnnotation ann : text) {
+    public void inputToString(BatchAnnotateImagesResponse e) {
+        List<EntityAnnotation> text = e.getResponses().get(0).getTextAnnotations();
+        for (EntityAnnotation ann : text) {
+            translated.add(ann.getDescription());
+        }
+    }
 
-                    translated.add(ann.getDescription());
-                }
-            }
-
-            /**
-             * Method used to translate the input text into a products
-             */
-            public void textToProduct() {
-
-                for (String a : translated) {
-                    String word = "";
-                    int least = 0;
-                    for (String s : database) {
-                        int diff = findMin(a, s);
-                        if (diff < a.length() / 2) {
-
-                            if (diff < least) {
-                                least = diff;
-                                word = s;
-                            }
-                        }
+    /**
+     * Method used to translate the input text into a products
+     */
+    public void textToProduct() {
+        for (String a : translated) {
+            String word = "";
+            int least = 0;
+            for (String s : database) {
+                int diff = findMin(a, s);
+                if (diff < a.length() / 2) {
+                    if (diff < least) {
+                        least = diff;
+                        word = s;
                     }
-                    prod.add(word);
-
                 }
-
             }
+            prod.add(word);
+        }
+    }
 
-            /**
-             * Get the Products that are translated by the Image
-             *
-             * @return Products translated from the Image
-             */
-            public ArrayList<String> getProducts() {
+    /**
+     * Get the Products that are translated by the Image
+     * @return Products translated from the Image
+     */
+    public ArrayList<String> getProducts() {
              return prod;
             }
 
-            /**
-             * Finds the amount of changes needed to turn one string into another so that the food type can be determined
-             *
-             * @param a String to check for differences
-             * @param b String to check against
-             * @return number of changes needed to make the two strings equal
-             */
-            public int findMin(String a, String b) {
-                int l1 = a.length();
-                int l2 = b.length();
+    /**
+     * Finds the amount of changes needed to turn one string into another so that the food type can be determined
+     * @param a String to check for differences
+     * @param b String to check against
+     * @return number of changes needed to make the two strings equal
+     */
+    public int findMin(String a, String b) {
+        int l1 = a.length();
+        int l2 = b.length();
 
-                int[][] dp = new int[l1 + 1][l2 + 1];
+        int[][] dp = new int[l1 + 1][l2 + 1];
 
-                for (int i = 0; i <= l1; i++) {
-                    dp[i][0] = i;
-                }
+        for (int i = 0; i <= l1; i++) {
+            dp[i][0] = i;
+        }
 
-                for (int j = 0; j <= l2; j++) {
-                    dp[0][j] = j;
-                }
+        for (int j = 0; j <= l2; j++) {
+            dp[0][j] = j;
+        }
 
-                for (int i = 0; i < l1; i++) {
-                    char c1 = a.charAt(i);
-                    for (int j = 0; j < l2; j++) {
-                        char c2 = b.charAt(j);
+        for (int i = 0; i < l1; i++) {
+            char c1 = a.charAt(i);
+            for (int j = 0; j < l2; j++) {
+                char c2 = b.charAt(j);
 
-                        if (c1 == c2) {
-                            dp[i + 1][j + 1] = dp[i][j];
-                        } else {
-                            int replace = dp[i][j] + 1;
-                            int insert = dp[i][j + 1] + 1;
-                            int delete = dp[i + 1][j] + 1;
-                            int min=0;
-                            if(replace>insert)
-                            {
-                                min=replace;
-                            }
-                            else{
-                                min=replace;
-                            }
-                            if(delete<=min)
-                            {
-                                min=delete;
-                            }
-                            dp[i + 1][j + 1] = min;
-                        }
+                if (c1 == c2) {
+                    dp[i + 1][j + 1] = dp[i][j];
+                } else {
+                    int replace = dp[i][j] + 1;
+                    int insert = dp[i][j + 1] + 1;
+                    int delete = dp[i + 1][j] + 1;
+                    int min=0;
+                    if(replace>insert) {
+                        min=replace;
+                    } else{
+                        min=replace;
                     }
-                }
-
-                return dp[l1][l2];
+                    if(delete<=min) {
+                        min=delete;
+                    }
+                    dp[i + 1][j + 1] = min;
                 }
             }
+        }
+        return dp[l1][l2];
+    }
+
+    public void updateDatabase(ArrayList<String> products) {
+        for (int i = 0; i < products.size(); i++) {
+            prod.add(products.get(i));
+        }
+    }
+}
 
 
 
