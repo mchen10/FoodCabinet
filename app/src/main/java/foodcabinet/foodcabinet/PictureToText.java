@@ -33,8 +33,8 @@ public class PictureToText{
 
     private ArrayList<String> translated;
     private Bitmap picture;
-    private ArrayList<String> prod;
-    private ArrayList<String> database;
+    private ArrayList<ArrayList<String>> prod;
+    private ArrayList<ArrayList<String>> database;
 
     /**
      * Connects to Google's External Image Recognition Library, Cloud Vision
@@ -48,10 +48,10 @@ public class PictureToText{
      * Creates a new Instance of Picture to Text object, defined by the passed in Image parameter
      * @param a Image to be translated into a product
      */
-    public PictureToText(Bitmap a, ArrayList<String> database) {
+    public PictureToText(Bitmap a, ArrayList<ArrayList<String>> database) {
         this.database = database;
         picture = a;
-        prod = new ArrayList<String>();
+        prod = new ArrayList<ArrayList<String>>();
         translated = new ArrayList<String>();
         try {
             callCloudVision();
@@ -129,17 +129,25 @@ public class PictureToText{
     public void textToProduct() {
         for (String a : translated) {
             String word = "";
+            String group = "";
             int least = 0;
-            for (String s : database) {
-                int diff = findMin(a, s);
-                if (diff < a.length() / 2) {
-                    if (diff < least) {
-                        least = diff;
-                        word = s;
+            for (int i = 0; i < database.size(); i++) {
+                for (int j = 1; j < database.get(i).size(); j++) {
+                    String s = database.get(i).get(j);
+                    int diff = findMin(a, s);
+                    if (diff < a.length() / 2) {
+                        if (diff < least) {
+                            least = diff;
+                            word = s;
+                            group = database.get(i).get(0);
+                        }
                     }
                 }
             }
-            prod.add(word);
+            ArrayList<String> temp = new ArrayList<String>();
+            temp.add(word);
+            temp.add(group);
+            prod.add(temp);
         }
     }
 
@@ -147,7 +155,7 @@ public class PictureToText{
      * Get the Products that are translated by the Image
      * @return Products translated from the Image
      */
-    public ArrayList<String> getProducts() {
+    public ArrayList<ArrayList<String>> getProducts() {
              return prod;
             }
 
@@ -198,11 +206,6 @@ public class PictureToText{
         return dp[l1][l2];
     }
 
-    public void updateDatabase(ArrayList<String> products) {
-        for (int i = 0; i < products.size(); i++) {
-            prod.add(products.get(i));
-        }
-    }
 }
 
 

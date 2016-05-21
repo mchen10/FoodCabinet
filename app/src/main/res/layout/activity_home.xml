@@ -38,13 +38,6 @@
                     android:layout_marginTop="10dp">
                 </Button>
 
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/HomeSelectionScroll">
-
-                </HorizontalScrollView>
-
             </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.CollapsingToolbarLayout>

@@ -10,7 +10,7 @@ import android.media.Image;
  * Created by Sahaj on 5/14/16.
  */
 public class Product implements Serializable{
-    private String name;
+    private String name, group;
     private int eDays, uDays;
     private ArrayList<Integer> pastEDays, pastUDays;
     private Date bDate;
@@ -22,8 +22,9 @@ public class Product implements Serializable{
      * @param expirationDays days until the product expires
      * @param usedDays days until the product is used up
      */
-    public Product(String name, int expirationDays, int usedDays) {
+    public Product(String name, String group, int expirationDays, int usedDays) {
         this.name = name;
+        this.group = group;
         eDays = expirationDays;
         uDays = usedDays;
         bDate = new Date();
@@ -35,8 +36,9 @@ public class Product implements Serializable{
      * 
      * @param name type of product
      */
-    public Product(String name){
+    public Product(String name, String group){
     	this.name = name;
+        this.group = group;
     	bDate = new Date();
         pastEDays = new ArrayList<Integer>();
         pastUDays = new ArrayList<Integer>();
@@ -56,6 +58,10 @@ public class Product implements Serializable{
 
     public ArrayList<Integer> getUsedUDays() {
         return pastUDays;
+    }
+
+    public String getGroup() {
+        return group;
     }
 
     /**

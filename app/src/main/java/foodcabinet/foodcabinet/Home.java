@@ -13,14 +13,18 @@ import android.provider.MediaStore;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 
@@ -39,8 +43,11 @@ import java.util.ArrayList;
  */
 public class Home extends AppCompatActivity{
     private Cabinet cabinet;
-    private ArrayList<String> database = new ArrayList<String>();
+    private String currentSelection = "ALL";
+    private ArrayList<Product> display = new ArrayList<Product>();
+    private ArrayList<ArrayList<String>> database = new ArrayList<ArrayList<String>>();
     private static final String foodDataKey = "pZ657QOXz5HciP7gfwvoyLaYccsLbkw51XIDrbGU";
+    private int totalButtons = 0;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -57,10 +64,11 @@ public class Home extends AppCompatActivity{
 
         setContentView(R.layout.activity_home);
         cabinet = new Cabinet();
-        cabinet.addProduct(new Product("Bread", 5, 5));
-        cabinet.addProduct(new Product("Bread", 5, 5));
-        cabinet.addProduct(new Product("Bread", 5, 5));
-        cabinet.addProduct(new Product("Bread", 5, 5));
+        cabinet.addProduct(new Product("Bread", "Food", 5, 5));
+        cabinet.addProduct(new Product("Bread", "Dairy", 5, 5));
+        cabinet.addProduct(new Product("Bread", "Dairy", 5, 5));
+        cabinet.addProduct(new Product("Bread", "Dairy", 5, 5));
+        display = cabinet.getCurrentProducts();
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.MyToolbar);
         setSupportActionBar(toolbar);
@@ -70,8 +78,88 @@ public class Home extends AppCompatActivity{
                 (CollapsingToolbarLayout) findViewById(R.id.collapse_toolbar);
         collapsingToolbar.setTitle("Food Cabinet");
 
+        updateSelectionScroll();
         updateScreen();
     }
+
+    public void updateSelectionScroll() {
+        //Log.d("TESTING", ""+totalButtons);
+        for (int i = 0; i < totalButtons; i++) {
+            Button layout = (Button) findViewById(i + 1000);
+            ((ViewGroup) layout.getParent()).removeView(layout);
+        }
+
+        totalButtons = 0;
+
+        CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapse_toolbar);
+
+        LinearLayout.LayoutParams bParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        bParams.setMargins(75, 150, 0, 0);
+
+        HorizontalScrollView scroll = new HorizontalScrollView(this);
+        LinearLayout scrollLayout = new LinearLayout(this);
+        scrollLayout.setGravity(Gravity.CENTER);
+        scrollLayout.setOrientation(LinearLayout.HORIZONTAL);
+        ArrayList<Button> tempButtons = new ArrayList<Button>();
+        ArrayList<Product> products = cabinet.getCurrentProducts();
+        for (int i = 0; i < products.size(); i++) {
+            boolean exists = false;
+            for (Button b: tempButtons) {
+                if (products.get(i).getGroup().equals(b.getText())) {
+                    exists = true;
+                    break;
+                }
+            }
+            if (exists) {
+                continue;
+            }
+            if (currentSelection.equals(products.get(i).getGroup())) {
+                continue;
+            }
+            Button b = new Button(this);
+            b.setId(totalButtons + 1000);
+            //Log.d("TESTING", (totalButtons + 1000) + "");
+            b.setLayoutParams(bParams);
+            b.setText(products.get(i).getGroup());
+            b.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    clearScreen();
+                    display = new ArrayList<Product>();
+                    for (int j = 0; j < cabinet.getCurrentProducts().size(); j++) {
+                        if (((Button) v).getText().equals(cabinet.getCurrentProducts().get(j).getGroup())) {
+                            display.add(cabinet.getCurrentProducts().get(j));
+                        }
+                    }
+                    currentSelection = ((Button) v).getText().toString();
+                    updateScreen();
+                }
+            });
+            totalButtons++;
+            tempButtons.add(b);
+            scrollLayout.addView(b);
+        }
+        if (currentSelection != "ALL") {
+            Button b = new Button(this);
+            b.setId(totalButtons + 1000);
+            b.setLayoutParams(bParams);
+            b.setText("All Products");
+            b.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    clearScreen();
+                    display = cabinet.getCurrentProducts();
+                    currentSelection = "ALL";
+                    updateScreen();
+                }
+            });
+            scrollLayout.addView(b);
+            totalButtons++;
+        }
+        scroll.addView(scrollLayout);
+        collapsingToolbar.addView(scroll);
+    }
+
     /**
      * Method called when the user selects the button to take a picture of an item
      */
@@ -84,18 +172,19 @@ public class Home extends AppCompatActivity{
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1 && resultCode == RESULT_OK) {
-        	clearScreen();
+            clearScreen();
             Bundle bundle = data.getExtras();
             Bitmap image = (Bitmap) bundle.get("data");
             UsedDatePredictor predictU = new UsedDatePredictor();
             ExpirationDatePredictor predictE = new ExpirationDatePredictor();
             PictureToText convert = new PictureToText(image, database);
             convert.textToProduct();
-            ArrayList<String> products= convert.getProducts();
-            for(String prod:products) {
+            ArrayList<ArrayList<String>> products= convert.getProducts();
+            for(int i = 0; i < products.size(); i++) {
+                String prod = products.get(i).get(0);
                 boolean found = false;
-                for (int i = 0; i < cabinet.getCurrentProducts().size(); i++) {
-                    Product p = cabinet.getCurrentProducts().get(i);
+                for (int j = 0; j < cabinet.getCurrentProducts().size(); j++) {
+                    Product p = cabinet.getCurrentProducts().get(j);
                     if (p.getName().equals(prod)) {
                         Calendar used = predictU.predict(p);
                         Calendar expir = predictE.predict(p);
@@ -110,7 +199,7 @@ public class Home extends AppCompatActivity{
                     }
                 }
                 if(!found) {
-                    Product p = new Product(prod);
+                    Product p = new Product(prod, products.get(i).get(1));
                     cabinet.addProduct(p);
                 }
             }
@@ -119,16 +208,15 @@ public class Home extends AppCompatActivity{
     }
 
     public void clearScreen() {
-    	ArrayList<Product> products = cabinet.getCurrentProducts();
-    	
-    	for (int i = 0; i < products.size(); i++) {
+    	for (int i = 0; i < display.size(); i++) {
     		LinearLayout layout = (LinearLayout) findViewById(i);
     		((ViewGroup) layout.getParent()).removeView(layout);
     	}
     }
     
     public void updateScreen() {
-        ArrayList<Product> products = cabinet.getCurrentProducts();
+        updateSelectionScroll();
+        ArrayList<Product> products = display;
 
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
@@ -396,41 +484,50 @@ public class Home extends AppCompatActivity{
         }
     }
 
-    class DatabaseCreator extends AsyncTask<String, Void, ArrayList<String>> {
+    class DatabaseCreator extends AsyncTask<String, Void, ArrayList<ArrayList<String>>> {
         @Override
-        protected ArrayList<String> doInBackground(String... params) {
-            ArrayList<String> products = new ArrayList<String>();
+        protected ArrayList<ArrayList<String>> doInBackground(String... params) {
+            ArrayList<ArrayList<String>> products = new ArrayList<ArrayList<String>>();
             try {
                 for (int i = 0; i < params.length; i++) {
                     URL connect = new URL(params[i]);
                     URLConnection foodConnect = connect.openConnection();
                     BufferedReader read = new BufferedReader(new InputStreamReader(foodConnect.getInputStream()));
                     String input;
+                    ArrayList<String> currentGroup = new ArrayList<String>();
+                    if (i ==  0) {
+                        currentGroup.add("Fruits");
+                    } else if (i == 1) {
+                        currentGroup.add("Vegetables");
+                    } else {
+                        currentGroup.add("Dairy");
+                    }
                     while ((input = read.readLine()) != null){
                         if (input.contains("<name>")) {
                             if (input.trim().length() < 8) {
                                 String temp = read.readLine().trim();
                                 temp = temp.substring(0, temp.indexOf(","));
-                                if (products.contains(temp) == false) {
-                                    products.add(temp);
+                                if (currentGroup.contains(temp) == false) {
+                                    currentGroup.add(temp);
                                 }
                             } else {
                                 String temp = input.trim();
                                 Log.d("HOME", temp + " " + temp.indexOf("<name>"));
                                 temp = temp.substring(temp.indexOf("<name>") + 6, temp.indexOf("</name>"));
                                 if (temp.indexOf(",") == -1) {
-                                    if (products.contains(temp) == false) {
-                                        products.add(temp);
+                                    if (currentGroup.contains(temp) == false) {
+                                        currentGroup.add(temp);
                                     }
                                 } else {
                                     temp = temp.substring(0, temp.indexOf(","));
-                                    if (products.contains(temp) == false) {
-                                        products.add(temp);
+                                    if (currentGroup.contains(temp) == false) {
+                                        currentGroup.add(temp);
                                     }
                                 }
                             }
                         }
                     }
+                    products.add(currentGroup);
                 }
                 return products;
             } catch (MalformedURLException e) {
@@ -442,7 +539,7 @@ public class Home extends AppCompatActivity{
             }
         }
 
-        protected void onPostExecute(ArrayList<String> prods) {
+        protected void onPostExecute(ArrayList<ArrayList<String>> prods) {
             for (int i = 0; i < prods.size(); i++) {
                 database.add(prods.get(i));
             }
