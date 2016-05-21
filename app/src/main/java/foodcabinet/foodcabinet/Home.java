@@ -28,6 +28,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -41,16 +46,18 @@ import java.lang.reflect.Array;
 /**
  * Created by Michael on 5/12/16.
  */
-
-//Database key-pZ657QOXz5HciP7gfwvoyLaYccsLbkw51XIDrbGU
 public class Home extends AppCompatActivity{
     private Cabinet cabinet;
+    private ArrayList<String> database = new ArrayList<String>();
+    private static final String foodDataKey = "pZ657QOXz5HciP7gfwvoyLaYccsLbkw51XIDrbGU";
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         if (prefs.getBoolean("firstTime", false) == false) {
-
+            addToFoodDatabase("Fruit");
+            addToFoodDatabase("Veggie");
+            addToFoodDatabase("Dairy");
         }
 
         setContentView(R.layout.activity_home);
@@ -71,6 +78,37 @@ public class Home extends AppCompatActivity{
         updateScreen();
     }
 
+    public void addToFoodDatabase(String type) {
+        String urlLink = "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey;
+
+        if (type.equals("Fruit")) {
+            urlLink += "&fg=0900&max=360";
+        } else if (type.equals("Veggie")) {
+            urlLink += "&fg=1100&max=836";
+        } else if (type.equals("Dairy")) {
+            urlLink += "&fg=0100&max=283";
+        }
+
+        try {
+            URL connect = new URL(urlLink);
+            URLConnection foodConnect = connect.openConnection();
+            BufferedReader read = new BufferedReader(new InputStreamReader(foodConnect.getInputStream()));
+            String input;
+            while ((input = read.readLine()) != null){
+                if (input.contains("<name>")) {
+                    String temp = input.substring(input.indexOf("<name>" + 6), input.indexOf("</name"));
+                    temp = temp.substring(0, temp.indexOf(","));
+                    if (database.contains(temp) == false) {
+                        database.add(temp);
+                    }
+                }
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+    }
     /**
      * Method called when the user selects the button to take a picture of an item
      */
