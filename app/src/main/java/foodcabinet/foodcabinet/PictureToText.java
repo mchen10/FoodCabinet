@@ -4,6 +4,7 @@ package foodcabinet.foodcabinet;
 
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.services.vision.v1.model.BatchAnnotateImagesResponse;
@@ -47,20 +48,17 @@ public class PictureToText{
      * Creates a new Instance of Picture to Text object, defined by the passed in Image parameter
      * @param a Image to be translated into a product
      */
-    public PictureToText(Bitmap a) {
-        database = new ArrayList<String>();
-        database.add("bread");
-        database.add("milk");
-        database.add("meat");
-        database.add("dairy");
-        database.add("cereal");
-        database.add("fruits");
-        database.add("produce");
+    public PictureToText(Bitmap a, ArrayList<String> database) {
+        this.database = database;
         picture = a;
         prod = new ArrayList<String>();
         translated = new ArrayList<String>();
         try {
             callCloudVision();
+            Log.d("HOMEPIC", translated.size()+"");
+            for (int i = 0; i < translated.size(); i++) {
+                Log.d("PICTURE", translated.get(i));
+            }
         } catch (IOException e) {
 
         }
