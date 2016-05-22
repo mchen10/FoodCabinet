@@ -26,7 +26,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -202,6 +202,7 @@ public class Home extends AppCompatActivity{
                     Product p = new Product(prod, products.get(i).get(1));
                     cabinet.addProduct(p);
                 }
+                Log.d("test",products.size()+"");
             }
             updateScreen();
         }
@@ -215,6 +216,7 @@ public class Home extends AppCompatActivity{
     }
     
     public void updateScreen() {
+        Log.d("Picture Button","Log Works");
         updateSelectionScroll();
         ArrayList<Product> products = display;
 

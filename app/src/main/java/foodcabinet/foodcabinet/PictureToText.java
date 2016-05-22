@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.services.vision.v1.model.BatchAnnotateImagesResponse;
 import com.google.api.services.vision.v1.model.EntityAnnotation;
@@ -88,8 +89,9 @@ public class PictureToText{
                         AnnotateImageRequest annotateImageRequest = new AnnotateImageRequest();
 
                         Image encoded = new Image();
-                        picture.compress(Bitmap.CompressFormat.JPEG, 90, new ByteArrayOutputStream());
-                        annotateImageRequest.setImage(encoded);
+                        ByteArrayOutputStream x= new ByteArrayOutputStream();
+                        picture.compress(Bitmap.CompressFormat.JPEG, 90, x);
+                        annotateImageRequest.setImage(encoded.encodeContent(x.toByteArray()));
                         annotateImageRequest.setFeatures(new ArrayList<Feature>() {{
                             Feature detect = new Feature();
                             detect.setType("TEXT_DETECTION");
@@ -112,6 +114,69 @@ public class PictureToText{
         };
     }
 
+/*
+    private void callCloudVision(final Bitmap bitmap) throws IOException {
+        // Switch text to loading
+
+        // Do the real work in an async task, because we need to use the network anyway
+        new AsyncTask<Object, Void, String>() {
+            @Override
+            protected String doInBackground(Object... params) {
+                try {
+                    HttpTransport httpTransport = new NetHttpTransport();
+
+                    JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
+
+                    Vision.Builder builder = new Vision.Builder(httpTransport, jsonFactory, null);
+                    builder.setVisionRequestInitializer(new
+                            VisionRequestInitializer("AIzaSyCcuM1ltlLLmp1woOqsyXZpjsL0qHq_9eU"));
+                    Vision vision = builder.build();
+
+                    BatchAnnotateImagesRequest batchAnnotateImagesRequest =
+                            new BatchAnnotateImagesRequest();
+                    batchAnnotateImagesRequest.setRequests(new ArrayList<AnnotateImageRequest>() {{
+                        AnnotateImageRequest annotateImageRequest = new AnnotateImageRequest();
+
+                        // Add the image
+                        Image base64EncodedImage = new Image();
+                        // Convert the bitmap to a JPEG
+                        // Just in case it's a format that Android understands but Cloud Vision
+                        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
+                        byte[] imageBytes = byteArrayOutputStream.toByteArray();
+
+                        // Base64 encode the JPEG
+                        base64EncodedImage.encodeContent(imageBytes);
+                        annotateImageRequest.setImage(base64EncodedImage);
+
+                        // add the features we want
+                        annotateImageRequest.setFeatures(new ArrayList<Feature>() {{
+                            Feature labelDetection = new Feature();
+                            labelDetection.setType("LABEL_DETECTION");
+                            labelDetection.setMaxResults(10);
+                            add(labelDetection);
+                        }});
+
+                        // Add the list of one thing to the request
+                        add(annotateImageRequest);
+                    }});
+
+                    Vision.Images.Annotate annotateRequest =
+                            vision.images().annotate(batchAnnotateImagesRequest);
+                    // Due to a bug: requests to Vision API containing large images fail when GZipped.
+                    annotateRequest.setDisableGZipContent(true);
+
+                    BatchAnnotateImagesResponse response = annotateRequest.execute();
+
+                } catch (GoogleJsonResponseException e) {
+                } catch (IOException e) {
+                }
+                return "";
+            }
+        }.execute();
+
+    }
+    */
     /**
      * Method to translate the respone of the Google Cloud Vision OCR into the translated Arraylist in the class
      * @param e The BatchAnnotateImagesResponse sent by Cloud Vision
@@ -156,8 +221,8 @@ public class PictureToText{
      * @return Products translated from the Image
      */
     public ArrayList<ArrayList<String>> getProducts() {
-             return prod;
-            }
+        return prod;
+    }
 
     /**
      * Finds the amount of changes needed to turn one string into another so that the food type can be determined
@@ -207,7 +272,3 @@ public class PictureToText{
     }
 
 }
-
-
-
-
