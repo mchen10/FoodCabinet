@@ -78,8 +78,24 @@ public class Home extends AppCompatActivity{
                 (CollapsingToolbarLayout) findViewById(R.id.collapse_toolbar);
         collapsingToolbar.setTitle("Food Cabinet");
 
-        updateSelectionScroll();
+        //updateSelectionScroll();
         updateScreen();
+    }
+
+    boolean color = false;
+    public void test(View view) {
+        CollapsingToolbarLayout layout = (CollapsingToolbarLayout) findViewById(R.id.collapse_toolbar);
+        if (!color) {
+            layout.setBackgroundColor(Color.RED);
+        } else {
+            layout.setBackgroundColor(Color.BLUE);
+        }
+        color = !color;
+    }
+
+    public void test2(View view) {
+        CollapsingToolbarLayout layout = (CollapsingToolbarLayout) findViewById(R.id.collapse_toolbar);
+        layout.setBackgroundColor(Color.GREEN);
     }
 
     public void updateSelectionScroll() {
@@ -95,10 +111,26 @@ public class Home extends AppCompatActivity{
 
         LinearLayout.LayoutParams bParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         bParams.setMargins(75, 150, 0, 0);
+        HorizontalScrollView.LayoutParams scrollParams = new HorizontalScrollView.LayoutParams(HorizontalScrollView.LayoutParams.WRAP_CONTENT, HorizontalScrollView.LayoutParams.WRAP_CONTENT);
+        scrollParams.setMargins(0, 300, 0, 0);
 
         HorizontalScrollView scroll = new HorizontalScrollView(this);
+        scroll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                test(v);
+            }
+        });
+        //scroll.setLayoutParams(scrollParams);
         LinearLayout scrollLayout = new LinearLayout(this);
-        scrollLayout.setGravity(Gravity.CENTER);
+        scrollLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("TAG", "HIHIHI");
+                test(v);
+            }
+        });
+        scrollLayout.setLayoutParams(scrollParams);
         scrollLayout.setOrientation(LinearLayout.HORIZONTAL);
         ArrayList<Button> tempButtons = new ArrayList<Button>();
         ArrayList<Product> products = cabinet.getCurrentProducts();
@@ -164,6 +196,7 @@ public class Home extends AppCompatActivity{
      * Method called when the user selects the button to take a picture of an item
      */
     public void takePicture(View view) {
+        Log.d("TEST", "HERERE");
         Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePicture.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePicture, 1);
@@ -217,7 +250,7 @@ public class Home extends AppCompatActivity{
     
     public void updateScreen() {
         Log.d("Picture Button","Log Works");
-        updateSelectionScroll();
+        //updateSelectionScroll();
         ArrayList<Product> products = display;
 
         Display display = getWindowManager().getDefaultDisplay();

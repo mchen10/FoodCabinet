@@ -23,22 +23,25 @@
             app:expandedTitleGravity="top|center_horizontal"
             app:expandedTitleMarginBottom="30dp"
             app:collapsedTitleGravity="center_horizontal"
-            android:paddingRight="80dp">
+            android:paddingRight="80dp"
+            android:onClick="test">
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/MyToolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="parallax">
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/MyToolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="parallax"
+                    android:onClick="test2">
 
-                <Button android:layout_height="40dp"
-                    android:layout_width="40dp"
-                    android:background="@drawable/camera"
-                    android:onClick="takePicture"
-                    android:layout_marginTop="10dp">
-                </Button>
+                    <Button android:layout_height="40dp"
+                        android:layout_width="40dp"
+                        android:background="@drawable/camera"
+                        android:onClick="takePicture"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/PictureButton">
+                    </Button>
 
-            </android.support.v7.widget.Toolbar>
+                </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
