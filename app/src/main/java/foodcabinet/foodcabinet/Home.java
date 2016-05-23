@@ -181,7 +181,7 @@ public class Home extends AppCompatActivity {
      * Method called when the user selects the button to take a picture of an item
      */
     public void takePicture(View view) {
-        Log.d("HOMEMEMEMEMEEM", database.size()+"");
+        //Log.d("HOMEMEMEMEMEEM", database.size()+"");
         Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePicture.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePicture, 1);
