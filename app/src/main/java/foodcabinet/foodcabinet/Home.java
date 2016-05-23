@@ -30,6 +30,7 @@ import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -42,7 +43,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by Michael on 5/12/16.
  */
-public class Home extends AppCompatActivity{
+public class Home extends AppCompatActivity {
     private Cabinet cabinet;
     private String currentSelection = "ALL";
     private ArrayList<Product> display = new ArrayList<Product>();
@@ -66,15 +67,21 @@ public class Home extends AppCompatActivity{
 
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean("firstTime", true);
-            //editor.commit();
+            editor.commit();
         }
 
         setContentView(R.layout.activity_home);
-        cabinet = new Cabinet();
-        cabinet.addProduct(new Product("Bread", "Food", 5, 5));
-        cabinet.addProduct(new Product("Bread", "Dairy", 5, 5));
-        cabinet.addProduct(new Product("Bread", "Dairy", 5, 5));
-        cabinet.addProduct(new Product("Bread", "Dairy", 5, 5));
+
+        if (getIntent().hasExtra("Cabinet")) {
+            cabinet = (Cabinet) getIntent().getSerializableExtra("Cabinet");
+        } else {
+            cabinet = new Cabinet();
+            cabinet.addProduct(new Product("Bread", "Food", 5, 5));
+            cabinet.addProduct(new Product("Milk", "Dairy", 5, 5));
+            cabinet.addProduct(new Product("Cheese", "Dairy", 5, 5));
+            cabinet.addProduct(new Product("Broccoli", "Dairy", 5, 5));
+        }
+
         display = cabinet.getCurrentProducts();
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.MyToolbar);
@@ -87,22 +94,6 @@ public class Home extends AppCompatActivity{
 
         //updateSelectionScroll();
         updateScreen();
-    }
-
-    boolean color = false;
-    public void test(View view) {
-        CollapsingToolbarLayout layout = (CollapsingToolbarLayout) findViewById(R.id.collapse_toolbar);
-        if (!color) {
-            layout.setBackgroundColor(Color.RED);
-        } else {
-            layout.setBackgroundColor(Color.BLUE);
-        }
-        color = !color;
-    }
-
-    public void test2(View view) {
-        CollapsingToolbarLayout layout = (CollapsingToolbarLayout) findViewById(R.id.collapse_toolbar);
-        layout.setBackgroundColor(Color.GREEN);
     }
 
     public void updateSelectionScroll() {
@@ -122,20 +113,8 @@ public class Home extends AppCompatActivity{
         scrollParams.setMargins(0, 300, 0, 0);
 
         HorizontalScrollView scroll = new HorizontalScrollView(this);
-        scroll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                test(v);
-            }
-        });
         //scroll.setLayoutParams(scrollParams);
         LinearLayout scrollLayout = new LinearLayout(this);
-        scrollLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                test(v);
-            }
-        });
         scrollLayout.setLayoutParams(scrollParams);
         scrollLayout.setOrientation(LinearLayout.HORIZONTAL);
         ArrayList<Button> tempButtons = new ArrayList<Button>();
@@ -255,11 +234,6 @@ public class Home extends AppCompatActivity{
     		((ViewGroup) layout.getParent()).removeView(layout);
     	}
     }
-    public void createProduct(View view)
-    {
-
-    }
-
     
     public void updateScreen() {
         //updateSelectionScroll();
@@ -292,6 +266,7 @@ public class Home extends AppCompatActivity{
                     public void onClick(View v) {
                         Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
                         intent.putExtra("Product", cabinet.getCurrentProducts().get(v.getId()));
+                        intent.putExtra("Cabinet", cabinet);
                         startActivity(intent);
                     }
                 });
@@ -333,6 +308,7 @@ public class Home extends AppCompatActivity{
                     public void onClick(View v) {
                         Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
                         intent.putExtra("Product", cabinet.getCurrentProducts().get(v.getId()));
+                        intent.putExtra("Cabinet", cabinet);
                         startActivity(intent);
                     }
                 });
@@ -374,6 +350,7 @@ public class Home extends AppCompatActivity{
                     public void onClick(View v) {
                         Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
                         intent.putExtra("Product", cabinet.getCurrentProducts().get(v.getId()));
+                        intent.putExtra("Cabinet", cabinet);
                         startActivity(intent);
                     }
                 });
@@ -414,6 +391,7 @@ public class Home extends AppCompatActivity{
                     public void onClick(View v) {
                         Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
                         intent.putExtra("Product", cabinet.getCurrentProducts().get(v.getId()));
+                        intent.putExtra("Cabinet", cabinet);
                         startActivity(intent);
                     }
                 });
@@ -455,6 +433,7 @@ public class Home extends AppCompatActivity{
                     public void onClick(View v) {
                         Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
                         intent.putExtra("Product", cabinet.getCurrentProducts().get(v.getId()));
+                        intent.putExtra("Cabinet", cabinet);
                         startActivity(intent);
                     }
                 });
@@ -496,6 +475,7 @@ public class Home extends AppCompatActivity{
                     public void onClick(View v) {
                         Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
                         intent.putExtra("Product", cabinet.getCurrentProducts().get(v.getId()));
+                        intent.putExtra("Cabinet", cabinet);
                         startActivity(intent);
                     }
                 });
