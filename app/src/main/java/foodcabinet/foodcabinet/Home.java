@@ -50,6 +50,7 @@ public class Home extends AppCompatActivity {
     private ArrayList<ArrayList<String>> database = new ArrayList<ArrayList<String>>();
     private static final String foodDataKey = "pZ657QOXz5HciP7gfwvoyLaYccsLbkw51XIDrbGU";
     private int totalButtons = 0;
+    private int totalSubmittedByUser = 0;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -80,6 +81,10 @@ public class Home extends AppCompatActivity {
             cabinet.addProduct(new Product("Milk", "Dairy", 5, 5));
             cabinet.addProduct(new Product("Cheese", "Dairy", 5, 5));
             cabinet.addProduct(new Product("Broccoli", "Dairy", 5, 5));
+        }
+        
+        if (getIntent().hasExtra("Picture")) {
+        	parseImage((Intent)getIntent().getSerializableExtra("Picture"));
         }
 
         display = cabinet.getCurrentProducts();
@@ -182,50 +187,51 @@ public class Home extends AppCompatActivity {
      */
     public void takePicture(View view) {
         //Log.d("HOMEMEMEMEMEEM", database.size()+"");
-        Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePicture.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePicture, 1);
-        }
+    	if (totalSubmittedByUser < 10) {
+    		
+    	}
+        Intent intent = new Intent(this, AddProductsScreen.class);
+        intent.putExtra("Cabinet", cabinet);
+        startActivity(intent);
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-       // Log.d("Home","Runs Method");
-        if (requestCode == 1 && resultCode == RESULT_OK) {
-            clearScreen();
-            Bundle bundle = data.getExtras();
-            Bitmap image = (Bitmap) bundle.get("data");
-            UsedDatePredictor predictU = new UsedDatePredictor();
-            ExpirationDatePredictor predictE = new ExpirationDatePredictor();
-            PictureToText convert = new PictureToText(image, database);
-            ArrayList<ArrayList<String>> products= convert.getProducts();
-            Log.d("Home",""+products.size());
-            for(int i = 0; i < products.size(); i++) {
-                String prod = products.get(i).get(0);
-                //Log.d("Home",prod);
-                boolean found = false;
-                for (int j = 0; j < cabinet.getCurrentProducts().size(); j++) {
-                    Product p = cabinet.getCurrentProducts().get(j);
-                    if (p.getName().equals(prod)) {
-                        Calendar used = predictU.predict(p);
-                        Calendar expir = predictE.predict(p);
-                        p.updateBDate();
-                        p.addUsedEDay(p.getEDays());
-                        p.setEDays(used.get(Calendar.DAY_OF_YEAR));
-
-                        p.addUsedUDay(p.getUDays());
-                        p.setUDays(expir.get(Calendar.DAY_OF_YEAR));
-                        found = true;
-                        break;
-                    }
-                }
-                if(!found) {
-                    Product p = new Product(prod, products.get(i).get(1));
-                    cabinet.addProduct(p);
-                }
-                Log.d("test",products.size()+"");
-            }
-            updateScreen();
+    public void parseImage(Intent data) {
+        clearScreen();
+        Bundle bundle = data.getExtras();
+        Bitmap image = (Bitmap) bundle.get("data");
+        UsedDatePredictor predictU = new UsedDatePredictor();
+        ExpirationDatePredictor predictE = new ExpirationDatePredictor();
+        PictureToText convert = new PictureToText(image, database);
+        ArrayList<ArrayList<String>> products= convert.getProducts();
+        while (products.size() == 0) {
+        	products = convert.getProducts();
         }
+        for(int i = 0; i < products.size(); i++) {
+            String prod = products.get(i).get(0);
+            //Log.d("Home",prod);
+            boolean found = false;
+            for (int j = 0; j < cabinet.getCurrentProducts().size(); j++) {
+                Product p = cabinet.getCurrentProducts().get(j);
+                if (p.getName().equals(prod)) {
+                    Calendar used = predictU.predict(p);
+                    Calendar expir = predictE.predict(p);
+                    p.updateBDate();
+                    p.addUsedEDay(p.getEDays());
+                    p.setEDays(used.get(Calendar.DAY_OF_YEAR));
+
+                    p.addUsedUDay(p.getUDays());
+                    p.setUDays(expir.get(Calendar.DAY_OF_YEAR));
+                    found = true;
+                    break;
+                }
+            }
+            if(!found) {
+                Product p = new Product(prod, products.get(i).get(1));
+                cabinet.addProduct(p);
+            }
+        }
+        display = cabinet.getCurrentProducts();
+        updateScreen();
     }
 
     public void clearScreen() {
