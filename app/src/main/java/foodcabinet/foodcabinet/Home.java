@@ -37,6 +37,7 @@ import java.util.Calendar;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Michael on 5/12/16.
@@ -52,14 +53,20 @@ public class Home extends AppCompatActivity{
         super.onCreate(savedInstanceState);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefs.edit().putBoolean("firstTime", false).commit();
         if (prefs.getBoolean("firstTime", false) == false) {
-            new DatabaseCreator().execute("http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=0900&max=360",
-                    "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=1100&max=836",
-                    "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=0100&max=283");
+            try {
+                DatabaseCreator create = new DatabaseCreator();
+                create.execute("http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=0900&max=360",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=1100&max=836",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=0100&max=283");
+            } catch (Exception e) {
+
+            }
 
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean("firstTime", true);
-            editor.commit();
+            //editor.commit();
         }
 
         setContentView(R.layout.activity_home);
@@ -195,6 +202,7 @@ public class Home extends AppCompatActivity{
      * Method called when the user selects the button to take a picture of an item
      */
     public void takePicture(View view) {
+        Log.d("HOMEMEMEMEMEEM", database.size()+"");
         Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePicture.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePicture, 1);
@@ -202,7 +210,7 @@ public class Home extends AppCompatActivity{
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d("Home","Runs Method");
+       // Log.d("Home","Runs Method");
         if (requestCode == 1 && resultCode == RESULT_OK) {
             clearScreen();
             Bundle bundle = data.getExtras();
@@ -214,7 +222,7 @@ public class Home extends AppCompatActivity{
             Log.d("Home",""+products.size());
             for(int i = 0; i < products.size(); i++) {
                 String prod = products.get(i).get(0);
-                Log.d("Home",prod);
+                //Log.d("Home",prod);
                 boolean found = false;
                 for (int j = 0; j < cabinet.getCurrentProducts().size(); j++) {
                     Product p = cabinet.getCurrentProducts().get(j);
@@ -546,7 +554,7 @@ public class Home extends AppCompatActivity{
                                 }
                             } else {
                                 String temp = input.trim();
-                                Log.d("HOME", temp + " " + temp.indexOf("<name>"));
+                                //Log.d("HOME", temp + " " + temp.indexOf("<name>"));
                                 temp = temp.substring(temp.indexOf("<name>") + 6, temp.indexOf("</name>"));
                                 if (temp.indexOf(",") == -1) {
                                     if (currentGroup.contains(temp) == false) {
@@ -574,9 +582,12 @@ public class Home extends AppCompatActivity{
         }
 
         protected void onPostExecute(ArrayList<ArrayList<String>> prods) {
+            //Log.d("HOME", "HHIIHIH");
             for (int i = 0; i < prods.size(); i++) {
+                //Log.d("HOME", prods.get(i)+"");
                 database.add(prods.get(i));
             }
+            //Log.d("HOMEEEE", database.size()+"");
         }
     }
 }

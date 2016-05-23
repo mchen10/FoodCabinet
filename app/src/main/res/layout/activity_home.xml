@@ -23,8 +23,7 @@
             app:expandedTitleGravity="top|center_horizontal"
             app:expandedTitleMarginBottom="30dp"
             app:collapsedTitleGravity="center_horizontal"
-            android:paddingRight="80dp"
-            android:onClick="test">
+            android:paddingRight="80dp">
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/MyToolbar"

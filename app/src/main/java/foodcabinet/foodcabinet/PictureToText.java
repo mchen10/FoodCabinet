@@ -58,9 +58,11 @@ public class PictureToText {
         translated = new ArrayList<String>();
         try {
             callCloudVision();
-            task.execute();
+            task.execute().get();
         } catch (IOException e) {
             Log.d("PicToText", "Failed to Call Cloud Vision");
+        } catch (Exception e){
+
         }
     }
 
@@ -127,7 +129,7 @@ public class PictureToText {
         List<EntityAnnotation> text = e.getResponses().get(0).getTextAnnotations();
         for (EntityAnnotation ann : text) {
             trans.add(ann.getDescription());
-            Log.d("Testing",ann.getDescription());
+            //Log.d("Testing",ann.getDescription());
         }
         return trans;
     }
@@ -136,7 +138,7 @@ public class PictureToText {
      * Method used to translate the input text into a products
      */
     public void textToProduct() {
-        Log.d("Products"," "+translated.size());
+        //Log.d("Products"," "+translated.size());
         for (String a : translated) {
             String word = "";
             String group = "";
@@ -145,13 +147,13 @@ public class PictureToText {
                 for (int j = 1; j < database.get(i).size(); j++) {
                     String s = database.get(i).get(j);
                     int diff = findMin(a, s);
-                    Log.d("TextToProduct",diff+s+" "+a);
+                    Log.d("TextToProduct",diff+"     " + a.length() + "      " +  s  + "      "+a);
                     if (diff < a.length() / 2) {
                         if (diff < least) {
                             least = diff;
                             word = s;
                             group = database.get(i).get(0);
-                            Log.d("TextToProduct",word);
+                            //Log.d("TextToProduct",a + "    " + word);
                         }
                     }
                 }
