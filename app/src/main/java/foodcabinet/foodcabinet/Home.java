@@ -255,6 +255,11 @@ public class Home extends AppCompatActivity{
     		((ViewGroup) layout.getParent()).removeView(layout);
     	}
     }
+    public void createProduct(View view)
+    {
+
+    }
+
     
     public void updateScreen() {
         //updateSelectionScroll();

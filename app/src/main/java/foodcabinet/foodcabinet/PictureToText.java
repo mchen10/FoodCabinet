@@ -6,19 +6,16 @@ import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.services.vision.v1.model.BatchAnnotateImagesResponse;
 import com.google.api.services.vision.v1.model.EntityAnnotation;
 import com.google.api.services.vision.v1.model.Feature;
-import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.vision.v1.Vision;
 import com.google.api.services.vision.v1.VisionRequestInitializer;
 import com.google.api.services.vision.v1.model.AnnotateImageRequest;
 import com.google.api.services.vision.v1.model.BatchAnnotateImagesRequest;
 import com.google.api.services.vision.v1.model.Image;
-import com.google.api.client.json.JsonFactory;
 
 
 import java.io.ByteArrayOutputStream;
