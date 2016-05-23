@@ -126,7 +126,6 @@ public class Home extends AppCompatActivity{
         scrollLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("TAG", "HIHIHI");
                 test(v);
             }
         });
@@ -196,7 +195,6 @@ public class Home extends AppCompatActivity{
      * Method called when the user selects the button to take a picture of an item
      */
     public void takePicture(View view) {
-        Log.d("TEST", "HERERE");
         Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePicture.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePicture, 1);
@@ -204,6 +202,7 @@ public class Home extends AppCompatActivity{
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d("Home","Runs Method");
         if (requestCode == 1 && resultCode == RESULT_OK) {
             clearScreen();
             Bundle bundle = data.getExtras();
@@ -211,10 +210,11 @@ public class Home extends AppCompatActivity{
             UsedDatePredictor predictU = new UsedDatePredictor();
             ExpirationDatePredictor predictE = new ExpirationDatePredictor();
             PictureToText convert = new PictureToText(image, database);
-            convert.textToProduct();
             ArrayList<ArrayList<String>> products= convert.getProducts();
+            Log.d("Home",""+products.size());
             for(int i = 0; i < products.size(); i++) {
                 String prod = products.get(i).get(0);
+                Log.d("Home",prod);
                 boolean found = false;
                 for (int j = 0; j < cabinet.getCurrentProducts().size(); j++) {
                     Product p = cabinet.getCurrentProducts().get(j);
@@ -249,7 +249,6 @@ public class Home extends AppCompatActivity{
     }
     
     public void updateScreen() {
-        Log.d("Picture Button","Log Works");
         //updateSelectionScroll();
         ArrayList<Product> products = display;
 

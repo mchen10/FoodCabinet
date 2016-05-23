@@ -30,12 +30,13 @@ import java.util.List;
 /**
  * Created by Sahaj on 5/15/16.
  */
-public class PictureToText{
+public class PictureToText {
 
     private ArrayList<String> translated;
     private Bitmap picture;
     private ArrayList<ArrayList<String>> prod;
     private ArrayList<ArrayList<String>> database;
+    private AsyncTask task;
 
     /**
      * Connects to Google's External Image Recognition Library, Cloud Vision
@@ -47,6 +48,7 @@ public class PictureToText{
 
     /**
      * Creates a new Instance of Picture to Text object, defined by the passed in Image parameter
+     *
      * @param a Image to be translated into a product
      */
     public PictureToText(Bitmap a, ArrayList<ArrayList<String>> database) {
@@ -56,36 +58,33 @@ public class PictureToText{
         translated = new ArrayList<String>();
         try {
             callCloudVision();
-            Log.d("HOMEPIC", translated.size()+"");
-            for (int i = 0; i < translated.size(); i++) {
-                Log.d("PICTURE", translated.get(i));
-            }
+            task.execute();
         } catch (IOException e) {
-            Log.d("Testing","Failed to Call Cloud Vision");
+            Log.d("PicToText", "Failed to Call Cloud Vision");
         }
     }
+
 
     /*
      * Calls Googles External Library, Cloud Vision OCR to extract data from the input picture
      * @throws IOException Exception thrown when the call to Cloud Vision fails or the picture is not inputted correctly
      */
+
     private void callCloudVision() throws IOException {
-        new AsyncTask<Object, Void, String>() {
+
+        task=new AsyncTask<Object, Void, ArrayList<String>>() {
             @Override
-            protected String doInBackground(Object... a) {
+            protected ArrayList<String> doInBackground(Object... a) {
                 try {
-
-
                     Vision.Builder builder = new Vision.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance(), null);
                     builder.setVisionRequestInitializer(new VisionRequestInitializer("AIzaSyCcuM1ltlLLmp1woOqsyXZpjsL0qHq_9eU"));
                     Vision vision = builder.build();
-
                     BatchAnnotateImagesRequest batchAnnotateImagesRequest = new BatchAnnotateImagesRequest();
                     batchAnnotateImagesRequest.setRequests(new ArrayList<AnnotateImageRequest>() {{
                         AnnotateImageRequest annotateImageRequest = new AnnotateImageRequest();
 
                         Image encoded = new Image();
-                        ByteArrayOutputStream x= new ByteArrayOutputStream();
+                        ByteArrayOutputStream x = new ByteArrayOutputStream();
                         picture.compress(Bitmap.CompressFormat.JPEG, 90, x);
                         annotateImageRequest.setImage(encoded.encodeContent(x.toByteArray()));
                         annotateImageRequest.setFeatures(new ArrayList<Feature>() {{
@@ -101,32 +100,43 @@ public class PictureToText{
                     Vision.Images.Annotate annotateRequest =
                             vision.images().annotate(batchAnnotateImagesRequest);
                     BatchAnnotateImagesResponse res = annotateRequest.execute();
-                    inputToString(res);
+                    return inputToString(res);
                 } catch (IOException e) {
-
+                    Log.d("PicToText", "IO EXCEPTION OH NOOOO");
                 }
-                return "";
+                return new ArrayList<String>();
+                };
+            protected void onPostExecute(ArrayList<String> items) {
+                for (int i = 0; i < items.size(); i++) {
+                    if(!items.get(i).contains(" "))
+                    {
+                        translated.add(items.get(i));
+                    }
+                }
+                textToProduct();
             }
-        };
-    }
+    };
+}
 
     /**
      * Method to translate the respone of the Google Cloud Vision OCR into the translated Arraylist in the class
      * @param e The BatchAnnotateImagesResponse sent by Cloud Vision
      */
-    public void inputToString(BatchAnnotateImagesResponse e) {
+    public ArrayList<String> inputToString(BatchAnnotateImagesResponse e) {
+        ArrayList<String> trans=new ArrayList<String>();
         List<EntityAnnotation> text = e.getResponses().get(0).getTextAnnotations();
         for (EntityAnnotation ann : text) {
-            translated.add(ann.getDescription());
+            trans.add(ann.getDescription());
             Log.d("Testing",ann.getDescription());
         }
-        Log.d("Testing","Method Runs");
+        return trans;
     }
 
     /**
      * Method used to translate the input text into a products
      */
     public void textToProduct() {
+        Log.d("Products"," "+translated.size());
         for (String a : translated) {
             String word = "";
             String group = "";
@@ -135,19 +145,24 @@ public class PictureToText{
                 for (int j = 1; j < database.get(i).size(); j++) {
                     String s = database.get(i).get(j);
                     int diff = findMin(a, s);
+                    Log.d("TextToProduct",diff+s+" "+a);
                     if (diff < a.length() / 2) {
                         if (diff < least) {
                             least = diff;
                             word = s;
                             group = database.get(i).get(0);
+                            Log.d("TextToProduct",word);
                         }
                     }
                 }
             }
             ArrayList<String> temp = new ArrayList<String>();
-            temp.add(word);
-            temp.add(group);
-            prod.add(temp);
+            if(word.length()>0)
+            {
+                temp.add(word);
+                temp.add(group);
+                prod.add(temp);
+            }
         }
     }
 
