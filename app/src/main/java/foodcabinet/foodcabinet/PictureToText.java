@@ -201,17 +201,17 @@ public class PictureToText {
                 if (c1 == c2) {
                     dp[i + 1][j + 1] = dp[i][j];
                 } else {
-                    int replace = dp[i][j] + 1;
-                    int insert = dp[i][j + 1] + 1;
-                    int delete = dp[i + 1][j] + 1;
+                    int r = dp[i][j] + 1;
+                    int p = dp[i][j + 1] + 1;
+                    int d = dp[i + 1][j] + 1;
                     int min=0;
-                    if(replace>insert) {
-                        min=replace;
+                    if(r>p) {
+                        min=r;
                     } else{
-                        min=replace;
+                        min=r;
                     }
-                    if(delete<=min) {
-                        min=delete;
+                    if(d<=min) {
+                        min=d;
                     }
                     dp[i + 1][j + 1] = min;
                 }
