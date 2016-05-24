@@ -213,12 +213,20 @@ public class Home extends AppCompatActivity {
     }
 
     PictureToText convert;
+
+    /**
+     * Receives the picture taken and parses it
+     * @param requestCode default value passed by system
+     * @param resultCode default value passed by system
+     * @param data default value passed by system
+     */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1 && resultCode == RESULT_OK) {
             clearScreen();
             Bundle bundle = data.getExtras();
             Bitmap image = (Bitmap) bundle.get("data");
             convert = new PictureToText(image, database);
+            setContentView(R.layout.loading);
             CountDownTimer timer = new CountDownTimer(5000, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
@@ -235,7 +243,12 @@ public class Home extends AppCompatActivity {
         }
     }
 
+    /**
+     * Takes in the converted products and adds them to the cabinet
+     * @param products the list of products
+     */
     public void parseImage(ArrayList<ArrayList<String>> products) {
+        setContentView(R.layout.activity_home);
         UsedDatePredictor predictU = new UsedDatePredictor();
         ExpirationDatePredictor predictE = new ExpirationDatePredictor();
 
@@ -291,21 +304,22 @@ public class Home extends AppCompatActivity {
         updateScreen();
     }
 
+    /**
+     * Clears the user interface
+     */
     public void clearScreen() {
     	for (int i = 0; i < display.size(); i++) {
     		LinearLayout layout = (LinearLayout) findViewById(i);
     		((ViewGroup) layout.getParent()).removeView(layout);
     	}
     }
-    
+
+    /**
+     * Updates the user interface with the newly added products
+     */
     public void updateScreen() {
         //updateSelectionScroll();
         ArrayList<Product> products = display;
-
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int screenWidth = size.x;
 
         LinearLayout homeMain = (LinearLayout) findViewById(R.id.HomeMain);
         LinearLayout.LayoutParams picLp = new LinearLayout.LayoutParams(125, 75);
@@ -318,7 +332,7 @@ public class Home extends AppCompatActivity {
         for (int i = 0; i < products.size(); i+=3) {
             LinearLayout layout = new LinearLayout(this);
             layout.setOrientation(LinearLayout.HORIZONTAL);
-            layoutLp.setMargins((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 15, getResources().getDisplayMetrics()), (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()), (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 15, getResources().getDisplayMetrics()), (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, getResources().getDisplayMetrics()));
+            layoutLp.setMargins(15, 5, 15, 20);
             layout.setLayoutParams(layoutLp);
             if (i + 1 == products.size()) {
                 LinearLayout b1 = new LinearLayout(this);
@@ -330,13 +344,14 @@ public class Home extends AppCompatActivity {
                         Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
                         intent.putExtra("Product", cabinet.getCurrentProducts().get(v.getId()));
                         intent.putExtra("Cabinet", cabinet);
+                        intent.putExtra("Database", database);
                         startActivity(intent);
                     }
                 });
                 b1.setOrientation(LinearLayout.VERTICAL);
 
                 ImageView pic1 = new ImageView(this);
-                pic1.setImageResource(getResources().getIdentifier("bread", "drawable", getPackageName()));
+                pic1.setImageResource(getResources().getIdentifier(products.get(i).getName().toLowerCase(), "drawable", getPackageName()));
                 pic1.setLayoutParams(picLp);
                 b1.addView(pic1);
 
@@ -361,6 +376,7 @@ public class Home extends AppCompatActivity {
                 b1.setLayoutParams(prodLp);
                 b1.setBackgroundColor(Color.BLUE);
                 layout.addView(b1);
+                b1.setLayoutParams(prodLp);
             } else if (i + 2 == products.size()) {
                 LinearLayout b1 = new LinearLayout(this);
                 b1.setGravity(Gravity.CENTER);
@@ -372,12 +388,13 @@ public class Home extends AppCompatActivity {
                         Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
                         intent.putExtra("Product", cabinet.getCurrentProducts().get(v.getId()));
                         intent.putExtra("Cabinet", cabinet);
+                        intent.putExtra("Database", database);
                         startActivity(intent);
                     }
                 });
 
                 ImageView pic1 = new ImageView(this);
-                pic1.setImageResource(getResources().getIdentifier("bread", "drawable", getPackageName()));
+                pic1.setImageResource(getResources().getIdentifier(products.get(i).getName().toLowerCase(), "drawable", getPackageName()));
                 pic1.setLayoutParams(picLp);
                 b1.addView(pic1);
 
@@ -414,12 +431,13 @@ public class Home extends AppCompatActivity {
                         Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
                         intent.putExtra("Product", cabinet.getCurrentProducts().get(v.getId()));
                         intent.putExtra("Cabinet", cabinet);
+                        intent.putExtra("Database", database);
                         startActivity(intent);
                     }
                 });
 
                 ImageView pic21 = new ImageView(this);
-                pic21.setImageResource(getResources().getIdentifier("bread", "drawable", getPackageName()));
+                pic21.setImageResource(getResources().getIdentifier(products.get(i + 1).getName().toLowerCase(), "drawable", getPackageName()));
                 pic21.setLayoutParams(picLp);
                 b2.addView(pic21);
 
@@ -455,12 +473,13 @@ public class Home extends AppCompatActivity {
                         Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
                         intent.putExtra("Product", cabinet.getCurrentProducts().get(v.getId()));
                         intent.putExtra("Cabinet", cabinet);
+                        intent.putExtra("Database", database);
                         startActivity(intent);
                     }
                 });
 
                 ImageView pic1 = new ImageView(this);
-                pic1.setImageResource(getResources().getIdentifier("bread", "drawable", getPackageName()));
+                pic1.setImageResource(getResources().getIdentifier(products.get(i).getName().toLowerCase(), "drawable", getPackageName()));
                 pic1.setLayoutParams(picLp);
                 b1.addView(pic1);
 
@@ -497,12 +516,13 @@ public class Home extends AppCompatActivity {
                         Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
                         intent.putExtra("Product", cabinet.getCurrentProducts().get(v.getId()));
                         intent.putExtra("Cabinet", cabinet);
+                        intent.putExtra("Database", database);
                         startActivity(intent);
                     }
                 });
 
                 ImageView pic21 = new ImageView(this);
-                pic21.setImageResource(getResources().getIdentifier("bread", "drawable", getPackageName()));
+                pic21.setImageResource(getResources().getIdentifier(products.get(i + 1).getName().toLowerCase(), "drawable", getPackageName()));
                 pic21.setLayoutParams(picLp);
                 b2.addView(pic21);
 
@@ -539,12 +559,13 @@ public class Home extends AppCompatActivity {
                         Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
                         intent.putExtra("Product", cabinet.getCurrentProducts().get(v.getId()));
                         intent.putExtra("Cabinet", cabinet);
+                        intent.putExtra("Database", database);
                         startActivity(intent);
                     }
                 });
 
                 ImageView pic31 = new ImageView(this);
-                pic31.setImageResource(getResources().getIdentifier("bread", "drawable", getPackageName()));
+                pic31.setImageResource(getResources().getIdentifier(products.get(i + 2).getName().toLowerCase(), "drawable", getPackageName()));
                 pic31.setLayoutParams(picLp);
                 b3.addView(pic31);
 

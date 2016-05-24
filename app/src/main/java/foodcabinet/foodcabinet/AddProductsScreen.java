@@ -62,6 +62,10 @@ public class AddProductsScreen extends AppCompatActivity {
         layout.addView(b);
     }
 
+    /**
+     * Saves the data inputted by the user
+     * @param v the button clicked by the user
+     */
     public void submitData(View v) {
         for (int i = 0; i < needUpdate.size(); i++) {
             needUpdate.get(i).increaseEntered();

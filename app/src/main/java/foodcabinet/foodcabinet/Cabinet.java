@@ -64,13 +64,17 @@ public class Cabinet implements Serializable {
     }
 
     /**
-     *
+     *  Returns the list of products that are no longer used
      * @return array of products that are no longer used
      */
     public ArrayList<Product> getDoneProducts(){
         return doneProducts;
     }
 
+    /**
+     * Returns the list of current products
+     * @return the list of current products
+     */
     public ArrayList<Product> getCurrentProducts() { return products; }
 
 }

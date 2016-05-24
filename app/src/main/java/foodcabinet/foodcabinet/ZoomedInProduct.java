@@ -11,6 +11,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -21,6 +22,7 @@ import java.util.GregorianCalendar;
 public class ZoomedInProduct extends AppCompatActivity{
     private Cabinet c;
     private Product p;
+    private ArrayList<ArrayList<String>> database;
     /**
      * Called method when a new Instance of a Zoom In Product is to be created and displayed in the application
      * @param savedInstanceState The Bundle of which should be created in the application
@@ -31,6 +33,7 @@ public class ZoomedInProduct extends AppCompatActivity{
 
         p = (Product) getIntent().getSerializableExtra("Product");
         c = (Cabinet) getIntent().getSerializableExtra("Cabinet");
+        database = (ArrayList<ArrayList<String>>) getIntent().getSerializableExtra("Database");
 
         TextView name = (TextView) findViewById(R.id.NameZoomed);
         ImageView image = (ImageView) findViewById(R.id.ImageZoomed);
@@ -39,7 +42,7 @@ public class ZoomedInProduct extends AppCompatActivity{
 
         name.setText(p.getName());
 
-        image.setImageResource(getResources().getIdentifier("bread", "drawable", getPackageName()));
+        image.setImageResource(getResources().getIdentifier(p.getName().toLowerCase(), "drawable", getPackageName()));
 
         Date date = p.getBDate();
 
@@ -67,10 +70,15 @@ public class ZoomedInProduct extends AppCompatActivity{
     public void returnHome(View v) {
         Intent intent = new Intent(this, Home.class);
         intent.putExtra("Cabinet", c);
+        intent.putExtra("Database", database);
 
         startActivity(intent);
     }
 
+    /**
+     * Deletes the selected product
+     * @param v View object
+     */
     public void deleteObject(View v) {
         c.removeProduct(p);
 

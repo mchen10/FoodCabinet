@@ -45,22 +45,42 @@ public class Product implements Serializable{
         pastUDays = new ArrayList<Integer>();
     }
 
+    /**
+     * Add an old expiration date for future predictions
+     * @param date the date
+     */
     public void addUsedEDay(Integer date) {
         pastEDays.add(date);
     }
 
+    /**
+     * Add an old used by date for future predictions
+     * @param date the date
+     */
     public void addUsedUDay(Integer date) {
         pastUDays.add(date);
     }
 
+    /**
+     * Returns the list of past expiration dates
+     * @return list of past expiration dates
+     */
     public ArrayList<Integer> getUsedEDays() {
         return pastEDays;
     }
 
+    /**
+     * Returns the list of past used by dates
+     * @return list of past used by  dates
+     */
     public ArrayList<Integer> getUsedUDays() {
         return pastUDays;
     }
 
+    /**
+     * Returns the group the food is in
+     * @return the String name of the group
+     */
     public String getGroup() {
         return group;
     }
@@ -121,18 +141,32 @@ public class Product implements Serializable{
         return pic;
     }
 
+    /**
+     * Updates the date when the product was created
+     */
     public void updateBDate() {
         bDate = new Date();
     }
 
+    /**
+     * Increases the number of times the user has entered data for this product
+     */
     public void increaseEntered() {
         numTimesEntered++;
     }
 
+    /**
+     * Returns the number of times the user has entered data for this product
+     * @return the number of times
+     */
     public int getNumTimesEntered() {
         return numTimesEntered;
     }
 
+    /**
+     * to String
+     * @return string representing the object
+     */
     public String toString() {
         return name + " " + eDays + " " + uDays;
     }
