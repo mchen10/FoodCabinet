@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -38,6 +39,7 @@ import java.util.Calendar;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Timer;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -50,8 +52,34 @@ public class Home extends AppCompatActivity {
     private ArrayList<ArrayList<String>> database = new ArrayList<ArrayList<String>>();
     private static final String foodDataKey = "pZ657QOXz5HciP7gfwvoyLaYccsLbkw51XIDrbGU";
     private int totalButtons = 0;
+
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+
+        savedInstanceState.putSerializable("Cabinet", cabinet);
+        savedInstanceState.putSerializable("Database", database);
+    }
+
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        cabinet = (Cabinet) savedInstanceState.getSerializable("Cabinet");
+        database = (ArrayList<ArrayList<String>>) savedInstanceState.getSerializable("Database");
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_home);
+
+        if (getIntent().hasExtra("Database")) {
+            database = (ArrayList<ArrayList<String>>) getIntent().getSerializableExtra("Database");
+        } else {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("firstTime", false);
+            editor.commit();
+        }
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         prefs.edit().putBoolean("firstTime", false).commit();
@@ -70,14 +98,11 @@ public class Home extends AppCompatActivity {
             editor.commit();
         }
 
-        setContentView(R.layout.activity_home);
-
         if (getIntent().hasExtra("Cabinet")) {
             cabinet = (Cabinet) getIntent().getSerializableExtra("Cabinet");
         } else {
             cabinet = new Cabinet();
             cabinet.addProduct(new Product("Bread", "Food", 5, 5));
-            cabinet.addProduct(new Product("Milk", "Dairy", 5, 5));
             cabinet.addProduct(new Product("Cheese", "Dairy", 5, 5));
             cabinet.addProduct(new Product("Broccoli", "Dairy", 5, 5));
         }
@@ -187,60 +212,83 @@ public class Home extends AppCompatActivity {
         }
     }
 
+    PictureToText convert;
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1 && resultCode == RESULT_OK) {
             clearScreen();
             Bundle bundle = data.getExtras();
             Bitmap image = (Bitmap) bundle.get("data");
-            UsedDatePredictor predictU = new UsedDatePredictor();
-            ExpirationDatePredictor predictE = new ExpirationDatePredictor();
-            PictureToText convert = new PictureToText(image, database);
-            ArrayList<ArrayList<String>> products = convert.getProducts();
-            while (products.size() == 0) {
-                products = convert.getProducts();
-            }
+            convert = new PictureToText(image, database);
+            CountDownTimer timer = new CountDownTimer(5000, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
 
-            ArrayList<Product> needSubmit = new ArrayList<Product>();
-
-            for (int i = 0; i < products.size(); i++) {
-                String prod = products.get(i).get(0);
-                boolean found = false;
-                for (int j = 0; j < cabinet.getCurrentProducts().size(); j++) {
-                    Product p = cabinet.getCurrentProducts().get(j);
-                    if (p.getName().equals(prod)) {
-                        if (p.getNumTimesEntered() < 3) {
-                            needSubmit.add(p);
-                        } else {
-                            Calendar used = predictU.predict(p);
-                            Calendar expir = predictE.predict(p);
-                            p.updateBDate();
-                            p.addUsedEDay(p.getEDays());
-                            p.setEDays(used.get(Calendar.DAY_OF_YEAR));
-
-                            p.addUsedUDay(p.getUDays());
-                            p.setUDays(expir.get(Calendar.DAY_OF_YEAR));
-                            found = true;
-                            break;
-                        }
-                    }
                 }
-                if (!found) {
-                    Product p = new Product(prod, products.get(i).get(1));
-                    cabinet.addProduct(p);
-                    needSubmit.add(p);
+
+                @Override
+                public void onFinish() {
+                    ArrayList<ArrayList<String>> products = convert.getProducts();
+                    parseImage(products);
                 }
-            }
-
-            if (needSubmit.size() > 0) {
-                Intent intent = new Intent(this, AddProductsScreen.class);
-                intent.putExtra("Cabinet", cabinet);
-                intent.putExtra("NeedUpdates", needSubmit);
-                startActivity(intent);
-            }
-
-            display = cabinet.getCurrentProducts();
-            updateScreen();
+            };
+            timer.start();
         }
+    }
+
+    public void parseImage(ArrayList<ArrayList<String>> products) {
+        UsedDatePredictor predictU = new UsedDatePredictor();
+        ExpirationDatePredictor predictE = new ExpirationDatePredictor();
+
+        ArrayList<Product> needSubmit = new ArrayList<Product>();
+
+        for (int i = 0; i < products.size(); i++) {
+            String prod = products.get(i).get(0);
+            boolean found = false;
+            for (int j = 0; j < cabinet.getCurrentProducts().size(); j++) {
+                Product p = cabinet.getCurrentProducts().get(j);
+                if (p.getName().equals(prod)) {
+                    if (p.getNumTimesEntered() < 3) {
+                        boolean add = true;
+                        for (int x = 0; x < needSubmit.size(); x++) {
+                            if (needSubmit.get(x).getName().equals(p.getName())) {
+                                add = false;
+                            }
+                        }
+                        if (add) {
+                            needSubmit.add(p);
+                        }
+                    } else {
+                        Calendar used = predictU.predict(p);
+                        Calendar expir = predictE.predict(p);
+                        p.updateBDate();
+                        p.addUsedEDay(p.getEDays());
+                        p.setEDays(used.get(Calendar.DAY_OF_YEAR));
+
+                        p.addUsedUDay(p.getUDays());
+                        p.setUDays(expir.get(Calendar.DAY_OF_YEAR));
+                        found = true;
+                        break;
+                    }
+                    found = true;
+                }
+            }
+            if (!found) {
+                Product p = new Product(prod, products.get(i).get(1));
+                cabinet.addProduct(p);
+                needSubmit.add(p);
+            }
+        }
+
+        if (needSubmit.size() > 0) {
+            Intent intent = new Intent(this, AddProductsScreen.class);
+            intent.putExtra("Cabinet", cabinet);
+            intent.putExtra("NeedUpdates", needSubmit);
+            intent.putExtra("Database", database);
+            startActivity(intent);
+        }
+
+        display = cabinet.getCurrentProducts();
+        updateScreen();
     }
 
     public void clearScreen() {
@@ -260,17 +308,17 @@ public class Home extends AppCompatActivity {
         int screenWidth = size.x;
 
         LinearLayout homeMain = (LinearLayout) findViewById(R.id.HomeMain);
-        LinearLayout.LayoutParams picLp = new LinearLayout.LayoutParams((screenWidth - 224) / 3, (screenWidth - 120) / 3);
-        picLp.setMargins(23, -30, 20, -50);
+        LinearLayout.LayoutParams picLp = new LinearLayout.LayoutParams(125, 75);
+        picLp.setMargins(3, 5, 3, 5);
         LinearLayout.LayoutParams layoutLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         LinearLayout.LayoutParams textLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        textLp.setMargins(0, 0, 0, 10);
-        LinearLayout.LayoutParams prodLp = new LinearLayout.LayoutParams((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 112, getResources().getDisplayMetrics()), LinearLayout.LayoutParams.WRAP_CONTENT);
-        prodLp.setMargins(0, 15, 20, 15);
+        textLp.setMargins(0, 0, 0, 3);
+        LinearLayout.LayoutParams prodLp = new LinearLayout.LayoutParams(139, LinearLayout.LayoutParams.WRAP_CONTENT);
+        prodLp.setMargins(15, 10, 0, 0);
         for (int i = 0; i < products.size(); i+=3) {
             LinearLayout layout = new LinearLayout(this);
             layout.setOrientation(LinearLayout.HORIZONTAL);
-            layoutLp.setMargins(15, 5, 15, 20);
+            layoutLp.setMargins((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 15, getResources().getDisplayMetrics()), (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()), (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 15, getResources().getDisplayMetrics()), (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, getResources().getDisplayMetrics()));
             layout.setLayoutParams(layoutLp);
             if (i + 1 == products.size()) {
                 LinearLayout b1 = new LinearLayout(this);

@@ -2,27 +2,20 @@ package foodcabinet.foodcabinet;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-<<<<<<< HEAD
 import android.widget.EditText;
-=======
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
->>>>>>> origin/master
 
 public class AddProductsScreen extends AppCompatActivity {
     private Cabinet cabinet;
     private ArrayList<Product> needUpdate;
+    private ArrayList<ArrayList<String>> database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +23,7 @@ public class AddProductsScreen extends AppCompatActivity {
 
         cabinet = (Cabinet) getIntent().getSerializableExtra("Cabinet");
         needUpdate = (ArrayList<Product>) getIntent().getSerializableExtra("NeedUpdates");
+        database = (ArrayList<ArrayList<String>>) getIntent().getSerializableExtra("Database");
 
         LinearLayout layout = (LinearLayout) findViewById(R.id.DataEnterLayout);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -64,6 +58,8 @@ public class AddProductsScreen extends AppCompatActivity {
                 submitData(v);
             }
         });
+
+        layout.addView(b);
     }
 
     public void submitData(View v) {
@@ -77,7 +73,7 @@ public class AddProductsScreen extends AppCompatActivity {
             needUpdate.get(i).setEDays(eD);
 
             for (int j = 0; j < cabinet.getCurrentProducts().size(); j++) {
-                if (cabinet.getCurrentProducts().get(j).getName().equals(needUpdate.get(i))) {
+                if (cabinet.getCurrentProducts().get(j).getName().equals(needUpdate.get(i).getName())) {
                     cabinet.getCurrentProducts().remove(j);
                     cabinet.getCurrentProducts().add(needUpdate.get(i));
                     break;
@@ -87,6 +83,7 @@ public class AddProductsScreen extends AppCompatActivity {
 
         Intent intent = new Intent(this, Home.class);
         intent.putExtra("Cabinet", cabinet);
+        intent.putExtra("Database", database);
         startActivity(intent);
     }
 

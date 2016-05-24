@@ -23,7 +23,8 @@
             app:expandedTitleGravity="top|center_horizontal"
             app:expandedTitleMarginBottom="30dp"
             app:collapsedTitleGravity="center_horizontal"
-            android:paddingRight="80dp">
+            android:paddingRight="70dp"
+            app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Headline">
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/MyToolbar"

@@ -106,6 +106,7 @@ public class PictureToText {
                 return new ArrayList<String>();
                 };
             protected void onPostExecute(ArrayList<String> items) {
+                //Log.d("TESTING3", items.toString());
                 for (int i = 0; i < items.size(); i++) {
                     if(!items.get(i).contains(" "))
                     {
@@ -136,19 +137,20 @@ public class PictureToText {
      */
     public void textToProduct() {
         //Log.d("Products"," "+translated.size());
+        Log.d("TESTING3", translated.toString());
         for (String a : translated) {
             String word = "";
             String group = "";
-            int least = 0;
+            int least = 10000000;
             for (int i = 0; i < database.size(); i++) {
                 for (int j = 1; j < database.get(i).size(); j++) {
                     String s = database.get(i).get(j);
-                    int diff = findMin(a, s);
-                    Log.d("TextToProduct",diff+"     " + a.length() + "      " +  s  + "      "+a);
+                    int diff = findMin(a.trim(), s.trim());
+                    //Log.d("TESTING3",diff+"     " + a.length() + "      " +  s  + "      "+a);
                     if (diff < a.length() / 2) {
                         if (diff < least) {
                             least = diff;
-                            word = s;
+                            word = s.trim();
                             group = database.get(i).get(0);
                             //Log.d("TextToProduct",a + "    " + word);
                         }

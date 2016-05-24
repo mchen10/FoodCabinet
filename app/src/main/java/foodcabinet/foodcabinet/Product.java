@@ -132,4 +132,8 @@ public class Product implements Serializable{
     public int getNumTimesEntered() {
         return numTimesEntered;
     }
+
+    public String toString() {
+        return name + " " + eDays + " " + uDays;
+    }
 }
