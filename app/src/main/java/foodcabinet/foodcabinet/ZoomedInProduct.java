@@ -3,6 +3,7 @@ package foodcabinet.foodcabinet;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -47,17 +48,14 @@ public class ZoomedInProduct extends AppCompatActivity{
         Date date = p.getBDate();
 
         int uDate = p.getUDays(), eDate = p.getEDays();
-        GregorianCalendar calendar = new GregorianCalendar(date.getYear(), date.getMonth(), date.getDay());
+        GregorianCalendar calendar = new GregorianCalendar(date.getYear() + 1900, date.getMonth(), date.getDate());
         calendar.add(Calendar.DATE, uDate);
-        calendar.add(Calendar.MONTH, uDate);
-        calendar.add(Calendar.YEAR, uDate);
 
         SimpleDateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
         usedDate.setText(format.format(calendar.getTime()));
 
+        calendar.add(Calendar.DATE, -uDate);
         calendar.add(Calendar.DATE, eDate);
-        calendar.add(Calendar.MONTH, eDate);
-        calendar.add(Calendar.YEAR, eDate);
 
         expirDate.setText(format.format(calendar.getTime()));
     }
