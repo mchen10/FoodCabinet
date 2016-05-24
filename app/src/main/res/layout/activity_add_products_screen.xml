@@ -23,7 +23,7 @@
         android:layout_below="@+id/DateEnterTitle"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:id="@+id/DataEnterTitle">
+        android:id="@+id/DataEnterDivider">
 
         <View
             android:layout_weight="40"
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:text="Add to Cabinet"
-            android:id="@+id/DataEnterDivider"
+            android:id="@+id/DataEnterDividerTitle"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:textSize="25dp"/>
@@ -59,9 +59,10 @@
 
     </LinearLayout>
 
-    <EditText
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:inputType="textEmailAddress"
         android:ems="10"
         android:hint="Product Name"
@@ -73,33 +74,19 @@
         android:textColorHint="@color/material_deep_teal_500"
         android:layout_below="@+id/DataEnterTitle"
         android:layout_alignParentStart="true" />
+=======
+        android:id="@+id/DataEnterScroll"
+        android:layout_below="@id/DataEnterDivider"
+        android:layout_marginTop="20dp">
+>>>>>>> origin/master
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:hint="Days until Expiration"
-        android:id="@+id/DataEnterDate"
-        android:paddingLeft="10dp"
-        android:paddingTop="7dp"
-        android:paddingBottom="7dp"
-        android:textColor="#000000"
-        android:textColorHint="@color/material_deep_teal_500"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/DataEnterLayout">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Product"
-        android:onClick="SubmitData"
-        android:id="@+id/DataEnterSubmit"
-        android:paddingBottom="7dp"
-        android:paddingTop="7dp"
-        android:textColor="#FFFFFF"
-        android:textSize="25dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

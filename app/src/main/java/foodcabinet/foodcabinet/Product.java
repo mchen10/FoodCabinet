@@ -15,6 +15,7 @@ public class Product implements Serializable{
     private ArrayList<Integer> pastEDays, pastUDays;
     private Date bDate;
     private Image pic;
+    private int numTimesEntered = 0;
     
     /** Constructs a product with a given type, expiration date, and days of use
      * 
@@ -122,5 +123,13 @@ public class Product implements Serializable{
 
     public void updateBDate() {
         bDate = new Date();
+    }
+
+    public void increaseEntered() {
+        numTimesEntered++;
+    }
+
+    public int getNumTimesEntered() {
+        return numTimesEntered;
     }
 }
