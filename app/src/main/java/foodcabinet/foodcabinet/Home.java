@@ -322,17 +322,18 @@ public class Home extends AppCompatActivity {
         ArrayList<Product> products = display;
 
         LinearLayout homeMain = (LinearLayout) findViewById(R.id.HomeMain);
-        LinearLayout.LayoutParams picLp = new LinearLayout.LayoutParams(125, 75);
-        picLp.setMargins(3, 5, 3, 5);
+        float scale=getResources().getDisplayMetrics().density;
+        LinearLayout.LayoutParams picLp = new LinearLayout.LayoutParams((int)(125*scale+0.5f), (int)(75*scale+0.5f));
+        picLp.setMargins((int)(3*scale+0.5f), (int)(5*scale+0.5f), (int)(3*scale+0.5f), (int)(5*scale+0.5f));
         LinearLayout.LayoutParams layoutLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         LinearLayout.LayoutParams textLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        textLp.setMargins(0, 0, 0, 3);
-        LinearLayout.LayoutParams prodLp = new LinearLayout.LayoutParams(139, LinearLayout.LayoutParams.WRAP_CONTENT);
-        prodLp.setMargins(15, 10, 0, 0);
+        textLp.setMargins(0, 0, 0, (int)(3*scale+0.5f));
+        LinearLayout.LayoutParams prodLp = new LinearLayout.LayoutParams((int)(139*scale+0.5f), LinearLayout.LayoutParams.WRAP_CONTENT);
+        prodLp.setMargins((int)(15*scale+0.5f), 10, 0, 0);
         for (int i = 0; i < products.size(); i+=3) {
             LinearLayout layout = new LinearLayout(this);
             layout.setOrientation(LinearLayout.HORIZONTAL);
-            layoutLp.setMargins(15, 5, 15, 20);
+            layoutLp.setMargins((int)(15*scale+0.5f), (int)(5*scale+0.5f), (int)(15*scale+0.5f), (int)(20*scale+0.5f));
             layout.setLayoutParams(layoutLp);
             if (i + 1 == products.size()) {
                 LinearLayout b1 = new LinearLayout(this);
@@ -417,7 +418,7 @@ public class Home extends AppCompatActivity {
                 b1.addView(text3);
 
                 b1.setBackgroundColor(Color.BLUE);
-                layoutLp.setMargins(0, 0, 15, 0);
+                layoutLp.setMargins(0, 0, (int)(15*scale+0.5f), 0);
                 b1.setLayoutParams(prodLp);
                 layout.addView(b1);
 
@@ -502,7 +503,7 @@ public class Home extends AppCompatActivity {
                 b1.addView(text3);
 
                 b1.setBackgroundColor(Color.BLUE);
-                layoutLp.setMargins(0, 0, 15, 0);
+                layoutLp.setMargins(0, 0, (int)(15*scale+0.5f), 0);
                 b1.setLayoutParams(prodLp);
                 layout.addView(b1);
 
@@ -545,7 +546,7 @@ public class Home extends AppCompatActivity {
                 b2.addView(text23);
 
                 b2.setBackgroundColor(Color.BLUE);
-                layoutLp.setMargins(0, 0, 15, 0);
+                layoutLp.setMargins(0, 0, (int)(15*scale+0.5f), 0);
                 b2.setLayoutParams(prodLp);
                 layout.addView(b2);
 
