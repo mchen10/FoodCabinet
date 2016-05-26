@@ -323,14 +323,15 @@ public class Home extends AppCompatActivity {
 
         LinearLayout homeMain = (LinearLayout) findViewById(R.id.HomeMain);
         float scale=getResources().getDisplayMetrics().density;
+        Log.d("Numbers",scale+"");
         LinearLayout.LayoutParams picLp = new LinearLayout.LayoutParams((int)(125*scale+0.5f), (int)(75*scale+0.5f));
         picLp.setMargins((int)(3*scale+0.5f), (int)(5*scale+0.5f), (int)(3*scale+0.5f), (int)(5*scale+0.5f));
         LinearLayout.LayoutParams layoutLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         LinearLayout.LayoutParams textLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         textLp.setMargins(0, 0, 0, (int)(3*scale+0.5f));
-        LinearLayout.LayoutParams prodLp = new LinearLayout.LayoutParams((int)(139*scale+0.5f), LinearLayout.LayoutParams.WRAP_CONTENT);
-        prodLp.setMargins((int)(15*scale+0.5f), 10, 0, 0);
-        for (int i = 0; i < products.size(); i+=3) {
+        LinearLayout.LayoutParams prodLp = new LinearLayout.LayoutParams((int)(100*scale+0.5f), LinearLayout.LayoutParams.WRAP_CONTENT);
+        prodLp.setMargins((int) (15 * scale + 0.5f), 10, 0, 0);
+        for (int i = 0; i < products.size(); i+=2) {
             LinearLayout layout = new LinearLayout(this);
             layout.setOrientation(LinearLayout.HORIZONTAL);
             layoutLp.setMargins((int)(15*scale+0.5f), (int)(5*scale+0.5f), (int)(15*scale+0.5f), (int)(20*scale+0.5f));
@@ -378,96 +379,11 @@ public class Home extends AppCompatActivity {
                 b1.setBackgroundColor(Color.BLUE);
                 layout.addView(b1);
                 b1.setLayoutParams(prodLp);
-            } else if (i + 2 == products.size()) {
-                LinearLayout b1 = new LinearLayout(this);
-                b1.setGravity(Gravity.CENTER);
-                b1.setId(i);
-                b1.setOrientation(LinearLayout.VERTICAL);
-                b1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
-                        intent.putExtra("Product", cabinet.getCurrentProducts().get(v.getId()));
-                        intent.putExtra("Cabinet", cabinet);
-                        intent.putExtra("Database", database);
-                        startActivity(intent);
-                    }
-                });
-
-                ImageView pic1 = new ImageView(this);
-                pic1.setImageResource(getResources().getIdentifier(products.get(i).getName().toLowerCase(), "drawable", getPackageName()));
-                pic1.setLayoutParams(picLp);
-                b1.addView(pic1);
-
-                TextView text1 = new TextView(this);
-                text1.setTextColor(Color.WHITE);
-                text1.setText(products.get(i).getName());
-                text1.setLayoutParams(textLp);
-                b1.addView(text1);
-
-                TextView text2 = new TextView(this);
-                text2.setTextColor(Color.WHITE);
-                text2.setText(products.get(i).getUDays()+"");
-                text2.setLayoutParams(textLp);
-                b1.addView(text2);
-
-                TextView text3 = new TextView(this);
-                text3.setTextColor(Color.WHITE);
-                text3.setText(products.get(i).getEDays()+"");
-                text3.setLayoutParams(textLp);
-                b1.addView(text3);
-
-                b1.setBackgroundColor(Color.BLUE);
-                layoutLp.setMargins(0, 0, (int)(15*scale+0.5f), 0);
-                b1.setLayoutParams(prodLp);
-                layout.addView(b1);
-
-                LinearLayout b2 = new LinearLayout(this);
-                b2.setGravity(Gravity.CENTER);
-                b2.setId(i + 1);
-                b2.setOrientation(LinearLayout.VERTICAL);
-                b2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
-                        intent.putExtra("Product", cabinet.getCurrentProducts().get(v.getId()));
-                        intent.putExtra("Cabinet", cabinet);
-                        intent.putExtra("Database", database);
-                        startActivity(intent);
-                    }
-                });
-
-                ImageView pic21 = new ImageView(this);
-                pic21.setImageResource(getResources().getIdentifier(products.get(i + 1).getName().toLowerCase(), "drawable", getPackageName()));
-                pic21.setLayoutParams(picLp);
-                b2.addView(pic21);
-
-                TextView text21 = new TextView(this);
-                text21.setTextColor(Color.WHITE);
-                text21.setText(products.get(i + 1).getName());
-                text21.setLayoutParams(textLp);
-                b2.addView(text21);
-
-                TextView text22 = new TextView(this);
-                text22.setTextColor(Color.WHITE);
-                text22.setText(products.get(i + 1).getUDays()+"");
-                text22.setLayoutParams(textLp);
-                b2.addView(text22);
-
-                TextView text23 = new TextView(this);
-                text23.setTextColor(Color.WHITE);
-                text23.setText(products.get(i + 1).getEDays()+"");
-                text23.setLayoutParams(textLp);
-                b2.addView(text23);
-
-                b2.setLayoutParams(prodLp);
-                b2.setBackgroundColor(Color.BLUE);
-                layout.addView(b2);
             } else {
                 LinearLayout b1 = new LinearLayout(this);
                 b1.setGravity(Gravity.CENTER);
-                b1.setOrientation(LinearLayout.VERTICAL);
                 b1.setId(i);
+                b1.setOrientation(LinearLayout.VERTICAL);
                 b1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -492,25 +408,25 @@ public class Home extends AppCompatActivity {
 
                 TextView text2 = new TextView(this);
                 text2.setTextColor(Color.WHITE);
-                text2.setText(products.get(i).getUDays()+"");
+                text2.setText(products.get(i).getUDays() + "");
                 text2.setLayoutParams(textLp);
                 b1.addView(text2);
 
                 TextView text3 = new TextView(this);
                 text3.setTextColor(Color.WHITE);
-                text3.setText(products.get(i).getEDays()+"");
+                text3.setText(products.get(i).getEDays() + "");
                 text3.setLayoutParams(textLp);
                 b1.addView(text3);
 
                 b1.setBackgroundColor(Color.BLUE);
-                layoutLp.setMargins(0, 0, (int)(15*scale+0.5f), 0);
+                layoutLp.setMargins(0, 0, (int) (15 * scale + 0.5f), 0);
                 b1.setLayoutParams(prodLp);
                 layout.addView(b1);
 
                 LinearLayout b2 = new LinearLayout(this);
                 b2.setGravity(Gravity.CENTER);
-                b2.setOrientation(LinearLayout.VERTICAL);
                 b2.setId(i + 1);
+                b2.setOrientation(LinearLayout.VERTICAL);
                 b2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -541,56 +457,13 @@ public class Home extends AppCompatActivity {
 
                 TextView text23 = new TextView(this);
                 text23.setTextColor(Color.WHITE);
-                text23.setText(products.get(i + 1).getEDays()+"");
+                text23.setText(products.get(i + 1).getEDays() + "");
                 text23.setLayoutParams(textLp);
                 b2.addView(text23);
 
-                b2.setBackgroundColor(Color.BLUE);
-                layoutLp.setMargins(0, 0, (int)(15*scale+0.5f), 0);
                 b2.setLayoutParams(prodLp);
+                b2.setBackgroundColor(Color.BLUE);
                 layout.addView(b2);
-
-                LinearLayout b3 = new LinearLayout(this);
-                b3.setGravity(Gravity.CENTER);
-                b3.setOrientation(LinearLayout.VERTICAL);
-                b3.setId(i + 2);
-                b3.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getBaseContext(), ZoomedInProduct.class);
-                        intent.putExtra("Product", cabinet.getCurrentProducts().get(v.getId()));
-                        intent.putExtra("Cabinet", cabinet);
-                        intent.putExtra("Database", database);
-                        startActivity(intent);
-                    }
-                });
-
-                ImageView pic31 = new ImageView(this);
-                pic31.setImageResource(getResources().getIdentifier(products.get(i + 2).getName().toLowerCase(), "drawable", getPackageName()));
-                pic31.setLayoutParams(picLp);
-                b3.addView(pic31);
-
-                TextView text31 = new TextView(this);
-                text31.setTextColor(Color.WHITE);
-                text31.setText(products.get(i + 2).getName());
-                text31.setLayoutParams(textLp);
-                b3.addView(text31);
-
-                TextView text32 = new TextView(this);
-                text32.setTextColor(Color.WHITE);
-                text32.setText(products.get(i + 2).getUDays()+"");
-                text32.setLayoutParams(textLp);
-                b3.addView(text32);
-
-                TextView text33 = new TextView(this);
-                text33.setTextColor(Color.WHITE);
-                text33.setText(products.get(i + 2).getEDays()+"");
-                text33.setLayoutParams(textLp);
-                b3.addView(text33);
-
-                b3.setLayoutParams(prodLp);
-                b3.setBackgroundColor(Color.BLUE);
-                layout.addView(b3);
             }
             homeMain.addView(layout);
         }
