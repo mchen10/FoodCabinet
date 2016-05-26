@@ -3,8 +3,11 @@ package foodcabinet.foodcabinet;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Layout;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -36,10 +39,36 @@ public class ZoomedInProduct extends AppCompatActivity{
         c = (Cabinet) getIntent().getSerializableExtra("Cabinet");
         database = (ArrayList<ArrayList<String>>) getIntent().getSerializableExtra("Database");
 
+        float scaleWidth =getResources().getDisplayMetrics().widthPixels;
+        float scaleHeight = getResources().getDisplayMetrics().heightPixels;
+
+        LinearLayout.LayoutParams sideEmpty = new LinearLayout.LayoutParams((int)(0.075*scaleWidth+0.5f), LinearLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams topEmpty = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int)(0.06*scaleHeight+0.5f));
+        LinearLayout.LayoutParams pLayout = new LinearLayout.LayoutParams((int)(0.85*scaleWidth+0.5f), (int)(0.85*scaleHeight+0.5f));
+
+        LinearLayout up = (LinearLayout) findViewById(R.id.UpEmptyZoomed), down = (LinearLayout) findViewById(R.id.DownEmptyZoomed);
+        LinearLayout left = (LinearLayout) findViewById(R.id.LeftEmptyZoomed), right = (LinearLayout) findViewById(R.id.RightEmptyZoomed);
+        LinearLayout pU = (LinearLayout) findViewById(R.id.ProductZoomed);
+
+        up.setLayoutParams(topEmpty);
+        down.setLayoutParams(topEmpty);
+        right.setLayoutParams(sideEmpty);
+        left.setLayoutParams(sideEmpty);
+        pU.setLayoutParams(pLayout);
+
+        LinearLayout.LayoutParams picL = new LinearLayout.LayoutParams((int)(0.5 * scaleWidth + 0.5f), (int)(0.3 * scaleHeight + 0.5f));
+        picL.setMargins((int)(0.175 * scaleWidth + 0.5f), 0, (int)(0.25 * scaleWidth + 0.5f), 0);
+
+        LinearLayout.LayoutParams textL = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        textL.setMargins((int)(0.2 * scaleWidth + 0.5f), 0, (int)(0.185 * scaleWidth + 0.5f), (int)(0.065 * scaleHeight + 0.5f));
+
         TextView name = (TextView) findViewById(R.id.NameZoomed);
         ImageView image = (ImageView) findViewById(R.id.ImageZoomed);
+        image.setLayoutParams(picL);
         TextView usedDate = (TextView) findViewById(R.id.UsedDateZoomed);
         TextView expirDate = (TextView) findViewById(R.id.ExpirationDateZoomed);
+        usedDate.setLayoutParams(textL);
+        expirDate.setLayoutParams(textL);
 
         name.setText(p.getName());
 

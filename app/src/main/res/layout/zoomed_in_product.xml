@@ -6,7 +6,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:id="@+id/UpEmptyZoomed"
         android:onClick="returnHome"></LinearLayout>
 
@@ -18,15 +18,15 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="16dp"
-            android:layout_height="425dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/LeftEmptyZoomed"
             android:onClick="returnHome"></LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="290dp"
-            android:layout_height="425dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/ProductZoomed"
             android:background="#00BB00">
             <TextView
@@ -74,8 +74,8 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="16dp"
-            android:layout_height="425dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/RightEmptyZoomed"
             android:onClick="returnHome"></LinearLayout>
     </LinearLayout>
@@ -83,7 +83,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:id="@+id/DownEmptyZoomed"
         android:onClick="returnHome"></LinearLayout>
 </LinearLayout>
