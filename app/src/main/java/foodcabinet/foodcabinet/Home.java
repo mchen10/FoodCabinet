@@ -330,7 +330,7 @@ public class Home extends AppCompatActivity {
         LinearLayout.LayoutParams textLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         textLp.setMargins(0, 0, 0, (int)(3*scale+0.5f));
         LinearLayout.LayoutParams prodLp = new LinearLayout.LayoutParams((int)(100*scale+0.5f), LinearLayout.LayoutParams.WRAP_CONTENT);
-        prodLp.setMargins((int) (15 * scale + 0.5f), 10, 0, 0);
+        prodLp.setMargins((int) (15 * scale + 0.5f), (int) (10 * scale + 0.5f), 0, 0);
         for (int i = 0; i < products.size(); i+=2) {
             LinearLayout layout = new LinearLayout(this);
             layout.setOrientation(LinearLayout.HORIZONTAL);
