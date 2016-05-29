@@ -17,14 +17,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            android:background="@color/material_deep_teal_500"
+            android:background="#00668C"
             android:fitsSystemWindows="true"
             android:textAlignment="center"
             app:expandedTitleGravity="top|center_horizontal"
             app:expandedTitleMarginBottom="30dp"
             app:collapsedTitleGravity="center_horizontal"
             android:paddingRight="70dp"
-            app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Headline">
+            app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Display1">
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/MyToolbar"

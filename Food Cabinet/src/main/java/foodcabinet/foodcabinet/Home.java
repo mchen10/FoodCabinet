@@ -1,11 +1,9 @@
 package foodcabinet.foodcabinet;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -14,9 +12,7 @@ import android.provider.MediaStore;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
-import android.util.TypedValue;
-import android.view.Display;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,12 +20,10 @@ import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -37,8 +31,6 @@ import java.util.Calendar;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Michael on 5/12/16.
@@ -113,9 +105,11 @@ public class Home extends AppCompatActivity {
 
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapse_toolbar);
+        collapsingToolbar.setExpandedTitleColor(Color.WHITE);
+        collapsingToolbar.setCollapsedTitleTextColor(Color.WHITE);
         collapsingToolbar.setTitle("Food Cabinet");
 
-        //updateSelectionScroll();
+        updateSelectionScroll();
         updateScreen();
     }
 
@@ -129,15 +123,22 @@ public class Home extends AppCompatActivity {
 
         CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapse_toolbar);
 
+        LinearLayout temp = new LinearLayout(this);
+        temp.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout temp2 = new LinearLayout(this);
+        LinearLayout.LayoutParams tempParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 500);
+        temp2.setLayoutParams(tempParams);
+        temp.addView(temp2);
+
         LinearLayout.LayoutParams bParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        bParams.setMargins(75, 150, 0, 0);
+        bParams.setMargins(75, 0, 0, 0);
         HorizontalScrollView.LayoutParams scrollParams = new HorizontalScrollView.LayoutParams(HorizontalScrollView.LayoutParams.WRAP_CONTENT, HorizontalScrollView.LayoutParams.WRAP_CONTENT);
         scrollParams.setMargins(0, 300, 0, 0);
 
         HorizontalScrollView scroll = new HorizontalScrollView(this);
-        //scroll.setLayoutParams(scrollParams);
+        scroll.setLayoutParams(scrollParams);
         LinearLayout scrollLayout = new LinearLayout(this);
-        scrollLayout.setLayoutParams(scrollParams);
+        //scrollLayout.setLayoutParams(scrollParams);
         scrollLayout.setOrientation(LinearLayout.HORIZONTAL);
         ArrayList<Button> tempButtons = new ArrayList<Button>();
         ArrayList<Product> products = cabinet.getCurrentProducts();
@@ -195,7 +196,9 @@ public class Home extends AppCompatActivity {
             totalButtons++;
         }
         scroll.addView(scrollLayout);
-        collapsingToolbar.addView(scroll);
+
+        temp.addView(scroll);
+        collapsingToolbar.addView(temp);
     }
 
     /**
@@ -314,7 +317,7 @@ public class Home extends AppCompatActivity {
      * Updates the user interface with the newly added products
      */
     public void updateScreen() {
-        //updateSelectionScroll();
+        updateSelectionScroll();
         ArrayList<Product> products = display;
 
         LinearLayout homeMain = (LinearLayout) findViewById(R.id.HomeMain);
@@ -333,6 +336,7 @@ public class Home extends AppCompatActivity {
             layout.setLayoutParams(layoutLp);
             if (i + 1 == products.size()) {
                 LinearLayout b1 = new LinearLayout(this);
+                b1.setBackgroundResource(R.drawable.product_layout);
                 b1.setGravity(Gravity.CENTER);
                 b1.setId(i);
                 b1.setOnClickListener(new View.OnClickListener() {
@@ -353,29 +357,17 @@ public class Home extends AppCompatActivity {
                 b1.addView(pic1);
 
                 TextView text1 = new TextView(this);
-                text1.setTextColor(Color.WHITE);
+                text1.setTextColor(Color.rgb(Integer.valueOf("00", 16), Integer.valueOf("66", 16), Integer.valueOf("8C", 16)));
                 text1.setText(products.get(i).getName());
                 text1.setLayoutParams(textLp);
+                text1.setTextSize((int)(0.015 * scale + 0.5f));
                 b1.addView(text1);
 
-                TextView text2 = new TextView(this);
-                text2.setTextColor(Color.WHITE);
-                text2.setText(products.get(i).getUDays()+"");
-                text2.setLayoutParams(textLp);
-                b1.addView(text2);
-
-                TextView text3 = new TextView(this);
-                text3.setTextColor(Color.WHITE);
-                text3.setText(products.get(i).getEDays()+"");
-                text3.setLayoutParams(textLp);
-                b1.addView(text3);
-
                 b1.setLayoutParams(prodLp);
-                b1.setBackgroundColor(Color.BLUE);
                 layout.addView(b1);
-                b1.setLayoutParams(prodLp);
             } else {
                 LinearLayout b1 = new LinearLayout(this);
+                b1.setBackgroundResource(R.drawable.product_layout);
                 b1.setGravity(Gravity.CENTER);
                 b1.setId(i);
                 b1.setOrientation(LinearLayout.VERTICAL);
@@ -396,28 +388,17 @@ public class Home extends AppCompatActivity {
                 b1.addView(pic1);
 
                 TextView text1 = new TextView(this);
-                text1.setTextColor(Color.WHITE);
+                text1.setTextColor(Color.rgb(Integer.valueOf("00", 16), Integer.valueOf("66", 16), Integer.valueOf("8C", 16)));
+                text1.setTextSize((int)(0.015 * scale + 0.5f));
                 text1.setText(products.get(i).getName());
                 text1.setLayoutParams(textLp);
                 b1.addView(text1);
 
-                TextView text2 = new TextView(this);
-                text2.setTextColor(Color.WHITE);
-                text2.setText(products.get(i).getUDays() + "");
-                text2.setLayoutParams(textLp);
-                b1.addView(text2);
-
-                TextView text3 = new TextView(this);
-                text3.setTextColor(Color.WHITE);
-                text3.setText(products.get(i).getEDays() + "");
-                text3.setLayoutParams(textLp);
-                b1.addView(text3);
-
-                b1.setBackgroundColor(Color.BLUE);
                 b1.setLayoutParams(prodLp);
                 layout.addView(b1);
 
                 LinearLayout b2 = new LinearLayout(this);
+                b2.setBackgroundResource(R.drawable.product_layout);
                 b2.setGravity(Gravity.CENTER);
                 b2.setId(i + 1);
                 b2.setOrientation(LinearLayout.VERTICAL);
@@ -438,25 +419,14 @@ public class Home extends AppCompatActivity {
                 b2.addView(pic21);
 
                 TextView text21 = new TextView(this);
-                text21.setTextColor(Color.WHITE);
+                //00668C
+                text21.setTextColor(Color.rgb(Integer.valueOf("00", 16), Integer.valueOf("66", 16), Integer.valueOf("8C", 16)));
+                text21.setTextSize((int)(0.015 * scale + 0.5f));
                 text21.setText(products.get(i + 1).getName());
                 text21.setLayoutParams(textLp);
                 b2.addView(text21);
 
-                TextView text22 = new TextView(this);
-                text22.setTextColor(Color.WHITE);
-                text22.setText(products.get(i + 1).getUDays() + "");
-                text22.setLayoutParams(textLp);
-                b2.addView(text22);
-
-                TextView text23 = new TextView(this);
-                text23.setTextColor(Color.WHITE);
-                text23.setText(products.get(i + 1).getEDays() + "");
-                text23.setLayoutParams(textLp);
-                b2.addView(text23);
-
                 b2.setLayoutParams(prodLp);
-                b2.setBackgroundColor(Color.BLUE);
                 layout.addView(b2);
             }
             homeMain.addView(layout);
