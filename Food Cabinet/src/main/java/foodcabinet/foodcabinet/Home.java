@@ -121,24 +121,25 @@ public class Home extends AppCompatActivity {
 
         totalButtons = 0;
 
+        float scale = getResources().getDisplayMetrics().widthPixels;
+
         CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapse_toolbar);
 
+        CollapsingToolbarLayout.LayoutParams collapse = new CollapsingToolbarLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        collapse.setCollapseMode(CollapsingToolbarLayout.LayoutParams.COLLAPSE_MODE_PARALLAX);
         LinearLayout temp = new LinearLayout(this);
+        temp.setLayoutParams(collapse);
         temp.setOrientation(LinearLayout.VERTICAL);
         LinearLayout temp2 = new LinearLayout(this);
-        LinearLayout.LayoutParams tempParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 500);
+        LinearLayout.LayoutParams tempParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int)(scale * 0.35 + 0.5f));
         temp2.setLayoutParams(tempParams);
         temp.addView(temp2);
 
-        LinearLayout.LayoutParams bParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        bParams.setMargins(75, 0, 0, 0);
-        HorizontalScrollView.LayoutParams scrollParams = new HorizontalScrollView.LayoutParams(HorizontalScrollView.LayoutParams.WRAP_CONTENT, HorizontalScrollView.LayoutParams.WRAP_CONTENT);
-        scrollParams.setMargins(0, 300, 0, 0);
+        LinearLayout.LayoutParams bParams = new LinearLayout.LayoutParams((int)(scale * 0.285 + 0.5f), (int)(scale * 0.1 + 0.5f));
+        bParams.setMargins((int)(0.075 * scale + 0.5f), 0, 0, 0);
 
         HorizontalScrollView scroll = new HorizontalScrollView(this);
-        scroll.setLayoutParams(scrollParams);
         LinearLayout scrollLayout = new LinearLayout(this);
-        //scrollLayout.setLayoutParams(scrollParams);
         scrollLayout.setOrientation(LinearLayout.HORIZONTAL);
         ArrayList<Button> tempButtons = new ArrayList<Button>();
         ArrayList<Product> products = cabinet.getCurrentProducts();
@@ -157,6 +158,8 @@ public class Home extends AppCompatActivity {
                 continue;
             }
             Button b = new Button(this);
+            b.setBackgroundResource(R.drawable.selection_button_layout);
+            b.setTextColor(Color.rgb(Integer.valueOf("00", 16), Integer.valueOf("66", 16), Integer.valueOf("8C", 16)));
             b.setId(totalButtons + 1000);
             b.setLayoutParams(bParams);
             b.setText(products.get(i).getGroup());
@@ -180,6 +183,8 @@ public class Home extends AppCompatActivity {
         }
         if (currentSelection != "ALL") {
             Button b = new Button(this);
+            b.setBackgroundResource(R.drawable.selection_button_layout);
+            b.setTextColor(Color.rgb(Integer.valueOf("00", 16), Integer.valueOf("66", 16), Integer.valueOf("8C", 16)));
             b.setId(totalButtons + 1000);
             b.setLayoutParams(bParams);
             b.setText("All Products");
@@ -211,7 +216,7 @@ public class Home extends AppCompatActivity {
         }
     }
 
-    PictureToText convert;
+    private PictureToText convert;
 
     /**
      * Receives the picture taken and parses it
@@ -321,18 +326,22 @@ public class Home extends AppCompatActivity {
         ArrayList<Product> products = display;
 
         LinearLayout homeMain = (LinearLayout) findViewById(R.id.HomeMain);
+        homeMain.setBackgroundColor(Color.GREEN);
         float scale=getResources().getDisplayMetrics().widthPixels;
-        LinearLayout.LayoutParams picLp = new LinearLayout.LayoutParams((int)(0.35*scale+0.5f), (int)(0.24*scale+0.5f));
-        picLp.setMargins((int)(0.0096*scale+0.5f), (int)(0.016*scale+0.5f), (int)(0.0096*scale+0.5f), (int)(0.016*scale+0.5f));
+
         LinearLayout.LayoutParams layoutLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        LinearLayout.LayoutParams textLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        textLp.setMargins(0, 0, 0, (int)(0.02*scale+0.5f));
+        layoutLp.setMargins(0, (int)(0.016*scale+0.5f), (int)(0.0001*scale+0.5f), (int)(0.064*scale+0.5f));
+
         LinearLayout.LayoutParams prodLp = new LinearLayout.LayoutParams((int)(0.425*scale+0.5f), LinearLayout.LayoutParams.WRAP_CONTENT);
         prodLp.setMargins((int) (0.05 * scale + 0.5f), 0, 0, 0);
+
+        LinearLayout.LayoutParams picLp = new LinearLayout.LayoutParams((int)(0.35*scale+0.5f), (int)(0.24*scale+0.5f));
+        picLp.setMargins((int)(0.0096*scale+0.5f), (int)(0.016*scale+0.5f), (int)(0.0096*scale+0.5f), (int)(0.016*scale+0.5f));
+        LinearLayout.LayoutParams textLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        textLp.setMargins(0, 0, 0, (int)(0.02*scale+0.5f));
         for (int i = 0; i < products.size(); i+=2) {
             LinearLayout layout = new LinearLayout(this);
             layout.setOrientation(LinearLayout.HORIZONTAL);
-            layoutLp.setMargins(0, (int)(0.016*scale+0.5f), (int)(0.0001*scale+0.00001f), (int)(0.064*scale+0.5f));
             layout.setLayoutParams(layoutLp);
             if (i + 1 == products.size()) {
                 LinearLayout b1 = new LinearLayout(this);
@@ -419,7 +428,6 @@ public class Home extends AppCompatActivity {
                 b2.addView(pic21);
 
                 TextView text21 = new TextView(this);
-                //00668C
                 text21.setTextColor(Color.rgb(Integer.valueOf("00", 16), Integer.valueOf("66", 16), Integer.valueOf("8C", 16)));
                 text21.setTextSize((int)(0.015 * scale + 0.5f));
                 text21.setText(products.get(i + 1).getName());
