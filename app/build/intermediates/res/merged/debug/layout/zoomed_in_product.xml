@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/UpEmptyZoomed"
+        android:onClick="returnHome"></LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ContainerZoomed">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/LeftEmptyZoomed"
+            android:onClick="returnHome"></LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ProductZoomed"
+            android:background="#00BB00">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TEMP"
+                android:textSize="40dp"
+                android:id="@+id/NameZoomed"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"/>
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="150dp"
+                android:id="@+id/ImageZoomed"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/UsedDateZoomed"
+                android:layout_marginTop="10dp"
+                android:text="TEMP"
+                android:textSize="30dp"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ExpirationDateZoomed"
+                android:layout_marginTop="10dp"
+                android:text="TEMP"
+                android:layout_gravity="center"
+                android:textSize="30dp"/>
+
+            <Button
+                android:background="#FF0000"
+                android:layout_width="225dp"
+                android:layout_height="wrap_content"
+                android:text="Delete"
+                android:id="@+id/DeleteButton"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:textSize="25dp"
+                android:onClick="deleteObject"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RightEmptyZoomed"
+            android:onClick="returnHome"></LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/DownEmptyZoomed"
+        android:onClick="returnHome"></LinearLayout>
+</LinearLayout>

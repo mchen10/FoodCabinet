@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/menu/menu_home_pag.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/menu/menu_home_pag.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/menu/menu_home.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/menu/menu_home.xml"
+    }
+]

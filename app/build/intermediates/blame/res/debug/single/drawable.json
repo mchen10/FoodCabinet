@@ -1,0 +1,466 @@
+[
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/broccoli.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/broccoli.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/avacado.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/avacado.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/eggnog.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/eggnog.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_btn_colored_material.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/eggplant.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/eggplant.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/garlic.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/garlic.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/leeks.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/leeks.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/camera.png",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/camera.png"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/spinach.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/spinach.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/milk.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/milk.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/fig.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/fig.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/kale.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/kale.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_background_transition_holo_dark.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_list_selector_background_transition_holo_dark.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_holo_light.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_list_selector_holo_light.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/artichokes.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/artichokes.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/butter.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/butter.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/bread.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/bread.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/celery.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/celery.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_switch_thumb_material.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_switch_thumb_material.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/pea.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/pea.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/apricot.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/apricot.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/pepper.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/pepper.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_btn_radio_material.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_btn_radio_material.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_textfield_search_material.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_textfield_search_material.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/cucumber.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/cucumber.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/blueberries.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/blueberries.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/cowpeas.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/cowpeas.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/cress.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/cress.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/raisins.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/raisins.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/tomato.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/tomato.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_background_transition_holo_light.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_list_selector_background_transition_holo_light.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/raspberries.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/raspberries.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_holo_dark.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_list_selector_holo_dark.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/taro.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/taro.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_item_background_holo_light.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_item_background_holo_light.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/mushrooms.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/mushrooms.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/beef.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/beef.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/desserttopping.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/desserttopping.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/turnip.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/turnip.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/cabbage.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/cabbage.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/orange.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/orange.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/cauliflower.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/cauliflower.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_btn_default_mtrl_shape.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_btn_default_mtrl_shape.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/pork.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/pork.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_dialog_material_background_dark.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_dialog_material_background_dark.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/pears.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/pears.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/carrots.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/carrots.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/butterbur.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/butterbur.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/lemon.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/lemon.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/banana.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/banana.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/whey.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/whey.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_btn_check_material.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_btn_check_material.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/peach.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/peach.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/cherries.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/cherries.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/strawberries.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/strawberries.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_spinner_textfield_background_material.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_spinner_textfield_background_material.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/potato.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/potato.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_tab_indicator_material.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_tab_indicator_material.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_ratingbar_full_material.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_ratingbar_full_material.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/pumpkin.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/pumpkin.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/chicken.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/chicken.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/icecream.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/icecream.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/plums.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/plums.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/kiwi.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/kiwi.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_dialog_material_background_light.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_dialog_material_background_light.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/seafood.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/seafood.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/succotash.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/succotash.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/lettuce.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/lettuce.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/brussels.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/brussels.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/litchis.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/litchis.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_ratingbar_small_material.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_ratingbar_small_material.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_ratingbar_indicator_material.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_ratingbar_indicator_material.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/parsley.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/parsley.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/pineapple.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/pineapple.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/onions.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/onions.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/design_snackbar_background.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/res/drawable/design_snackbar_background.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/yam.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/yam.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/prunes.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/prunes.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/okra.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/okra.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/radish.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/radish.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/corn.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/corn.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/egg.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/egg.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_seekbar_thumb_material.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_seekbar_thumb_material.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/limes.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/limes.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/grape.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/grape.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/soybean.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/soybean.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/cheese.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/cheese.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/melon.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/melon.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/cranberries.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/cranberries.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/grapefruit.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/grapefruit.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/pomegranete.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/pomegranete.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/asparagus.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/asparagus.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/applejuice.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/applejuice.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_text_cursor_material.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_text_cursor_material.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/papaya.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/papaya.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/reciept.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/reciept.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/beets.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/beets.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_cab_background_top_material.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_cab_background_top_material.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/yogurt.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/yogurt.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/fruitsalad.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/fruitsalad.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/sourcream.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/sourcream.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/add.png",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/add.png"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/squash.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/squash.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/design_fab_background.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/res/drawable/design_fab_background.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_seekbar_track_material.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_seekbar_track_material.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_item_background_holo_dark.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_item_background_holo_dark.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/oranges.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/oranges.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_edit_text_material.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_edit_text_material.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/pokeberry.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/pokeberry.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/tomatosauce.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/tomatosauce.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/beans.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/beans.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_btn_borderless_material.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_btn_borderless_material.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/abc_cab_background_internal_bg.xml",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable/abc_cab_background_internal_bg.xml"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/seaweed.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/seaweed.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/apple.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/apple.jpg"
+    },
+    {
+        "merged": "/Users/Sahaj/Desktop/FoodCabinet/app/build/intermediates/res/merged/debug/drawable/orangejuice.jpg",
+        "source": "/Users/Sahaj/Desktop/FoodCabinet/app/src/main/res/drawable/orangejuice.jpg"
+    }
+]

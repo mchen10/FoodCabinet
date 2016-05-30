@@ -36,14 +36,6 @@ public class PictureToText {
     private AsyncTask task;
 
     /**
-     * Connects to Google's External Image Recognition Library, Cloud Vision
-     * @return A Vision object that is defined by the passed in Image
-     * @throws IOException Exception thrown when Image is unable to be processed by the library
-     * @throws GeneralSecurityException Exception thrown when connection to external library is not properly done
-     */
-
-
-    /**
      * Creates a new Instance of Picture to Text object, defined by the passed in Image parameter
      *
      * @param a Image to be translated into a product
@@ -55,7 +47,7 @@ public class PictureToText {
         translated = new ArrayList<String>();
         try {
             callCloudVision();
-            task.execute().get();
+            task.execute();
         } catch (IOException e) {
             Log.d("PicToText", "Failed to Call Cloud Vision");
         } catch (Exception e){
@@ -127,7 +119,6 @@ public class PictureToText {
         List<EntityAnnotation> text = e.getResponses().get(0).getTextAnnotations();
         for (EntityAnnotation ann : text) {
             trans.add(ann.getDescription());
-            //Log.d("Testing",ann.getDescription());
         }
         return trans;
     }
@@ -138,6 +129,7 @@ public class PictureToText {
     public void textToProduct() {
         //Log.d("Products"," "+translated.size());
         Log.d("TESTING3", translated.toString());
+
         for (String a : translated) {
             String word = "";
             String group = "";
@@ -152,7 +144,6 @@ public class PictureToText {
                             least = diff;
                             word = s.trim();
                             group = database.get(i).get(0);
-                            //Log.d("TextToProduct",a + "    " + word);
                         }
                     }
                 }
@@ -163,8 +154,11 @@ public class PictureToText {
                 temp.add(word);
                 temp.add(group);
                 prod.add(temp);
+                Log.d("Added",word);
             }
+            Log.d("Translated",a);
         }
+        Log.d("Runs","Runs Though");
     }
 
     /**
@@ -221,5 +215,4 @@ public class PictureToText {
         }
         return dp[l1][l2];
     }
-
 }

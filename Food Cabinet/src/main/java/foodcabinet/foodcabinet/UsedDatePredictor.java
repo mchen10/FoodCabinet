@@ -24,10 +24,7 @@ public class UsedDatePredictor {
     /** Constructs a UsedDatePredictor to be used
      *
      */
-    public UsedDatePredictor(){
-
-    }
-
+    public UsedDatePredictor(){}
     /** Predicts the date of when the product is used
      *
      * @param product product who's use date is to be predicted

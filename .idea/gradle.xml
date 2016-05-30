@@ -13,12 +13,15 @@
             <option value="$PROJECT_DIR$/Food Cabinet" />
           </set>
         </option>
+<<<<<<< Updated upstream
         <option name="myModules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Food Cabinet" />
           </set>
         </option>
+=======
+>>>>>>> Stashed changes
       </GradleProjectSettings>
     </option>
   </component>
