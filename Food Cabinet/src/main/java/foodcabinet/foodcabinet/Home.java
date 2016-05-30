@@ -76,9 +76,31 @@ public class Home extends AppCompatActivity {
         if (prefs.getBoolean("firstTime", false) == false) {
             try {
                 DatabaseCreator create = new DatabaseCreator();
-                create.execute("http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=0900&max=360",
-                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=1100&max=836",
-                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=0100&max=283");
+                create.execute("http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=3500&max=165",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=0300&max=368",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=1800&max=879",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=1300&max=961",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=1400&max=371",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=0800&max=356",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=2000&max=181",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=0100&max=283",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=2100&max=363",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=0400&max=220",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=1500&max=265",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=0900&max=360",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=1700&max=464",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=1600&max=381",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=2200&max=125",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=1200&max=137",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=1000&max=341",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=0500&max=389",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=3600&max=109",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=0700&max=170",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=2500&max=177",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=0600&max=465",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=0200&max=64",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=1900&max=360",
+                        "http://api.nal.usda.gov/ndb/search/?format=xml&api_key="+foodDataKey + "&fg=1100&max=836");
             } catch (Exception e) {
 
             }
@@ -332,7 +354,6 @@ public class Home extends AppCompatActivity {
         ArrayList<Product> products = display;
 
         LinearLayout homeMain = (LinearLayout) findViewById(R.id.HomeMain);
-        homeMain.setBackgroundColor(Color.GREEN);
         float scale=getResources().getDisplayMetrics().widthPixels;
 
         LinearLayout.LayoutParams layoutLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -445,6 +466,16 @@ public class Home extends AppCompatActivity {
             }
             homeMain.addView(layout);
         }
+
+        LinearLayout.LayoutParams tL = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        tL.setMargins((int)(0.27 * scale + 0.5f), (int)(0.1 * scale + 0.5f),0, 0);
+        TextView addText = new TextView(this);
+        addText.setTextColor(Color.LTGRAY);
+        addText.setText("Add More Products\n\nUsing Camera");
+        addText.setGravity(Gravity.CENTER);
+        addText.setTextSize((int)(0.015 * scale + 0.5f));
+        addText.setLayoutParams(tL);
+        homeMain.addView(addText);
     }
 
     class DatabaseCreator extends AsyncTask<String, Void, ArrayList<ArrayList<String>>> {
@@ -459,11 +490,55 @@ public class Home extends AppCompatActivity {
                     String input;
                     ArrayList<String> currentGroup = new ArrayList<String>();
                     if (i ==  0) {
-                        currentGroup.add("Fruits");
+                        currentGroup.add("American Indian/Alaska Native Foods");
                     } else if (i == 1) {
-                        currentGroup.add("Vegetables");
-                    } else {
-                        currentGroup.add("Dairy");
+                        currentGroup.add("Baby Foods");
+                    } else if (i == 2) {
+                        currentGroup.add("Baked Products");
+                    } else if (i == 3) {
+                        currentGroup.add("Beef Products");
+                    } else if (i == 4) {
+                        currentGroup.add("Beverages");
+                    } else if (i == 5) {
+                        currentGroup.add("Breakfast Cereals");
+                    } else if (i == 6) {
+                        currentGroup.add("Cereal Grains and Pasta");
+                    } else if (i == 7) {
+                        currentGroup.add("Dairy and Egg Products");
+                    } else if (i == 8) {
+                        currentGroup.add("Fast Foods");
+                    } else if (i == 9) {
+                        currentGroup.add("Fats and Oils");
+                    } else if (i == 10) {
+                        currentGroup.add("Finfish and Shellfish Products");
+                    } else if (i == 11) {
+                        currentGroup.add("Fruits and Fruit Juices");
+                    } else if (i == 12) {
+                        currentGroup.add("Lamb, Veal, and Game Products");
+                    } else if (i == 13) {
+                        currentGroup.add("Legumes and Legume Products");
+                    } else if (i == 14) {
+                        currentGroup.add("Meals, Entrees, and Side Dishes");
+                    } else if (i == 15) {
+                        currentGroup.add("Nut and Seed Products");
+                    } else if (i == 16) {
+                        currentGroup.add("Pork Products");
+                    } else if (i == 17) {
+                        currentGroup.add("Poultry Products");
+                    } else if (i == 18) {
+                        currentGroup.add("Restaurant Foods");
+                    } else if (i == 19) {
+                        currentGroup.add("Sausages and Luncheon Meats");
+                    } else if (i == 20) {
+                        currentGroup.add("Snacks");
+                    } else if (i == 21) {
+                        currentGroup.add("Soups, Sauces, and Gravies");
+                    } else if (i == 22) {
+                        currentGroup.add("Spices and Herbs");
+                    } else if (i == 23) {
+                        currentGroup.add("Sweets");
+                    } else if (i == 24) {
+                        currentGroup.add("Vegetables and Vegetable Products");
                     }
                     while ((input = read.readLine()) != null){
                         if (input.contains("<name>")) {

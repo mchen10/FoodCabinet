@@ -56,10 +56,10 @@ public class ZoomedInProduct extends AppCompatActivity{
         pU.setLayoutParams(pLayout);
 
         LinearLayout.LayoutParams picL = new LinearLayout.LayoutParams((int)(0.5 * scaleWidth + 0.5f), (int)(0.3 * scaleHeight + 0.5f));
-        picL.setMargins((int)(0.175 * scaleWidth + 0.5f), 0, (int)(0.25 * scaleWidth + 0.5f), 0);
+        picL.setMargins((int)(0.175 * scaleWidth + 0.5f), 0, 0, 0);
 
         LinearLayout.LayoutParams textL = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        textL.setMargins((int)(0.2 * scaleWidth + 0.5f), 0, (int)(0.185 * scaleWidth + 0.5f), (int)(0.065 * scaleHeight + 0.5f));
+        textL.setMargins((int)(0.22 * scaleWidth + 0.5f), 0,0, (int)(0.05 * scaleHeight + 0.5f));
 
         TextView name = (TextView) findViewById(R.id.NameZoomed);
         ImageView image = (ImageView) findViewById(R.id.ImageZoomed);
