@@ -1,9 +1,11 @@
 package foodcabinet.foodcabinet;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
+import android.text.style.TypefaceSpan;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +43,8 @@ public class ZoomedInProduct extends AppCompatActivity{
         float scaleWidth =getResources().getDisplayMetrics().widthPixels;
         float scaleHeight = getResources().getDisplayMetrics().heightPixels;
 
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/MODERNA_.TTF");
+
         LinearLayout.LayoutParams sideEmpty = new LinearLayout.LayoutParams((int)(0.075*scaleWidth+0.5f), LinearLayout.LayoutParams.MATCH_PARENT);
         LinearLayout.LayoutParams topEmpty = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int)(0.06*scaleHeight+0.5f));
         LinearLayout.LayoutParams pLayout = new LinearLayout.LayoutParams((int)(0.85*scaleWidth+0.5f), (int)(0.85*scaleHeight+0.5f));
@@ -59,7 +63,7 @@ public class ZoomedInProduct extends AppCompatActivity{
         picL.setMargins((int)(0.175 * scaleWidth + 0.5f), 0, 0, 0);
 
         LinearLayout.LayoutParams textL = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        textL.setMargins((int)(0.22 * scaleWidth + 0.5f), 0,0, (int)(0.05 * scaleHeight + 0.5f));
+        textL.setMargins((int)(0.22 * scaleWidth + 0.5f), (int)(0.01 * scaleWidth + 0.5f),0, (int)(0.05 * scaleHeight + 0.5f));
 
         TextView name = (TextView) findViewById(R.id.NameZoomed);
         ImageView image = (ImageView) findViewById(R.id.ImageZoomed);
@@ -70,6 +74,7 @@ public class ZoomedInProduct extends AppCompatActivity{
         expirDate.setLayoutParams(textL);
 
         name.setText(p.getName());
+        name.setTypeface(font);
 
         image.setImageResource(getResources().getIdentifier(p.getName().toLowerCase(), "drawable", getPackageName()));
 
@@ -81,11 +86,18 @@ public class ZoomedInProduct extends AppCompatActivity{
 
         SimpleDateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
         usedDate.setText(format.format(calendar.getTime()));
+        usedDate.setTypeface(font);
 
         calendar.add(Calendar.DATE, -uDate);
         calendar.add(Calendar.DATE, eDate);
 
         expirDate.setText(format.format(calendar.getTime()));
+        expirDate.setTypeface(font);
+
+        TextView uLabel = (TextView) findViewById(R.id.UsedDateLabel);
+        TextView eLabel = (TextView) findViewById(R.id.ExpirationDateLabel);
+        uLabel.setTypeface(font);
+        eLabel.setTypeface(font);
     }
 
     /**

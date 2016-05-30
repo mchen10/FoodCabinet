@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -42,6 +43,7 @@ public class Home extends AppCompatActivity {
     private ArrayList<ArrayList<String>> database = new ArrayList<ArrayList<String>>();
     private static final String foodDataKey = "pZ657QOXz5HciP7gfwvoyLaYccsLbkw51XIDrbGU";
     private int totalButtons = 0;
+    private Typeface font;
 
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
@@ -131,6 +133,10 @@ public class Home extends AppCompatActivity {
         collapsingToolbar.setCollapsedTitleTextColor(Color.WHITE);
         collapsingToolbar.setTitle("Food Cabinet");
 
+        font = Typeface.createFromAsset(getAssets(), "fonts/MODERNA_.TTF");
+        collapsingToolbar.setCollapsedTitleTypeface(font);
+        collapsingToolbar.setExpandedTitleTypeface(font);
+
         updateSelectionScroll();
         updateScreen();
     }
@@ -185,6 +191,7 @@ public class Home extends AppCompatActivity {
             b.setId(totalButtons + 1000);
             b.setLayoutParams(bParams);
             b.setText(products.get(i).getGroup());
+            b.setTypeface(font);
             b.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -209,6 +216,7 @@ public class Home extends AppCompatActivity {
             b.setTextColor(Color.rgb(Integer.valueOf("00", 16), Integer.valueOf("66", 16), Integer.valueOf("8C", 16)));
             b.setId(totalButtons + 1000);
             b.setLayoutParams(bParams);
+            b.setTypeface(font);
             b.setText("All Products");
             b.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -350,6 +358,8 @@ public class Home extends AppCompatActivity {
         collapsingToolbar.setExpandedTitleColor(Color.WHITE);
         collapsingToolbar.setCollapsedTitleTextColor(Color.WHITE);
         collapsingToolbar.setTitle("Food Cabinet");
+        collapsingToolbar.setExpandedTitleTypeface(font);
+        collapsingToolbar.setCollapsedTitleTypeface(font);
 
         ArrayList<Product> products = display;
 
@@ -397,6 +407,7 @@ public class Home extends AppCompatActivity {
                 text1.setText(products.get(i).getName());
                 text1.setLayoutParams(textLp);
                 text1.setTextSize((int)(0.015 * scale + 0.5f));
+                text1.setTypeface(font);
                 b1.addView(text1);
 
                 b1.setLayoutParams(prodLp);
@@ -428,6 +439,7 @@ public class Home extends AppCompatActivity {
                 text1.setTextSize((int)(0.015 * scale + 0.5f));
                 text1.setText(products.get(i).getName());
                 text1.setLayoutParams(textLp);
+                text1.setTypeface(font);
                 b1.addView(text1);
 
                 b1.setLayoutParams(prodLp);
@@ -459,6 +471,7 @@ public class Home extends AppCompatActivity {
                 text21.setTextSize((int)(0.015 * scale + 0.5f));
                 text21.setText(products.get(i + 1).getName());
                 text21.setLayoutParams(textLp);
+                text21.setTypeface(font);
                 b2.addView(text21);
 
                 b2.setLayoutParams(prodLp);
