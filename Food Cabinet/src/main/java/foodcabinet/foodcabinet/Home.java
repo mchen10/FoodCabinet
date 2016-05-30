@@ -144,7 +144,10 @@ public class Home extends AppCompatActivity {
     public void updateSelectionScroll() {
         for (int i = 0; i < totalButtons; i++) {
             Button layout = (Button) findViewById(i + 1000);
-            ((ViewGroup) layout.getParent()).removeView(layout);
+            if(layout!=null)
+            {
+                ((ViewGroup) layout.getParent()).removeView(layout);
+            }
         }
 
         totalButtons = 0;
@@ -342,10 +345,10 @@ public class Home extends AppCompatActivity {
      * Clears the user interface
      */
     public void clearScreen() {
-    	for (int i = 0; i < display.size(); i++) {
-    		LinearLayout layout = (LinearLayout) findViewById(i);
-    		((ViewGroup) layout.getParent()).removeView(layout);
-    	}
+        for (int i = 0; i < display.size(); i++) {
+            LinearLayout layout = (LinearLayout) findViewById(i);
+            ((ViewGroup) layout.getParent()).removeView(layout);
+        }
     }
 
     /**
@@ -365,7 +368,6 @@ public class Home extends AppCompatActivity {
 
         LinearLayout homeMain = (LinearLayout) findViewById(R.id.HomeMain);
         float scale=getResources().getDisplayMetrics().widthPixels;
-<<<<<<< Updated upstream:Food Cabinet/src/main/java/foodcabinet/foodcabinet/Home.java
 
         LinearLayout.LayoutParams layoutLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutLp.setMargins(0, (int)(0.016*scale+0.5f), (int)(0.0001*scale+0.5f), (int)(0.064*scale+0.5f));
@@ -373,18 +375,10 @@ public class Home extends AppCompatActivity {
         LinearLayout.LayoutParams prodLp = new LinearLayout.LayoutParams((int)(0.425*scale+0.5f), LinearLayout.LayoutParams.WRAP_CONTENT);
         prodLp.setMargins((int) (0.05 * scale + 0.5f), 0, 0, 0);
 
-=======
->>>>>>> Stashed changes:app/src/main/java/foodcabinet/foodcabinet/Home.java
         LinearLayout.LayoutParams picLp = new LinearLayout.LayoutParams((int)(0.35*scale+0.5f), (int)(0.24*scale+0.5f));
         picLp.setMargins((int)(0.0096*scale+0.5f), (int)(0.016*scale+0.5f), (int)(0.0096*scale+0.5f), (int)(0.016*scale+0.5f));
         LinearLayout.LayoutParams textLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         textLp.setMargins(0, 0, 0, (int)(0.02*scale+0.5f));
-<<<<<<< Updated upstream:Food Cabinet/src/main/java/foodcabinet/foodcabinet/Home.java
-=======
-        LinearLayout.LayoutParams prodLp = new LinearLayout.LayoutParams((int)(0.425*scale+0.5f), LinearLayout.LayoutParams.WRAP_CONTENT);
-        prodLp.setMargins((int) (0.05 * scale + 0.5f), 0, 0, 0);
-
->>>>>>> Stashed changes:app/src/main/java/foodcabinet/foodcabinet/Home.java
         for (int i = 0; i < products.size(); i+=2) {
             LinearLayout layout = new LinearLayout(this);
             layout.setOrientation(LinearLayout.HORIZONTAL);
