@@ -323,6 +323,12 @@ public class Home extends AppCompatActivity {
      */
     public void updateScreen() {
         updateSelectionScroll();
+        CollapsingToolbarLayout collapsingToolbar =
+                (CollapsingToolbarLayout) findViewById(R.id.collapse_toolbar);
+        collapsingToolbar.setExpandedTitleColor(Color.WHITE);
+        collapsingToolbar.setCollapsedTitleTextColor(Color.WHITE);
+        collapsingToolbar.setTitle("Food Cabinet");
+
         ArrayList<Product> products = display;
 
         LinearLayout homeMain = (LinearLayout) findViewById(R.id.HomeMain);
