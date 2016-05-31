@@ -1,4 +1,4 @@
-package foodcabinet.foodcabinet;
+package foodcabinet.Foodcabinet;
 
 
 
@@ -20,7 +20,6 @@ import com.google.api.services.vision.v1.model.Image;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.List;
 

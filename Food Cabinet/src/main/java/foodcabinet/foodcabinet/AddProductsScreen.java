@@ -1,4 +1,4 @@
-package foodcabinet.foodcabinet;
+package foodcabinet.Foodcabinet;
 
 import android.content.Intent;
 import android.os.Bundle;

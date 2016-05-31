@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="foodcabinet.foodcabinet"
-    android:versionCode="2"
-    android:versionName="2.0">
+    package="foodcabinet.Foodcabinet"
+    android:versionCode="1"
+    android:versionName="1.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-feature android:name="android.hardware.camera" android:required="true" />
@@ -14,17 +14,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".Home" >
+        <activity android:name="foodcabinet.Foodcabinet.Home" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ZoomedInProduct" >
+        <activity android:name="foodcabinet.Foodcabinet.ZoomedInProduct" >
         </activity>
         <activity
-            android:name=".AddProductsScreen"
+            android:name="foodcabinet.Foodcabinet.AddProductsScreen"
             android:label="@string/title_activity_add_products_screen"
             android:theme="@style/AppTheme" >
         </activity>
