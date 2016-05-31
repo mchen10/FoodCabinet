@@ -341,6 +341,7 @@ public class Home extends AppCompatActivity {
         updateScreen();
     }
 
+    private int TextId = 5;
     /**
      * Clears the user interface
      */
@@ -353,7 +354,7 @@ public class Home extends AppCompatActivity {
             LinearLayout layout = (LinearLayout) findViewById(i + 100000);
             ((ViewGroup) layout.getParent()).removeView(layout);
         }
-        TextView layout = (TextView) findViewById(5);
+        TextView layout = (TextView) findViewById(TextId);
         ((ViewGroup) layout.getParent()).removeView(layout);
     }
 
@@ -498,7 +499,7 @@ public class Home extends AppCompatActivity {
         addText.setGravity(Gravity.CENTER);
         addText.setTextSize((int)(0.015 * scale + 0.5f));
         addText.setLayoutParams(tL);
-        addText.setId(5);
+        addText.setId(TextId);
         homeMain.addView(addText);
     }
 
