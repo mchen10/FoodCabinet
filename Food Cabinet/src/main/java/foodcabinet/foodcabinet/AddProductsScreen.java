@@ -1,4 +1,4 @@
-package foodcabinet.Foodcabinet;
+package foodcabinet.foodcabinet;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import foodcabinet.Foodcabinet.R;
+
 
 public class AddProductsScreen extends AppCompatActivity {
     private Cabinet cabinet;

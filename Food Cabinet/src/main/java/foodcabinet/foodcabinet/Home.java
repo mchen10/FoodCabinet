@@ -1,4 +1,4 @@
-package foodcabinet.Foodcabinet;
+package foodcabinet.foodcabinet;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -31,6 +31,9 @@ import java.util.Calendar;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import foodcabinet.Foodcabinet.R;
+
 
 /**
  * Created by Michael on 5/12/16.
@@ -496,7 +499,7 @@ public class Home extends AppCompatActivity {
         addText.setTextColor(Color.LTGRAY);
         addText.setText("Add More Products\n\nUsing Camera");
         addText.setGravity(Gravity.CENTER);
-        addText.setTextSize((int)(0.015 * scale + 0.5f));
+        addText.setTextSize((int) (0.015 * scale + 0.5f));
         addText.setLayoutParams(tL);
         addText.setId(TextId);
         homeMain.addView(addText);

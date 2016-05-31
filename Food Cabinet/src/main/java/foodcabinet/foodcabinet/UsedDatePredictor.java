@@ -1,10 +1,12 @@
-package foodcabinet.Foodcabinet;
+package foodcabinet.foodcabinet;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+
+import foodcabinet.Foodcabinet.Product;
 
 /**
  * Created by Jeff on 5/14/2016.

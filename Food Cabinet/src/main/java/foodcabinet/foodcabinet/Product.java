@@ -1,4 +1,4 @@
-package foodcabinet.Foodcabinet;
+package foodcabinet.foodcabinet;
 
 import java.io.Serializable;
 import java.util.ArrayList;

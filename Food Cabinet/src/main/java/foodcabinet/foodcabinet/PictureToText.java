@@ -1,4 +1,4 @@
-package foodcabinet.Foodcabinet;
+package foodcabinet.foodcabinet;
 
 
 

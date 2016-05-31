@@ -1,4 +1,4 @@
-package foodcabinet.Foodcabinet;
+package foodcabinet.foodcabinet;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+
+import foodcabinet.Foodcabinet.R;
+
 
 /**
  * Created by Michael on 5/16/2016.

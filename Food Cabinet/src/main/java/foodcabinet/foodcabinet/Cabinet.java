@@ -1,7 +1,8 @@
-package foodcabinet.Foodcabinet;
+package foodcabinet.foodcabinet;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
 
 /**
  * Created by Jeff on 5/16/2016.
