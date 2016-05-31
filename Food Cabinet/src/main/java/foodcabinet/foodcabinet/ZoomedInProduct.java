@@ -45,6 +45,8 @@ public class ZoomedInProduct extends AppCompatActivity{
 
         Typeface font = Typeface.createFromAsset(getAssets(), "fonts/MODERNA_.TTF");
 
+        Typeface numberFont = Typeface.createFromAsset(getAssets(), "fonts/Queen of Camelot.otf");
+
         LinearLayout.LayoutParams sideEmpty = new LinearLayout.LayoutParams((int)(0.075*scaleWidth+0.5f), LinearLayout.LayoutParams.MATCH_PARENT);
         LinearLayout.LayoutParams topEmpty = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int)(0.06*scaleHeight+0.5f));
         LinearLayout.LayoutParams pLayout = new LinearLayout.LayoutParams((int)(0.85*scaleWidth+0.5f), (int)(0.85*scaleHeight+0.5f));
@@ -63,7 +65,7 @@ public class ZoomedInProduct extends AppCompatActivity{
         picL.setMargins((int)(0.175 * scaleWidth + 0.5f), 0, 0, 0);
 
         LinearLayout.LayoutParams textL = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        textL.setMargins((int)(0.22 * scaleWidth + 0.5f), (int)(0.01 * scaleWidth + 0.5f),0, (int)(0.05 * scaleHeight + 0.5f));
+        textL.setMargins((int)(0.22 * scaleWidth + 0.5f), (int)(0.01 * scaleWidth + 0.5f),0, (int)(0.035 * scaleHeight + 0.5f));
 
         TextView name = (TextView) findViewById(R.id.NameZoomed);
         ImageView image = (ImageView) findViewById(R.id.ImageZoomed);
@@ -86,13 +88,13 @@ public class ZoomedInProduct extends AppCompatActivity{
 
         SimpleDateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
         usedDate.setText(format.format(calendar.getTime()));
-        usedDate.setTypeface(font);
+        usedDate.setTypeface(numberFont);
 
         calendar.add(Calendar.DATE, -uDate);
         calendar.add(Calendar.DATE, eDate);
 
         expirDate.setText(format.format(calendar.getTime()));
-        expirDate.setTypeface(font);
+        expirDate.setTypeface(numberFont);
 
         TextView uLabel = (TextView) findViewById(R.id.UsedDateLabel);
         TextView eLabel = (TextView) findViewById(R.id.ExpirationDateLabel);

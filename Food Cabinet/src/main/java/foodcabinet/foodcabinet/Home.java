@@ -349,6 +349,12 @@ public class Home extends AppCompatActivity {
             LinearLayout layout = (LinearLayout) findViewById(i);
             ((ViewGroup) layout.getParent()).removeView(layout);
         }
+        for (int i = 0; i < display.size(); i+=2) {
+            LinearLayout layout = (LinearLayout) findViewById(i + 100000);
+            ((ViewGroup) layout.getParent()).removeView(layout);
+        }
+        TextView layout = (TextView) findViewById(5);
+        ((ViewGroup) layout.getParent()).removeView(layout);
     }
 
     /**
@@ -381,6 +387,7 @@ public class Home extends AppCompatActivity {
         textLp.setMargins(0, 0, 0, (int)(0.02*scale+0.5f));
         for (int i = 0; i < products.size(); i+=2) {
             LinearLayout layout = new LinearLayout(this);
+            layout.setId(i + 100000);
             layout.setOrientation(LinearLayout.HORIZONTAL);
             layout.setLayoutParams(layoutLp);
             if (i + 1 == products.size()) {
@@ -491,6 +498,7 @@ public class Home extends AppCompatActivity {
         addText.setGravity(Gravity.CENTER);
         addText.setTextSize((int)(0.015 * scale + 0.5f));
         addText.setLayoutParams(tL);
+        addText.setId(5);
         homeMain.addView(addText);
     }
 
